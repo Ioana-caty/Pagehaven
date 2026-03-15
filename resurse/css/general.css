@@ -1,0 +1,245 @@
+body {
+    --culoare-fundal: beige;
+    --culoare-text: #2a2a2a;
+    --culoare-link: #e8d5a3;
+    --culoare-header: #4a1b41;
+    --culoare-subheader: #555e9c;
+    --culoare-hover: var(--culoare-subheader);
+    --culoare-hover-background: #e6d9d914;
+    --margine-pagina: 60px;
+    --culoare-contur: var(--culoare-subheader);
+
+    font-family: Georgia, serif;
+    background-color: var(--culoare-fundal);
+    color: var(--culoare-text);
+    
+    margin: 0;
+    padding: 0;
+}
+
+footer {
+    margin-left: var(--margine-pagina);
+    margin-right: var(--margine-pagina);
+}
+
+main {
+    margin-left: var(--margine-pagina);
+    margin-right: var(--margine-pagina);
+}
+
+p {
+    border: 1px solid var(--culoare-fundal);
+}
+
+figure {
+    margin: 0;
+}
+
+h1, h2, h3 {
+    color: var(--culoare-header);
+}
+
+h2 {
+    font-size: 1.8rem;
+    border-bottom: 3px solid var(--culoare-subheader);
+    padding-bottom: 6px;
+    margin-top: 16px;
+}
+
+a {
+    color: var(--culoare-subheader);
+    font-weight: bold;
+}
+
+
+header {
+    background-color: var(--culoare-header);
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#logo {
+    font-size: 1.5rem; 
+    text-decoration: none;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+}
+
+header nav a {
+    color: var(--culoare-link);
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+header nav a:hover {
+    color: var(--culoare-hover);
+    background-color: var(--culoare-hover-background);
+}
+
+.butoane-auth {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-login {
+    border: 3px solid var(--culoare-subheader);
+    color: var(--culoare-link);
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.btn-register {
+    border: 3px solid var(--culoare-link);
+    background-color: var(--culoare-subheader);
+    color: var(--culoare-link);
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.btn-login:hover {
+    background-color: var(--culoare-link);
+    color: var(--culoare-header);
+}
+
+.btn-register:hover {
+    border: 3px solid var(--culoare-subheader);
+    background-color: var(--culoare-link);
+    color: var(--culoare-header);
+}
+
+#grid-pagina {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 
+        "welcome welcome welcome-img"
+        "populare populare populare"
+        "genuri genuri genuri" 
+        "recente recente video"
+        "noutati noutati noutati"
+        "faq faq faq";
+}
+
+#grid-pagina > * {
+    border: 1px solid var(--culoare-contur);
+    /* spatiu intern */
+    padding: 10px;
+    /* umbra */
+    /* deplasarea umbrei la stanga */ box-shadow: -5px 0 7px var(--culoare-contur);
+}
+
+#welcome {
+    grid-area: welcome;
+}
+#welcome-img {
+    grid-area: welcome-img;
+}
+#populare {
+    grid-area: populare;
+}
+#genuri {
+    grid-area: genuri;
+}
+#noutati {
+    grid-area: noutati;
+}
+#recente {
+    grid-area: recente;
+}
+#video {
+    grid-area: video;
+}
+#faq {
+    grid-area: faq;
+}
+
+figure > img {
+    width: 100%;
+}
+
+/* Carti câte 2 pe rând */
+#populare .lista-carti {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 45px;
+}
+
+#populare table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Video centrat */
+#video {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.container-iframe {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-iframe iframe {
+    width: 100%;
+}
+
+#genuri .grid-genuri {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#recente .lista-carti {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+@media screen and (max-width: 1200px) {
+    
+    body {
+        --margine-pagina: 40px;
+    }
+    #grid-pagina {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+            "welcome welcome"
+            "welcome-img welcome-img"
+            "populare populare"
+            "genuri genuri"
+            "recente recente"
+            "video video"
+            "noutati noutati"
+            "faq faq";
+    }
+}
+
+@media screen and (max-width: 700px) {
+    body {
+        --margine-pagina: 20px;
+    }
+    #grid-pagina {
+        display: block;
+    }
+}
