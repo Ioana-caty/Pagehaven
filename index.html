@@ -24,25 +24,26 @@
   <link rel="manifest" href="/resurse/imagini/favicon/site.webmanifest" />
 
 
+  <link rel="stylesheet" href="./resurse/css/reset.css" />
   <link rel="stylesheet" href="./resurse/css/general.css" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <header>
     <h1>
-      <a href="index.html" id="logo"> <!-- Cerinta 12 d, 13 d-->
+      <a href="index.html" id="logo">
         <img src="./resurse/imagini/sigla.png" alt="Logo Pagehaven - bibliotecă digitală gratuită cărți PDF" width="80"
           height="80" style="width: 100px; height: 100px;" />
         <br><em> Page<span style="color:#78a4b9">haven</span></em>
       </a>
     </h1>
 
-    <nav aria-label="Meniu principal"> <!-- Cerinta 8 -->
+    <nav aria-label="Meniu principal">
       <ul class="meniu">
         <li>
           <a href="#welcome" class="activ">Acasă</a>
@@ -127,10 +128,10 @@
         </figure>
       </div>
 
-      <section id="noutati"> <!-- Cerinta 10 Cerinta 12f)g)-->
-        <h2>Noutăți</h2>
+      <section id="noutati">
+        <h2>Noutăți:</h2>
 
-        <ul> <!-- neordonata: Cerinta 10-->
+        <ul>
           <li>
             <time datetime="2026-03-03T12:00">3 mar. 2026, ora 12:00</time>
             <p><b>Lectură</b> - acum poți citi <cite>The Silent Patient</cite> de Alex Michaelides în format PDF direct
@@ -140,7 +141,7 @@
             <time datetime="2026-03-01T18:00">1 mar. 2026, ora 18:00</time>
             <p><b>Prag atins</b> - Am depășit <b>500 de titluri</b> în colecția noastră de carti online gratuite PDF</p>
           </li>
-          <li> <!-- Cerinta 12f)g) -->
+          <li>
             <time datetime="2025-12-10T10:00">10 dec. 2025, ora 10:00</time>
             <p><b>Sarah J. Maas PDF</b> — <dfn><abbr title="A Court of Thorns and Roses">ACOTAR</abbr></dfn> complet.
             </p>
@@ -155,8 +156,8 @@
           </li>
         </ul>
       </section>
-      <section id="faq"> <!-- Cerinta 16 -->
-        <h2>Întrebări frecvente</h2>
+      <section id="faq">
+        <h2>Întrebări frecvente:</h2>
 
         <details>
           <summary>Este cu adevărat gratuit să descarc cărți PDF pe Pagehaven?</summary>
@@ -184,15 +185,15 @@
       </section>
 
 
-      <section id="genuri"> <!-- Cerinta 8 -->
-        <h2>Explorează după gen</h2>
+      <section id="genuri">
+        <h2>Explorează după gen:</h2>
         <div class="grid-genuri">
           <article>
             <h3> <i class="fa-regular fa-heart"></i> Cărți PDF Romance</h3>
-            <p><b>182 de titluri</b> disponibile</p> <!-- Cerinta 8 -->
-            <dl> <!-- Cerinta 8 -->
-              <dt>Autori de top</dt> <!-- Description term  -->
-              <dd>Colleen Hoover, Jojo Moyes, Penelope Douglas</dd> <!-- Description details -->
+            <p><b>182 de titluri</b> disponibile</p>
+            <dl>
+              <dt>Autori de top</dt>
+              <dd>Colleen Hoover, Jojo Moyes, Penelope Douglas</dd>
               <dt>Titlu recomandat</dt>
               <dd><i>It Ends with Us</i></dd>
             </dl>
@@ -296,7 +297,7 @@
       </section>
 
       <div id="zona-formula">
-        <h2>Descoperă cele mai populare titluri</h2>
+        <h2>Descoperă cele mai populare titluri:</h2>
         <p>
           Deși încercăm să acoperim totul, disponibilitatea formatului PDF (română/engleză) variază pentru fiecare carte
           în parte."
@@ -306,32 +307,31 @@
           <h3>Cum calculăm ratingul mediu?</h3>
           <p>Media notelor acordate de utilizatori (de la 1 la 5):</p>
 
-          <!-- Bonus1-->
           <math display="block">
-            <mrow> <!-- grupeaza mai multe elemente pe un singur rand-->
-              <mover> <!-- pune un element (bara) deasupra altulia (R)-->
-                <mi>R</mi> <!-- se foloseste pentru simboluri-->
-                <mo>&#x00AF;</mo> <!-- se foloseste pentru operatori-->
-              </mover>
-              <mo>=</mo>
-              <mfrac>
-                <mrow>
-                  <munderover>
-                    <mo>&#x2211;</mo>
-                    <mrow>
+            <mrow>
+              < <mover>
+                <mi>R</mi>
+                <mo>&#x00AF;</mo>
+                </mover>
+                <mo>=</mo>
+                <mfrac>
+                  <mrow>
+                    <munderover>
+                      <mo>&#x2211;</mo>
+                      <mrow>
+                        <mi>i</mi>
+                        <mo>=</mo>
+                        <mn>1</mn>
+                      </mrow>
+                      <mi>n</mi>
+                    </munderover>
+                    <msub>
+                      <mi>r</mi>
                       <mi>i</mi>
-                      <mo>=</mo>
-                      <mn>1</mn> <!-- se foloseste pentru numere -->
-                    </mrow>
-                    <mi>n</mi>
-                  </munderover>
-                  <msub> <!-- pune un element (i) sub altul (r)-->
-                    <mi>r</mi>
-                    <mi>i</mi>
-                  </msub>
-                </mrow>
-                <mi>n</mi>
-              </mfrac>
+                    </msub>
+                  </mrow>
+                  <mi>n</mi>
+                </mfrac>
             </mrow>
           </math>
 
@@ -349,20 +349,16 @@
 
       </div>
 
-       <section id="populare-tabel"> <!--  Cerinta 6 & 13e) & 15 & 17 -->
-        <h2>Top descărcări 2025:</h2>
+      <section id="populare-tabel">
+        <h2>Top 5 cărți descărcate 2025:</h2>
         <article>
-          <div class="table-scroll">
-            <table id="stilizare-tabel">
-              <colgroup>
-                <col class="col-impar">
-                <col class="col-par">
-                <col class="col-impar">
-                <col class="col-par">
-                <col class="col-impar">
-                <col class="col-par">
-              </colgroup>
+          <div id="overflow-x">
+            <table id="popularity-table">
+              
               <caption>Cele mai descărcate cărți PDF de pe Pagehaven în 2025</caption>
+              <colgroup>
+                <col> <col> <col> <col> <col> <col>
+              </colgroup>
               <thead>
                 <tr>
                   <th>Loc</th>
@@ -416,7 +412,7 @@
               </tbody>
               <tfoot>
                 <tr>
-                  <td colspan="5">Total descărcări top 5 — ianuarie–martie 2025</td>
+                  <td colspan="5">Total</td>
                   <td>44.860</td>
                 </tr>
               </tfoot>
@@ -425,16 +421,15 @@
         </article>
       </section>
 
-      <aside id="carti-populare"> <!-- Cerinta 17 -->
-        <h2>Cărți populare</h2>
-        <ol class="lista-carti"> <!-- Cerinta 13 e-->
+      <aside id="carti-populare">
+        <h2>Cărți populare:</h2>
+        <ol class="lista-carti">
           <li>
             <article>
               <h3><cite>It Ends with Us</cite></h3>
               <p><i>Colleen Hoover</i></p>
               <p><b>Romance</b> · <abbr title="Română și Engleză">RO/EN</abbr></p>
               <p>
-                <!-- Cerinta 17-->
                 Rating: <meter value="4.9" min="1" max="5" low="2" high="4.5" optimum="5">4.9/5</meter>
                 <i>4.9/5</i>
               </p>
@@ -517,16 +512,16 @@
       </aside>
 
       <div id="zona-pdf">
-        <h2>Citeste direct pe site</h2>
+        <h2>Citeste direct pe site:</h2>
         <p>Prima <b>lectură</b> publicată pe site-ul nostru — <cite>The Silent Patient</cite> de Alex Michaelides în
           format PDF:</p>
 
         <embed src="./resurse/pdf/The_Silent_Patient.pdf" type="application/pdf" width="600" height="600">
       </div>
 
-      <section id="video"> <!-- Cerinta 14 -->
+      <section id="video">
         <div class="container-iframe">
-          <h2>Recenzii video</h2>
+          <h2>Recenzii:</h2>
           <p> Ești curios să afli ce mai citește comunitatea? Te invităm să urmărești cele mai noi recenzii și
             să descoperi următoarea ta poveste preferată. &#128512; </p>
 
@@ -543,15 +538,10 @@
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
 
-        <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/Tgg7BVQ4n3I?si=7p3_1FsXcZhl1jl-"
-          title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
 
         <div class="container-iframe">
-          <h2>Playlist: </h2>
+          <h2>Playlist recenzii: </h2>
           <p>Urmărește automat o selecție de review-uri la noile cărți postate pe site: </p>
-          <!-- BONUS 5: videoseries?list= reda playlist-ul, loop=1 reia de la inceput, controls=1 afiseaza butoanele -->
           <iframe width="560" height="315"
             src="https://www.youtube.com/embed/videoseries?list=PLO3gLyQaLFAn4_x7GdWIp3y243tX7uhE7&amp;autoplay=0&amp;loop=1&amp;controls=1"
             title="Playlist YouTube — Spectacole de balet"
@@ -573,14 +563,13 @@
     </div>
   </main>
 
-   <footer id="contact">
+  <footer id="contact">
     <a href="#welcome" id="link-top" title="↑ începutul paginii ↑">
       <div class="rotativ"></div>
       <span id="sageata">&#8593;</span>
     </a>
-    <!-- Cerinta 18-->
     <hr>
-    <div style="text-align: center"> 
+    <div style="text-align: center">
       <a href="#logo"><i class="fa-solid fa-circle-up"></i> Înapoi sus</a>
     </div>
     <address>
@@ -594,7 +583,6 @@
       </p>
     </address>
 
-    <!-- Bonus3-->
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.886548616231!2d26.09704037610253!3d44.43548937107573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff472f13898f%3A0xa3200754144a01ba!2sStrada%20Academiei%2014%2C%20010014%20Bucure%C8%99ti!5e0!3m2!1sro!2sro!4v1772998238874!5m2!1sro!2sro"
       width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"

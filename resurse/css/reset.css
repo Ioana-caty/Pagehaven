@@ -1,0 +1,78 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+}
+
+:root {
+    --primary:        #55294C;
+    --border:         #78a4b9;
+    --bg:             #F7F3E8;
+    --bg-card:        #f6efdf;
+    --text-link:      #e8f2f8;  
+    --text:           #2a2a2a;
+    --shadow:         #577597;
+    --formula:        #3a6fa8;
+    --formula2:       #c1a0dc;
+    --radius:         10px;
+
+    --culoare-contur: #79628A;  
+    --culoare-fundal: #7D96B2;
+
+    --margine-pagina: 3.75rem;
+    --grid-gap: 2rem;
+    --zona-padding: 1rem;
+
+    --color-table1: #c7adde;
+    --color-table2: #e8d9f1;
+  }
+
+ul, ol {
+  list-style: none;
+}
+
+img, iframe, embed, object {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+    height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+strong, b {
+  font-weight: 700;
+}
+
+em, i {
+  font-style: italic;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+}
+
