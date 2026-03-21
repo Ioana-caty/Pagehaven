@@ -1,0 +1,36 @@
+{
+  "name": "pagehaven",
+  "version": "1.0.0",
+  "description": "bibloteca virtuala",
+  "keywords": [
+    "descarca carti PDF gratuit",
+    "carti online gratuite PDF",
+    "carti PDF romance",
+    "carti PDF fantasy",
+    "carti PDF thriller",
+    "carti in romana PDF",
+    "biblioteca digitala gratuita",
+    "carti in engleza PDF"
+  ],
+  "homepage": "https://github.com/Ioana-caty/Pagehaven#readme",
+  "bugs": {
+    "url": "https://github.com/Ioana-caty/Pagehaven/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ioana-caty/Pagehaven.git"
+  },
+  "license": "ISC",
+  "author": "Caramida Ioana",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^5.0.1",
+    "express": "^5.2.1",
+    "sass": "^1.99.0",
+    "sharp": "^0.34.5"
+  }
+}

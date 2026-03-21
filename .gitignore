@@ -1,1 +1,7 @@
-resurse/pdf/The_Silent_Patient.pdf 
+node_modules/
+temp/
+logs/
+backup/
+fisiere_uploadate/
+resurse/pdf/
+teory.md

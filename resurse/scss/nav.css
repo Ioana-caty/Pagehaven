@@ -1,0 +1,141 @@
+.btn-register, .btn-login {
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius);
+  font-weight: bold;
+}
+
+.btn-register:hover, .btn-login:hover {
+  background-color: transparent;
+  color: var(--text-link);
+}
+
+#hamburger {
+  display: none;
+}
+
+#ch-menu {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+header {
+  background-color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem var(--margine-pagina);
+  gap: 0.75rem;
+  position: relative;
+  margin-bottom: 2rem;
+}
+header a:hover {
+  color: var(--border);
+}
+
+#logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+#logo img {
+  height: 50px;
+}
+#logo em {
+  font-size: 1.6rem;
+  color: var(--text-link);
+}
+
+nav.meniu-mobil {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@keyframes ramaneDeschis {
+  from {
+    transform: scale(0);
+    visibility: hidden;
+  }
+  to {
+    transform: scale(1);
+    visibility: visible;
+  }
+}
+.meniu {
+  display: flex;
+}
+.meniu > li {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  background-color: var(--shadow);
+  border-radius: 0 var(--radius) 0 var(--radius);
+  padding: 0.3rem 1.4rem;
+  color: var(--text-link);
+  font-weight: bold;
+}
+.meniu > li:hover {
+  background-color: var(--opacity-background);
+}
+.meniu > li:hover > a {
+  color: var(--border);
+}
+.meniu > li:hover > ul {
+  animation: ramaneDeschis 0.75s ease forwards;
+}
+.meniu > li > ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  background: var(--primary);
+  visibility: hidden;
+}
+.meniu > li > ul li {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.meniu > li > ul li:hover {
+  background-color: var(--opacity-background);
+}
+.meniu > li > ul li:hover > a {
+  color: var(--border);
+}
+.meniu > li:not(:has(ul))::after {
+  content: "";
+  position: absolute;
+  border-radius: var(--radius);
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(to right, var(--culoare-contur), var(--border), var(--culoare-contur));
+  top: 0;
+  opacity: 0;
+}
+.meniu > li:not(:has(ul)):hover::after {
+  top: calc(100% - 5px);
+  opacity: 1;
+  transition: top 1s ease;
+}
+.meniu a {
+  display: block;
+  width: 100%;
+}
+
+.btn-login {
+  background-color: var(--color-table1);
+}
+.btn-login:hover {
+  border: 2px solid var(--color-table1);
+}
+
+.btn-register {
+  background-color: var(--formula2);
+}
+.btn-register:hover {
+  border: 2px solid var(--formula2);
+}/*# sourceMappingURL=nav.css.map */

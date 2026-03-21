@@ -1,0 +1,136 @@
+@page {
+  size: A4 portrait;
+  margin: 2cm;
+}
+
+@page: left {
+  margin-left: 2cm;
+  margin-right: 1cm;
+}
+
+@page: right {
+  margin-left: 1cm;
+  margin-right: 2cm;
+}
+
+#grid-pagina>* {
+  display: block;
+  border: 1px solid black;
+  margin-bottom: 0.5cm;
+  padding: 0.3cm;
+  break-inside: avoid;
+}
+
+iframe,
+.taburi-iframe,
+#welcome-img,
+#zona-pdf,
+#hamburger,
+#ch-menu,
+#link-top {
+  display: none;
+}
+
+a[href="#logo"] {
+  display: none;
+}
+
+.butoane-auth {
+  display: none;
+}
+
+* {
+  box-shadow: none !important;
+  color: black !important;
+}
+
+a {
+  color: black !important;
+  text-decoration: none !important;
+  cursor: default !important;
+}
+
+#welcome h2 {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  width: 50%;
+  box-sizing: border-box;
+
+  border: 6px double black;
+  padding: 0.4cm 0.6cm;
+  margin: 0;
+
+  font-size: 1cm;
+}
+
+header {
+  position: relative;
+  height: 100vh;
+  page-break-after: always;
+}
+
+header h1 {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+}
+
+.meniu {
+  display: block;
+}
+
+nav.meniu-mobil {
+  display: block;
+  position: absolute;
+  top: calc(50% + 3rem);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.meniu>li {
+  display: list-item;
+  padding: 0.1rem;
+}
+
+.meniu>li>ul {
+  position: static;
+  visibility: visible;
+  transform: none;
+}
+
+footer {
+  page-break-before: always;
+}
+
+body::after {
+  content: "Cărămidă\A Ioana-Cătălina";
+  white-space: pre;
+
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+
+  width: 60%;
+  height: 10%;
+
+  pointer-events: none;
+
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 3rem;
+  font-weight: bold;
+  font-style: italic;
+
+}
+

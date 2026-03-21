@@ -15,18 +15,22 @@
 
   <title>Pagehaven - Descarcă Cărți PDF Gratuite | Romance, Fantasy, Thriller</title>
 
-  <link rel="icon" type="image/png" href="./resurse/imagini/favicon/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="./resurse/imagini/favicon/favicon.svg" />
-  <link rel="shortcut icon" href="./resurse/imagini/favicon/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="./resurse/imagini/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" href="/resurse/imagini/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/resurse/imagini/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="/resurse/imagini/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/resurse/imagini/favicon/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="Pageheaven" />
   <meta name="msapplication-TileColor" content="#66a7c5" />
   <link rel="manifest" href="/resurse/imagini/favicon/site.webmanifest" />
 
 
-  <link rel="stylesheet" href="./resurse/css/reset.css" />
-  <link rel="stylesheet" href="./resurse/css/general.css" type="text/css" />
+  <link rel="stylesheet" href="/resurse/css/reset.css" />
+  <link rel="stylesheet" href="/resurse/css/general.css" type="text/css" />
+  <link rel="stylesheet" href="/resurse/css/nav/nav.css" type="text/css" />
+  <link rel="stylesheet" href="/resurse/css/nav/nav1000.css" type="text/css" media="screen and (max-width: 1000px)" />
+  <link rel="stylesheet" href="/resurse/css/nav/nav700.css" type="text/css" media="screen and (max-width: 700px)" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+  <link rel="stylesheet" href="/resurse/css/print.css" media="print" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,38 +40,68 @@
 <body>
   <header>
     <h1>
-      <a href="index.html" id="logo">
-        <img src="./resurse/imagini/sigla.png" alt="Logo Pagehaven - bibliotecă digitală gratuită cărți PDF" width="80"
-          height="80" style="width: 100px; height: 100px;" />
-        <br><em> Page<span style="color:#78a4b9">haven</span></em>
+      <a href="/" id="logo">
+        <img src="/resurse/imagini/sigla.png" alt="Logo Pagehaven - bibliotecă digitală gratuită cărți PDF" />
+        <em> Page<span style="color:#78a4b9">haven</span></em>
       </a>
     </h1>
 
-    <nav aria-label="Meniu principal">
+    <input type="checkbox" id="ch-menu" />
+    <label id="hamburger" for="ch-menu">
+      <div class="hamburger-icon">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </label>
+
+
+    <nav aria-label="Meniu principal" class="meniu-mobil">
       <ul class="meniu">
+
         <li>
-          <a href="#welcome" class="activ">Acasă</a>
+          <a href="/" class="activ">
+            <i class="fa-solid fa-house icon-acasa"></i>
+            <span class="text-acasa">Acasă</span>
+          </a>
           <ul>
-            <li><a href="#genuri">Genuri</a></li>
-            <li><a href="#noutati">Noutăți</a></li>
-            <li><a href="#faq">Întrebări</a></li>
-            <li><a href="#recente">Adăugate recent</a></li>
-            <li><a href="#zona-formula">Zona formule</a></li>
-            <li><a href="#carti-populare">Cărți populare</a></li>
-            <li><a href="#zona-pdf">Zona PDF</a></li>
-            <li><a href="#video">Recenzii video</a></li>
+            <li><a href="/#noutati">Noutăți</a></li>
+            <li><a href="/#recente">Adăugate recent</a></li>
+            <li><a href="/#carti-populare">Cărți populare</a></li>
           </ul>
         </li>
-        <li><a href="carti.html">Cărți</a></li>
-        <li><a href="despre.html">Despre noi</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
 
-    <div class="butoane-auth">
-      <a href="login.html" class="btn-login">Intră în cont</a>
-      <a href="register.html" class="btn-register">Înregistrează-te</a>
-    </div>
+        <li>
+          <a href="/carti">
+            <i class="fa-solid fa-book-open"></i> Cărți</a>
+          <ul>
+            <li><a href="/carti#romance.html">Romance</a></li>
+            <li><a href="/carti#fantasy.html">Fantasy</a></li>
+            <li><a href="/carti#thriller.html">Thriller</a></li>
+            <li><a href="/#zona-pdf">Zona PDF</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="/echipa">
+            <i class="fa-solid fa-user-group"></i> Despre noi</a>
+          <ul>
+            <li><a href="/echipa">Echipa</a></li>
+            <li><a href="/#faq">Întrebări frecvente</a></li>
+            <li><a href="/#video">Recenzii video</a></li>
+          </ul>
+        </li>
+
+        <li><a href="/#contact">
+            <i class="fa-solid fa-phone"></i> Contact</a></li>
+      </ul>
+
+      <div class="butoane-auth">
+        <a href="/login" class="btn-login">Intră în cont</a>
+        <a href="/register" class="btn-register">Înregistrare</a>
+      </div>
+
+    </nav>
   </header>
 
   <main>
@@ -91,24 +125,25 @@
           </figure>
           <hr>
           <p>
-            <strong><i>Atenție! Colecția de <em>carti PDF romance</em> a fost actualizată
-                azi cu 10 titluri noi — nu rata ocazia!</i></strong>
+            <strong>Atenție! Colecția de carti PDF romance a fost actualizată
+              azi cu 10 titluri noi — nu rata ocazia!</strong>
           </p>
           <p>Total titluri: <s>450</s> <ins>500+</ins> disponibile gratuit.</p>
           <hr>
           <p>
             Sute de carti online gratuite în română și în engleză -
-            <i><b>carti PDF romance</b></i>, <i><b>carti PDF fantasy</b></i> și <i><b>carti PDF thriller</b></i>.
-            Fie că ești fan <i><b>romance</b></i>, <i><b>fantasy</b></i> sau <i><b>thriller</b></i>,
+            <strong>carti PDF romance</strong>, <strong>carti PDF fantasy</strong> și <strong>carti PDF
+              thriller</strong>.
+            Fie că ești fan <strong>romance</strong>, <strong>fantasy</strong> sau <strong>thriller</strong>,
             formatul PDF este compatibil cu orice dispozitiv.
           </p>
 
         </section>
         <figure id="welcome-img">
           <picture>
-            <source srcset="./resurse/imagini/figure1-small.png" media="(max-width: 700px)" />
-            <source srcset="./resurse/imagini/figure1-medium.png" media="(max-width: 1200px)" />
-            <img src="./resurse/imagini/figure1-large.png" alt="Rafturi cu cărți digitale Pagehaven"
+            <source srcset="/resurse/imagini/figure1-small.png" media="(max-width: 700px)" />
+            <source srcset="/resurse/imagini/figure1-medium.png" media="(max-width: 1200px)" />
+            <img src="/resurse/imagini/figure1-large.png" alt="Rafturi cu cărți digitale Pagehaven"
               title="Cărți Pagehaven" usemap="#workmap">
           </picture>
 
@@ -134,25 +169,26 @@
         <ul>
           <li>
             <time datetime="2026-03-03T12:00">3 mar. 2026, ora 12:00</time>
-            <p><b>Lectură</b> - acum poți citi <cite>The Silent Patient</cite> de Alex Michaelides în format PDF direct
+            <p><strong>Lectură</strong> - acum poți citi The Silent Patient de Alex Michaelides în format PDF direct
               pe site:</p>
           </li>
           <li>
             <time datetime="2026-03-01T18:00">1 mar. 2026, ora 18:00</time>
-            <p><b>Prag atins</b> - Am depășit <b>500 de titluri</b> în colecția noastră de carti online gratuite PDF</p>
+            <p><strong>Prag atins</strong> - Am depășit <strong>500 de titluri</strong> în colecția noastră de carti
+              online gratuite PDF</p>
           </li>
           <li>
             <time datetime="2025-12-10T10:00">10 dec. 2025, ora 10:00</time>
-            <p><b>Sarah J. Maas PDF</b> — <dfn><abbr title="A Court of Thorns and Roses">ACOTAR</abbr></dfn> complet.
-            </p>
+            <p><strong>Sarah J. Maas PDF</strong> — <dfn><abbr title="A Court of Thorns and Roses">ACOTAR</abbr></dfn>
+              complet.</p>
           </li>
           <li>
             <time datetime="2024-10-20T15:00">20 oct. 2024, ora 15:00</time>
-            <p><b>Sistem de recenzii</b> - Lansăm recenziile în biblioteca digitala gratuita</p>
+            <p><strong>Sistem de recenzii</strong> - Lansăm recenziile în biblioteca digitala gratuita</p>
           </li>
           <li>
             <time datetime="2024-07-01T00:00">1 iul. 2024, ora 00:00</time>
-            <p><b>Lansare Pagehaven</b> — descarca carti PDF gratuit</p>
+            <p><strong>Lansare Pagehaven</strong> — descarca carti PDF gratuit</p>
           </li>
         </ul>
       </section>
@@ -161,19 +197,21 @@
 
         <details>
           <summary>Este cu adevărat gratuit să descarc cărți PDF pe Pagehaven?</summary>
-          <p>Da! <b>Descarca carti PDF gratuit</b> fără niciun cost.
-            Pagehaven este o <b>biblioteca digitala gratuita</b> — fără abonament, fără taxe ascunse.</p>
+          <p>Da! <strong>Descarca carti PDF gratuit</strong> fără niciun cost.
+            Pagehaven este o <strong>biblioteca digitala gratuita</strong> — fără abonament, fără taxe ascunse.</p>
         </details>
 
         <details>
           <summary>Ce genuri de cărți găsesc pe Pagehaven?</summary>
-          <p>Momentan colecția include <b>carti PDF romance</b>, <b>carti PDF fantasy</b>
-            și <b>carti PDF thriller</b>. Adăugăm constant titluri noi, iar în curând vei găsi și alte genuri.</p>
+          <p>Momentan colecția include <strong>carti PDF romance</strong>, <strong>carti PDF fantasy</strong>
+            și <strong>carti PDF thriller</strong>. Adăugăm constant titluri noi, iar în curând vei găsi și alte
+            genuri.</p>
         </details>
 
         <details>
           <summary>Cărțile sunt disponibile și în limba română?</summary>
-          <p>În funcție de disponibilitate, avem <b>carti in romana PDF</b> și <b>carti in engleza PDF</b>.
+          <p>În funcție de disponibilitate, avem <strong>carti in romana PDF</strong> și <strong>carti in engleza
+              PDF</strong>.
             Poți filtra după limbă în pagina de Cărți.</p>
         </details>
 
@@ -190,36 +228,36 @@
         <div class="grid-genuri">
           <article>
             <h3> <i class="fa-regular fa-heart"></i> Cărți PDF Romance</h3>
-            <p><b>182 de titluri</b> disponibile</p>
+            <p><b><ins>182</ins> de titluri</b> disponibile</p>
             <dl>
-              <dt>Autori de top</dt>
-              <dd>Colleen Hoover, Jojo Moyes, Penelope Douglas</dd>
-              <dt>Titlu recomandat</dt>
-              <dd><i>It Ends with Us</i></dd>
+              <dt>Autori de top: </dt>
+              <dd><strong>Colleen Hoover, Jojo Moyes, Penelope Douglas</strong></dd>
+              <dt>Titlu recomandat: </dt>
+              <dd><strong>It Ends with Us</strong></dd>
             </dl>
             <a href="#">Explorează Cărți PDF Romance →</a>
           </article>
 
           <article>
             <h3> <i class="fa-solid fa-dragon"></i> Cărți PDF Fantasy</h3>
-            <p><b>156 de titluri</b> disponibile</p>
+            <p><b><ins>156</ins> de titluri</b> disponibile</p>
             <dl>
-              <dt>Autori de top</dt>
-              <dd>Sarah J. Maas, Brandon Sanderson</dd>
-              <dt>Serie completă</dt>
-              <dd><abbr title="A Court of Thorns and Roses">ACOTAR</abbr></dd>
+              <dt>Autori de top: </dt>
+              <dd><strong>Sarah J. Maas, Brandon Sanderson</strong></dd>
+              <dt>Serie completă: </dt>
+              <dd><abbr title="A Court of Thorns and Roses"><strong>ACOTAR</strong></abbr></dd>
             </dl>
             <a href="#">Explorează Cărți PDF Fantasy →</a>
           </article>
 
           <article>
             <h3> <i class="fa-solid fa-shoe-prints"></i> Cărți PDF Thriller</h3>
-            <p><b>98 de titluri</b> disponibile</p>
+            <p><b><ins>98</ins> de titluri</b> disponibile</p>
             <dl>
-              <dt>Autori de top</dt>
-              <dd>Alex Michaelides, Gillian Flynn</dd>
-              <dt>Titlu recomandat</dt>
-              <dd><i>The Silent Patient</i></dd>
+              <dt>Autori de top: </dt>
+              <dd><strong>Alex Michaelides, Gillian Flynn</strong></dd>
+              <dt>Titlu recomandat: </dt>
+              <dd><strong>The Silent Patient</strong></dd>
             </dl>
             <a href="#">Explorează Cărți PDF Thriller →</a>
           </article>
@@ -228,69 +266,54 @@
       </section>
 
       <section id="recente">
-        <h2>Adăugate recent — <b>carti online gratuite PDF</b></h2>
-        <p>Cele mai noi titluri adăugate în <b>biblioteca digitala gratuita</b> Pagehaven.</p>
+        <h2>Adăugate recent — <strong>carti online gratuite PDF</strong></h2>
+        <p>Cele mai noi titluri adăugate în <strong>biblioteca digitala gratuita</strong> Pagehaven.</p>
 
         <ol class="lista-carti">
           <li>
             <article>
               <h3><cite>Punk 57</cite></h3>
-              <p><i>Penelope Douglas</i></p>
-              <p><b>Romance</b> · <abbr title="Engleză">EN</abbr></p>
-              <p>
-                Rating: <meter value="4.3" min="1" max="5" low="2" high="4.5" optimum="5">4.3/5</meter>
-                <i>4.3/5</i>
-              </p>
-              <a href="#" download="Punk_57_EN.pdf"> <i class="fa-solid fa-arrow-down"></i> PDF Engleză</a>
+              <p><em>Penelope Douglas</em></p>
+              <p><strong>Romance</strong> · <abbr title="Engleză">EN</abbr></p>
+              <p>Rating: <meter value="4.3" min="1" max="5" low="2" high="4.5" optimum="5">4.3/5</meter> 4.3/5</p>
+              <a href="#" download="Punk_57_EN.pdf"><i class="fa-solid fa-arrow-down"></i> PDF Engleză</a>
             </article>
           </li>
           <li>
             <article>
               <h3><cite>November 9</cite></h3>
-              <p><i>Colleen Hoover</i></p>
-              <p><b>Romance</b> · <abbr title="Română și Engleză">RO/EN</abbr></p>
-              <p>
-                Rating: <meter value="4.5" min="1" max="5" low="2" high="4.5" optimum="5">4.5/5</meter>
-                <i>4.5/5</i>
-              </p>
-              <a href="#" download="November_9_RO.pdf"> <i class="fa-solid fa-arrow-down"></i> PDF Română</a>
-              <a href="#" download="November_9_EN.pdf"> <i class="fa-solid fa-arrow-down"></i> PDF Engleză</a>
+              <p><em>Colleen Hoover</em></p>
+              <p><strong>Romance</strong> · <abbr title="Română și Engleză">RO/EN</abbr></p>
+              <p>Rating: <meter value="4.5" min="1" max="5" low="2" high="4.5" optimum="5">4.5/5</meter> 4.5/5</p>
+              <a href="#" download="November_9_RO.pdf"><i class="fa-solid fa-arrow-down"></i> PDF Română</a>
+              <a href="#" download="November_9_EN.pdf"><i class="fa-solid fa-arrow-down"></i> PDF Engleză</a>
             </article>
           </li>
           <li>
             <article>
               <h3><cite>The Maidens</cite></h3>
-              <p><i>Alex Michaelides</i></p>
-              <p><b>Thriller</b> · <abbr title="Engleză">EN</abbr></p>
-              <p>
-                Rating: <meter value="4.2" min="1" max="5" low="2" high="4.5" optimum="5">4.2/5</meter>
-                <i>4.2/5</i>
-              </p>
-              <a href="#" download="The_Maidens_EN.pdf"> <i class="fa-solid fa-arrow-down"></i> PDF Engleză</a>
+              <p><em>Alex Michaelides</em></p>
+              <p><strong>Thriller</strong> · <abbr title="Engleză">EN</abbr></p>
+              <p>Rating: <meter value="4.2" min="1" max="5" low="2" high="4.5" optimum="5">4.2/5</meter> 4.2/5</p>
+              <a href="#" download="The_Maidens_EN.pdf"><i class="fa-solid fa-arrow-down"></i> PDF Engleză</a>
             </article>
           </li>
           <li>
             <article>
               <h3><cite>Empire of Storms</cite></h3>
-              <p><i>Sarah J. Maas</i></p>
-              <p><b>Fantasy</b> · <abbr title="Engleză">EN</abbr></p>
-              <p>
-                Rating: <meter value="4.6" min="1" max="5" low="2" high="4.5" optimum="5">4.6/5</meter>
-                <i>4.6/5</i>
-              </p>
-              <a href="#" download="Empire_of_Storms_EN.pdf"> <i class="fa-solid fa-arrow-down"></i> PDF Engleză</a>
+              <p><em>Sarah J. Maas</em></p>
+              <p><strong>Fantasy</strong> · <abbr title="Engleză">EN</abbr></p>
+              <p>Rating: <meter value="4.6" min="1" max="5" low="2" high="4.5" optimum="5">4.6/5</meter> 4.6/5</p>
+              <a href="#" download="Empire_of_Storms_EN.pdf"><i class="fa-solid fa-arrow-down"></i> PDF Engleză</a>
             </article>
           </li>
           <li>
             <article>
               <h3><cite>Still Me</cite></h3>
-              <p><i>Jojo Moyes</i></p>
-              <p><b>Romance</b> · <abbr title="Română">RO</abbr></p>
-              <p>
-                Rating: <meter value="4.5" min="1" max="5" low="2" high="4.5" optimum="5">4.5/5</meter>
-                <i>4.5/5</i>
-              </p>
-              <a href="#" download="Still_Me_RO.pdf"> <i class="fa-solid fa-arrow-down"></i> PDF Română</a>
+              <p><em>Jojo Moyes</em></p>
+              <p><strong>Romance</strong> · <abbr title="Română">RO</abbr></p>
+              <p>Rating: <meter value="4.5" min="1" max="5" low="2" high="4.5" optimum="5">4.5/5</meter> 4.5/5</p>
+              <a href="#" download="Still_Me_RO.pdf"><i class="fa-solid fa-arrow-down"></i> PDF Română</a>
             </article>
           </li>
         </ol>
@@ -299,14 +322,13 @@
       <div id="zona-formula">
         <h2>Descoperă cele mai populare titluri:</h2>
         <p>
-          Deși încercăm să acoperim totul, disponibilitatea formatului PDF (română/engleză) variază pentru fiecare carte
+          Deși încercăm să acoperim totul, disponibilitatea formatului PDF (română/engleză) variază pentru fiecare
+          carte
           în parte."
         </p>
 
         <article id="formula-rating">
           <h3>Cum calculăm ratingul mediu?</h3>
-          <p>Media notelor acordate de utilizatori (de la 1 la 5):</p>
-
           <math display="block">
             <mrow>
               < <mover>
@@ -354,10 +376,15 @@
         <article>
           <div id="overflow-x">
             <table id="popularity-table">
-              
+
               <caption>Cele mai descărcate cărți PDF de pe Pagehaven în 2025</caption>
               <colgroup>
-                <col> <col> <col> <col> <col> <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
               </colgroup>
               <thead>
                 <tr>
@@ -485,8 +512,10 @@
                 <i>4.4/5</i>
               </p>
               <div class="butoane-descarcare">
-                <a href="#" download="The_Silent_Patient_RO.pdf"> <i class="fa-solid fa-arrow-down"></i> PDF Română</a>
-                <a href="#" download="The_Silent_Patient_EN.pdf"> <i class="fa-solid fa-arrow-down"></i> PDF Engleză</a>
+                <a href="#" download="The_Silent_Patient_RO.pdf"> <i class="fa-solid fa-arrow-down"></i> PDF
+                  Română</a>
+                <a href="#" download="The_Silent_Patient_EN.pdf"> <i class="fa-solid fa-arrow-down"></i> PDF
+                  Engleză</a>
               </div>
               <a href="#">Detalii</a>
             </article>
@@ -516,7 +545,7 @@
         <p>Prima <b>lectură</b> publicată pe site-ul nostru — <cite>The Silent Patient</cite> de Alex Michaelides în
           format PDF:</p>
 
-        <embed src="./resurse/pdf/The_Silent_Patient.pdf" type="application/pdf" width="600" height="600">
+        <embed src="/resurse/pdf/The_Silent_Patient.pdf" type="application/pdf" width="100%">
       </div>
 
       <section id="video">
@@ -555,6 +584,7 @@
           <a href="https://www.gutenberg.org/ebooks/categories" target="_blank" rel="noopener"
             style="text-decoration: none;">
             Project Gutenberg</a>. Poți să descoperi mai multe categorii, ca de exemplu:
+          <br>
           <a href="https://www.gutenberg.org/ebooks/categories#science-technology">
             https:<wbr>//www.gutenberg.org/<wbr>ebooks/<wbr>categories<wbr>#science-technology</a>
         </p>
@@ -564,13 +594,8 @@
   </main>
 
   <footer id="contact">
-    <a href="#welcome" id="link-top" title="↑ începutul paginii ↑">
-      <div class="rotativ"></div>
-      <span id="sageata">&#8593;</span>
-    </a>
-    <hr>
     <div style="text-align: center">
-      <a href="#logo"><i class="fa-solid fa-circle-up"></i> Înapoi sus</a>
+      <a href="/#logo"><i class="fa-solid fa-circle-up"></i> Înapoi la Pagina Principală</a>
     </div>
     <address>
       <p>
@@ -589,13 +614,17 @@
       referrerpolicy="no-referrer-when-downgrade">
     </iframe>
 
-    <hr>
     <p>
       <small>Copyright &copy; <time datetime="2025-02-25"> 2025 </time>Cărămidă Ioana-Cătălina -
         <b>Pagehaven</b>, biblioteca digitală gratuită de cărți PDF. Toate drepturile rezervate.
       </small>
     </p>
   </footer>
+
+  <a href="#" id="link-top" title="↑ începutul paginii ↑">
+    <div class="rotativ"></div>
+    <span id="sageata">&#8593;</span>
+  </a>
 </body>
 
 </html>
