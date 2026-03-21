@@ -1,0 +1,95 @@
+header {
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.text-acasa {
+   display: none;
+}
+
+/* HAMBURGER */
+#hamburger {
+   display: block;
+   cursor: pointer;
+}
+#hamburger img {
+   width: 2rem;
+}
+
+/* Menu hidden by default CURTAIN: circle that grows from the top-right corner */
+nav.meniu-mobil {
+   display: flex;
+   flex-direction: column;
+   text-align: center;
+
+   position: absolute;
+   top: 100%;
+   /* immediately below the header */
+   left: 0;
+   width: 100%;
+
+   background: var(--primary);
+   z-index: 1;
+
+   visibility: hidden;
+   clip-path: circle(0% at top right);
+   transition: clip-path 0.85s,
+      visibility 0.85s;
+
+   /* visability 0.85s => delays hiding the menu so the clip-path animation has 
+   time to shrink back the menu before it disappears 
+      without "visability", the menu would disappear immediately*/
+}
+
+#ch-menu:checked+nav.meniu-mobil {
+   visibility: visible;
+   clip-path: circle(150% at top right);
+}
+
+/* MENU is vertical on mobile */
+.meniu {
+   flex-direction: column;
+   gap: 0.5rem;
+   padding: 1rem;
+   width: 100%;
+}
+
+
+/* MENU: on mobile, the menu items are stacked vertically */
+.meniu>li {
+   flex-direction: column;
+}
+
+/*SUB-MENU*/
+.meniu>li>ul {
+   position: static;
+   display: flex;
+   flex-direction: column;
+   background: var(--primary);
+
+   transform: none;
+   /* anulate the transform from the desktop version */
+   visibility: hidden;
+
+   max-height: 0;
+   transition: max-height 0.4s;
+}
+
+.meniu>li:hover>ul {
+   max-height: 15rem;
+   visibility: visible;
+}
+
+/* BUTTON-BAR: remove it from the desktop version */
+.meniu>li:not(:has(ul))::after {
+   display: none;
+}
+
+.butoane-auth {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   gap: 0.5rem;
+   padding: 1rem;
+}

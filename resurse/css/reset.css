@@ -14,9 +14,11 @@
     --text:           #2a2a2a;
     --shadow:         #577597;
     --formula:        #3a6fa8;
-    --formula2:       #c1a0dc;
+    --formula2:       #9d7db7;
     --radius:         10px;
 
+
+    --opacity-background: #ccdbec;
     --culoare-contur: #79628A;  
     --culoare-fundal: #7D96B2;
 
@@ -35,10 +37,7 @@ ul, ol {
 img, iframe, embed, object {
   display: block;
   max-width: 100%;
-}
-
-img {
-    height: auto;
+  height: auto;
 }
 
 a {
@@ -58,12 +57,9 @@ body {
   background-color: var(--bg);
 }
 
-strong, b {
-  font-weight: 700;
-}
-
 em, i {
   font-style: italic;
+  font-weight: bold;
 }
 
 table {

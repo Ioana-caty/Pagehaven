@@ -26,6 +26,9 @@
 
   <link rel="stylesheet" href="./resurse/css/reset.css" />
   <link rel="stylesheet" href="./resurse/css/general.css" type="text/css" />
+  <link rel="stylesheet" href="./resurse/css/nav.css" type="text/css" />
+  <link rel="stylesheet" href="./resurse/css/nav1000.css" type="text/css" media="screen and (max-width: 1000px)" />
+  <link rel="stylesheet" href="./resurse/css/nav700.css" type="text/css" media="screen and (max-width: 700px)" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,37 +40,63 @@
   <header>
     <h1>
       <a href="index.html" id="logo">
-        <img src="./resurse/imagini/sigla.png" alt="Logo Pagehaven - bibliotecă digitală gratuită cărți PDF" width="80"
-          height="80" style="width: 100px; height: 100px;" />
-        <br><em> Page<span style="color:#78a4b9">haven</span></em>
+        <img src="./resurse/imagini/sigla.png" alt="Logo Pagehaven - bibliotecă digitală gratuită cărți PDF"/>
+        <em> Page<span style="color:#78a4b9">haven</span></em>
       </a>
     </h1>
 
-    <nav aria-label="Meniu principal">
+    <label id="hamburger" for="ch-menu">
+      <img src="resurse/imagini/Hamburger_icon_alb.png" alt="Open menu">
+    </label>
+    <input type="checkbox" id="ch-menu" />
+
+    <nav aria-label="Meniu principal" class="meniu-mobil">
       <ul class="meniu">
+
         <li>
-          <a href="#welcome" class="activ">Acasă</a>
+          <a href="index.html" class="activ">
+            <i class="fa-solid fa-house icon-acasa"></i>
+            <span class="text-acasa">Acasă</span>
+          </a>
           <ul>
-            <li><a href="#genuri">Genuri</a></li>
             <li><a href="#noutati">Noutăți</a></li>
-            <li><a href="#faq">Întrebări</a></li>
             <li><a href="#recente">Adăugate recent</a></li>
-            <li><a href="#zona-formula">Zona formule</a></li>
             <li><a href="#carti-populare">Cărți populare</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="carti.html">
+            <i class="fa-solid fa-book-open"></i> Cărți</a>
+          <ul>
+            <li><a href="romance.html">Romance</a></li>
+            <li><a href="fantasy.html">Fantasy</a></li>
+            <li><a href="thriller.html">Thriller</a></li>
+            <li><a href="#genuri">Genuri</a></li>
             <li><a href="#zona-pdf">Zona PDF</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="despre.html">
+            <i class="fa-solid fa-user-group"></i> Despre noi</a>
+          <ul>
+            <li><a href="#faq">Întrebări frecvente</a></li>
+            <li><a href="#zona-formula">Zona formule</a></li>
             <li><a href="#video">Recenzii video</a></li>
           </ul>
         </li>
-        <li><a href="carti.html">Cărți</a></li>
-        <li><a href="despre.html">Despre noi</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
 
-    <div class="butoane-auth">
-      <a href="login.html" class="btn-login">Intră în cont</a>
-      <a href="register.html" class="btn-register">Înregistrează-te</a>
-    </div>
+        <li><a href="#contact">
+          <i class="fa-solid fa-phone"></i> Contact</a></li>
+      </ul>
+
+      <div class="butoane-auth">
+        <a href="login.html" class="btn-login">Intră în cont</a>
+        <a href="register.html" class="btn-register">Înregistrare</a>
+      </div>
+
+    </nav>
   </header>
 
   <main>
@@ -354,10 +383,15 @@
         <article>
           <div id="overflow-x">
             <table id="popularity-table">
-              
+
               <caption>Cele mai descărcate cărți PDF de pe Pagehaven în 2025</caption>
               <colgroup>
-                <col> <col> <col> <col> <col> <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
               </colgroup>
               <thead>
                 <tr>

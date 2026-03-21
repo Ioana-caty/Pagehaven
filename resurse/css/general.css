@@ -6,26 +6,6 @@
     font-style: normal;
   }
 
-  header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-
-    padding: 1rem var(--margine-pagina);
-    background-color: var(--primary);
-  }
-
-  header a {
-    color: var(--text-link);
-  }
-  
-  header a:hover {
-    color: var(--border);
-  }
-
   main {
     margin-left: var(--margine-pagina);
     margin-right: var(--margine-pagina);
@@ -136,23 +116,10 @@
     aspect-ratio: 16/9;  
   }
 
-  @media (max-width: 900px) {
-    .butoane-auth {
-      flex-direction: column; 
-      align-items: center;    
-    }
-  }
-
   @media (max-width: 1400px) {
     :root {
         --margine-pagina: 1rem;
         --grid-gap: 1.2rem;
-    }
-    header {
-      flex-direction: row;
-      flex-wrap: nowrap;
-      justify-content: space-between;
-      gap: 1rem;
     }
     main {
       margin-left: var(--margine-pagina);
@@ -178,12 +145,6 @@
     :root {
       --margine-pagina: 8px;
       --grid-gap: 0.7rem;
-    }
-    header { 
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
-      gap: 0.5 rem;
     }
     #welcome {
       flex-direction: column;
@@ -213,78 +174,7 @@
       min-width: 600px;
     }
   }
-
-  ul.meniu {
-    display: flex;
-    position: relative;
-  }
-
-  ul.meniu ul {
-    display: none;
-    animation: animatie_submeniu 1s linear;
-    transform-origin: center top;
-  }
-
-  ul.meniu > li:hover ul {
-    display: block;
-    position: absolute;
-    z-index: 17;
-  }
-
-  ul.meniu li {
-    cursor: pointer;
-    font-weight: bold;
-    display: inline-block;
-    width: 120px;
-    height: 30px;
-    background-color: var(--culoare-fundal);
-    border: 1px solid var(--culoare-contur);
-    color: var(--text);
-    text-align: center;
-    line-height: 30px;
-    transition: all 1s linear;
-  }
-
-  ul.meniu li:hover {
-    background-color: var(--culoare-contur);
-    color: var(--text-link);
-  }
-
-  ul.meniu a {
-    color: inherit;
-    display: block;
-    width: 100%;
-  }
-
-  @keyframes animatie_submeniu {
-    0%   { opacity: 0; transform: scale(0, 0); }
-    50%  { transform: scale(0.1, 1); }
-    100% { opacity: 1; transform: scale(1, 1); }
-  }
-
-  .butoane-auth {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  .butoane-auth a {
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: var(--radius);
-    width: 120px;
-    height: 30px;
-    background-color: var(--culoare-fundal);
-    border: 1px solid var(--culoare-contur);
-    color: var(--text);
-    text-align: center;
-    transition: all 1s linear;
-  }
-
-  .butoane-auth a:hover {
-    background-color: var(--culoare-contur);
-    color: var(--text-link);
-  }
-
+  
   #link-top {
     position: fixed;
     bottom: 2rem;
