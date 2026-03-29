@@ -1,0 +1,151 @@
+$breakpoint-700: 700px;
+$hamburger-width: 30px;
+$hamburger-height: 26px;
+$bar-width: 30px;
+$bar-height: 4px;
+$meniu-gap: 0.5rem;
+$meniu-padding: 1rem;
+$submeniu-max-height: 15rem;
+$curtain-transition: 0.85s;
+$submeniu-transition: 0.4s;
+$hamburger-animation-duration: 0.8s;
+$hamburger-color-duration: 1.2s;
+
+@keyframes hamburger-appear {
+  0% {
+    opacity: 0;
+    transform: translateX(-1.5rem) scaleX(0.3);
+  }
+  40% {
+    opacity: 0.5;
+    transform: translateX(0.3rem) scaleX(1.1);
+  }
+  80% {
+    opacity: 0.8;
+    transform: translateX(-0.1rem) scaleX(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scaleX(1);
+  }
+}
+
+@keyframes hamburger-color {
+  0%   { background-color: #f9f5f5; }
+  50%  { background-color: #376478; }
+  100% { background-color: var(--shadow); }
+}
+
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #hamburger {
+    display: block;
+    cursor: pointer;
+  }
+
+  .hamburger-icon {
+    position: relative;
+    width: $hamburger-width;
+    height: $hamburger-height;
+    cursor: pointer;
+
+    .bar {
+      position: absolute;
+      display: block;
+      width: $bar-width;
+      height: $bar-height;
+      border-radius: var(--radius);
+
+      transform-origin:  center; 
+    
+    
+      @for $i from 1 through 3 {
+        &:nth-child(#{$i}) {
+          top: ($i - 1) * 9px;
+          animation: hamburger-appear $hamburger-animation-duration ease forwards ,
+                     hamburger-color $hamburger-color-duration ease-in-out forwards ;
+        }
+      }
+    }
+  }
+
+  nav.meniu-mobil {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--primary);
+    z-index: 1;
+    visibility: hidden;
+    clip-path: circle(0% at top right);
+    transition: clip-path $curtain-transition,
+                visibility $curtain-transition;
+  }
+
+  #ch-menu:checked ~ nav.meniu-mobil {
+    visibility: visible;
+    clip-path: circle(150% at top right);
+  }
+
+  #ch-menu:checked ~ #hamburger .bar {
+  animation: none;
+  background-color: var(--shadow); 
+  }
+
+  #ch-menu:checked ~ #hamburger .bar:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+  }
+
+  #ch-menu:checked ~ #hamburger .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  #ch-menu:checked ~ #hamburger .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+ 
+  // vertical menu
+  .meniu {
+    flex-direction: column;
+    gap: $meniu-gap;
+    padding: $meniu-padding;
+    width: 100%;
+
+    > li {
+      flex-direction: column;
+
+      > ul {
+        position: static;
+        display: flex;
+        flex-direction: column;
+        background: var(--primary);
+        visibility: hidden;
+        max-height: 0;
+        transition: max-height $submeniu-transition;
+      }
+
+      &:hover > ul {
+        max-height: $submeniu-max-height;
+        visibility: visible;
+      } // &: .meniu > li:hover > ul { ... } 
+
+      &:not(:has(ul))::after {
+        display: none;
+      }
+    }
+  }
+
+  .butoane-auth {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: $meniu-gap;
+    padding: $meniu-padding;
+  }

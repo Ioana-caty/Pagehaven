@@ -26,11 +26,12 @@
 
   <link rel="stylesheet" href="./resurse/css/reset.css" />
   <link rel="stylesheet" href="./resurse/css/general.css" type="text/css" />
-  <link rel="stylesheet" href="./resurse/css/nav.css" type="text/css" />
-  <link rel="stylesheet" href="./resurse/css/nav1000.css" type="text/css" media="screen and (max-width: 1000px)" />
-  <link rel="stylesheet" href="./resurse/css/nav700.css" type="text/css" media="screen and (max-width: 700px)" />
+  <link rel="stylesheet" href="./resurse/css/nav/nav.css" type="text/css" />
+  <link rel="stylesheet" href="./resurse/css/nav/nav1000.css" type="text/css" media="screen and (max-width: 1000px)" />
+  <link rel="stylesheet" href="./resurse/css/nav/nav700.css" type="text/css" media="screen and (max-width: 700px)" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
-
+  <link rel="stylesheet" href="./resurse/css/print.css" media="print" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap" rel="stylesheet">
@@ -45,10 +46,15 @@
       </a>
     </h1>
 
-    <label id="hamburger" for="ch-menu">
-      <img src="resurse/imagini/Hamburger_icon_alb.png" alt="Open menu">
-    </label>
     <input type="checkbox" id="ch-menu" />
+    <label id="hamburger" for="ch-menu">
+      <div class="hamburger-icon"> 
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </label>
+    
 
     <nav aria-label="Meniu principal" class="meniu-mobil">
       <ul class="meniu">
@@ -334,8 +340,6 @@
 
         <article id="formula-rating">
           <h3>Cum calculăm ratingul mediu?</h3>
-          <p>Media notelor acordate de utilizatori (de la 1 la 5):</p>
-
           <math display="block">
             <mrow>
               < <mover>
@@ -550,7 +554,7 @@
         <p>Prima <b>lectură</b> publicată pe site-ul nostru — <cite>The Silent Patient</cite> de Alex Michaelides în
           format PDF:</p>
 
-        <embed src="./resurse/pdf/The_Silent_Patient.pdf" type="application/pdf" width="600" height="600">
+        <embed src="./resurse/pdf/The_Silent_Patient.pdf" type="application/pdf" width="100%">
       </div>
 
       <section id="video">

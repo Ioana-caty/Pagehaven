@@ -17,7 +17,6 @@
     --formula2:       #9d7db7;
     --radius:         10px;
 
-
     --opacity-background: #ccdbec;
     --culoare-contur: #79628A;  
     --culoare-fundal: #7D96B2;
@@ -30,9 +29,10 @@
     --color-table2: #e8d9f1;
   }
 
-ul, ol {
-  list-style: none;
+html {
+    font-size: 16px;
 }
+
 
 img, iframe, embed, object {
   display: block;
@@ -45,8 +45,8 @@ a {
   color: inherit;
 }
 
-html {
-    font-size: 16px;
+ul, ol {
+  list-style: none;
 }
 
 body {
