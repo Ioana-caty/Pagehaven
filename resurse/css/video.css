@@ -1,0 +1,91 @@
+#video .container-iframe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+#video .container-iframe iframe {
+    width: 100%;
+    min-width: 12rem;
+    max-width: 35rem;
+    aspect-ratio: 16/9;
+    border: 3px solid var(--primary);
+    border-radius: var(--radius);
+}
+
+.taburi-iframe {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+    gap: 0.5rem;
+}
+
+.taburi-iframe a {
+    display: flex;
+    padding: 0.1rem 0.2rem;
+    font-weight: bold;
+    color: var(--primary);
+    background-color: var(--bg);
+    border: 3px solid var(--primary);
+    border-radius: var(--radius) var(--radius) 0 0;
+    border-bottom: none;
+}
+
+.taburi-iframe a:hover {
+    background-color: var(--culoare-fundal);
+    color: var(--primary);
+    box-shadow: 0 0.01rem 0.09rem var(--culoare-contur);
+}
+
+
+
+::cue {
+    background: var(--primary);
+    font-style: italic;
+    color: white;
+
+    font-size: 1rem;
+    transform: translateY(-80vh);
+}
+
+@media screen and (max-width:1000px) {
+    ::cue {
+        font-size: 0.8rem;
+    }
+}
+
+#wrapper-carte-video {
+    position: relative;
+    width: fit-content;
+    /* se uita la continutul (copii) elementului 
+    si se ajusteaza in functie de ei */
+    margin: 0 auto;
+    /* se uita la marginile elementului parinte 
+    si il centram pe orizontala */
+
+}
+
+.book {
+    width: 35rem;
+    display: block;
+    transform: rotateX(50deg);
+    transform-origin: bottom center;
+}
+
+#video-pagehaven {
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 57%;
+    z-index: 1;
+}
+
+#video-pagehaven video {
+    width: 100%;
+    border-radius: var(--radius);
+    display: block;
+
+    cursor: pointer;
+}

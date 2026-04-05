@@ -1,3 +1,6 @@
+@import "video.css";
+@import "link_style.css";
+
 .cinzel-uniquifier {
   font-family: "Cinzel", serif;
   font-optical-sizing: auto;
@@ -82,13 +85,10 @@ footer a:hover {
 
 #video {
   grid-area: video;
-<<<<<<< HEAD
   text-align: center;
-=======
->>>>>>> b7a235e56f5ab6cd00ae4836fd1c9668d38b1e5b
 }
 
-#grid-pagina>* {
+#grid-pagina >* {
   background: var(--bg-card);
   border: 3px solid var(--border);
   border-radius: var(--radius);
@@ -141,19 +141,6 @@ footer a:hover {
   overflow-x: auto;
 }
 
-#video .container-iframe {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-#video .container-iframe iframe {
-  width: 100%;
-  min-width: 200px;
-  max-width: 700px;
-  aspect-ratio: 16/9;
-}
 
 #zona-pdf embed {
   width: 100%;
@@ -228,10 +215,7 @@ footer a:hover {
 
 #link-top {
   position: fixed;
-<<<<<<< HEAD
   display: inline-block;
-=======
->>>>>>> b7a235e56f5ab6cd00ae4836fd1c9668d38b1e5b
   bottom: 2rem;
   right: 2rem;
   width: 56px;
@@ -279,37 +263,6 @@ footer a:hover {
   text-shadow: none;
 }
 
-.taburi-iframe {
-  display: flex;
-  flex-wrap: wrap;
-  padding-top: 1rem;
-  gap: 0.5rem;
-}
-
-.taburi-iframe a {
-  display: flex;
-  padding: 0.1rem 0.2rem;
-
-  font-weight: bold;
-
-  color: var(--primary);
-  background-color: var(--bg);
-
-  border: 3px solid var(--primary);
-  border-radius: var(--radius) var(--radius) 0 0;
-  border-bottom: none;
-}
-
-.taburi-iframe a:hover {
-  background-color: var(--culoare-fundal);
-  color: var(--primary);
-  box-shadow: 0 2px 15px var(--culoare-contur);
-}
-
-#video .container-iframe iframe {
-  border: 3px solid var(--primary);
-  border-radius: var(--radius);
-}
 
 #popularity-table {
   width: 100%;
