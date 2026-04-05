@@ -82,7 +82,10 @@ footer a:hover {
 
 #video {
   grid-area: video;
+<<<<<<< HEAD
   text-align: center;
+=======
+>>>>>>> b7a235e56f5ab6cd00ae4836fd1c9668d38b1e5b
 }
 
 #grid-pagina>* {
@@ -225,7 +228,10 @@ footer a:hover {
 
 #link-top {
   position: fixed;
+<<<<<<< HEAD
   display: inline-block;
+=======
+>>>>>>> b7a235e56f5ab6cd00ae4836fd1c9668d38b1e5b
   bottom: 2rem;
   right: 2rem;
   width: 56px;

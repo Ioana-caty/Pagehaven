@@ -1,0 +1,190 @@
+$hamburger-display: none;
+$logo-img-height: 50px;
+$logo-font-size: 1.6rem;
+$logo-gap: 0.6rem;
+
+$meniu-padding-v: 0.3rem;
+$meniu-padding-h: 1.4rem;
+$meniu-sub-padding-v: 0.5rem;
+$meniu-sub-padding-h: 1rem;
+
+$animation-duration: 0.75s;
+$animation-ease: ease;
+
+$indicator-height: 5px;
+$indicator-top-transition: 1s ease;
+
+
+%btn-base {
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius);
+  font-weight: bold;
+}
+
+%btn-hover-base {
+  background-color: transparent;
+  color: var(--text-link);
+}
+
+
+// nav.scss — ascunde DOAR label-ul, nu și input-ul
+#hamburger {
+  display: none;
+}
+
+#ch-menu {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+header {
+  background-color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem var(--margine-pagina);
+  gap: 0.75rem;
+  position: relative;
+  margin-bottom: 2rem;
+
+  a:hover {
+    color: var(--border);
+  }
+}
+
+#logo {
+  display: flex;
+  align-items: center;
+  gap: $logo-gap;
+
+  img {
+    height: $logo-img-height;
+  }
+
+  em {
+    font-size: $logo-font-size;
+    color: var(--text-link);
+  }
+}
+
+nav.meniu-mobil {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@keyframes ramaneDeschis {
+  from {
+    transform: scale(0);
+    visibility: hidden;
+  }
+  to {
+    transform: scale(1);
+    visibility: visible;
+  }
+}
+
+.meniu {
+  display: flex;
+
+  > li {
+    position: relative;
+    display: flex;
+    cursor: pointer;
+    background-color: var(--shadow);
+    border-radius: 0 var(--radius) 0 var(--radius);
+    padding: $meniu-padding-v $meniu-padding-h;
+    color: var(--text-link);
+    font-weight: bold;
+
+    &:hover {
+      background-color: var(--opacity-background);
+
+      > a {
+        color: var(--border);
+      }
+
+      > ul {
+        animation: ramaneDeschis $animation-duration $animation-ease forwards;
+      }
+    }
+
+    // Submeniu
+    > ul {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+      background: var(--primary);
+      visibility: hidden;
+
+      li {
+        padding: $meniu-sub-padding-v $meniu-sub-padding-h;
+        border-bottom: 1px solid var(--border);
+
+        &:hover {
+          background-color: var(--opacity-background);
+
+          > a {
+            color: var(--border);
+          }
+        }
+      }
+    }
+
+    // Indicator animat pentru item-uri fără submeniu
+    &:not(:has(ul)) {
+      &::after {
+        content: "";
+        position: absolute;
+        border-radius: var(--radius);
+        left: 0;
+        width: 100%;
+        height: $indicator-height;
+        background: linear-gradient(
+          to right,
+          var(--culoare-contur),
+          var(--border),
+          var(--culoare-contur)
+        );
+        top: 0;
+        opacity: 0;
+      }
+
+      &:hover::after {
+        top: calc(100% - #{$indicator-height});
+        opacity: 1;
+        transition: top $indicator-top-transition;
+      }
+    }
+  }
+
+  a {
+    display: block;
+    width: 100%;
+  }
+}
+
+.btn-login {
+  @extend %btn-base;
+  background-color: var(--color-table1);
+
+  &:hover {
+    @extend %btn-hover-base;
+    border: 2px solid var(--color-table1);
+  }
+}
+
+.btn-register {
+  @extend %btn-base;
+  background-color: var(--formula2);
+
+  &:hover {
+    @extend %btn-hover-base;
+    border: 2px solid var(--formula2);
+  }
+}

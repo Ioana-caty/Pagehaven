@@ -1,0 +1,27 @@
+$breakpoint-1000: 1000px;
+$meniu-font-size-1000: 0.85rem;
+$meniu-padding-v: 0.25rem;
+$meniu-padding-h: 1rem;
+$btn-font-size-1000: 0.85rem;
+$btn-padding-v: 0.3rem;
+$btn-padding-h: 0.8rem;
+$icon-acasa-width: 0.75rem;
+
+.meniu > li {
+    font-size: $meniu-font-size-1000;
+    padding: $meniu-padding-v $meniu-padding-h;
+  }
+ 
+  .text-acasa {
+    display: none;
+  }
+ 
+  .icon-acasa {
+    width: $icon-acasa-width;
+  }
+ 
+  .btn-login,
+  .btn-register {
+    font-size: $btn-font-size-1000;
+    padding: $btn-padding-v $btn-padding-h;
+  }
