@@ -1,6 +1,5 @@
 :root {
     --visited-link-color: var(--shadow);
-    --gradient-color: 
     --main-link-color: #661d8a;
     --content-http-link-color: #9146a1;
     --circle-hover-color: #bad4f2;
@@ -38,7 +37,7 @@ a[href^="http"]:hover::before {
 
 #genuri a {
   
-transition: background-size 1.5s ease, color 1.5s ease;
+transition: background-size 1s ease, color 1s ease;
   background-image: radial-gradient(circle, var(--circle-hover-color) 0%, var(--circle-hover-color) 40%, transparent 70%);
   background-position: center;
   background-repeat: no-repeat;

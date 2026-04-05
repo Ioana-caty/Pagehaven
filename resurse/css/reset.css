@@ -16,7 +16,6 @@
     --formula:        #3a6fa8;
     --formula2:       #9d7db7;
     --radius:         10px;
-    --main-link-color: #661d8a;
 
     --opacity-background: #ccdbec;
     --culoare-contur: #79628A;  
@@ -39,20 +38,6 @@ img, iframe, embed, object {
   display: block;
   max-width: 100%;
   height: auto;
-}
-
-a {
-  text-decoration: none;
-  cursor: pointer;
-}
-
-header a, footer a {
-  color: inherit;
-}
-
-main a {
-  color: var(--main-link-color);
-  font-weight: bold;
 }
 
 ul, ol {

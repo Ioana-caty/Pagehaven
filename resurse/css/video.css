@@ -46,7 +46,6 @@
     color: white;
 
     font-size: 1rem;
-    transform: translateY(-80vh);
 }
 
 @media screen and (max-width:1000px) {
