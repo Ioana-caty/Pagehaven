@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+  <title>Pagehaven - </title>
+  <meta name="description" content="Descarcă cărți PDF gratuit în română și engleză pe 
+      Pagehaven. Romance, Fantasy, Thriller — sute de titluri gratuite te așteaptă!">
+  <meta name="keywords" content="descarca carti PDF gratuit, carti online gratuite PDF, 
+      carti PDF romance, carti PDF fantasy, carti PDF thriller, carti in romana PDF, 
+      carti in engleza PDF,  Colleen Hoover, Sarah J. Maas, Alex Michaelides, 
+      biblioteca digitala gratuita">
+
+  <%- include('../fragmente/head.ejs') %>
+</head>
+
+<body>
+  <%- include('../fragmente/header.ejs') %>
+    <section id="galerie-statica">
+      <h2>Galerie: </h2>
+      <div id="grid-galerie">
+        <% for (let imag of locals.imagini) { %>
+          <figure>
+            <picture>
+              <source srcset="<%- imag.fisier_mediu %>" media="(max-width: 1100px)" />
+              <img src="<%- imag.fisier %>" alt="brisoe">
+            </picture>
+            <figcaption><%- imag.descriere %></figcaption>
+          </figure>
+          <% } %>
+            <!-- <figure>
+                    <div>
+                        <img src="/resurse/imagini/briose-frisca.png" alt="briose"></div>
+                
+                <figcaption>Briose</figcaption>
+                </figure>
+                <figure>
+                <img src="/resurse/imagini/briose-frisca.png" alt="briose">
+                <figcaption>Briose</figcaption>
+                </figure>
+                <figure>
+                <img src="/resurse/imagini/briose-frisca.png" alt="briose">
+                <figcaption>Briose</figcaption>
+                </figure>
+                <figure>
+                <img src="/resurse/imagini/briose-frisca.png" alt="briose">
+                <figcaption>Briose</figcaption>
+                </figure>
+                <figure>
+                <img src="/resurse/imagini/briose-frisca.png" alt="briose">
+                <figcaption>Briose</figcaption>
+                </figure>
+                <figure>
+                <img src="/resurse/imagini/briose-frisca.png" alt="briose">
+                <figcaption>Briose</figcaption>
+                </figure>
+                <figure>
+                <img src="/resurse/imagini/briose-frisca.png" alt="briose">
+                <figcaption>Briose</figcaption>
+                </figure> -->
+      </div>
+    </section>
+
+    <%- include('../fragmente/footer.ejs') %>
+</body>
+
+</html>

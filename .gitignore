@@ -1,7 +1,8 @@
-node_modules/
-temp/
-logs/
+temp/ 
+logs/ 
 backup/
+node_modules/
 fisiere_uploadate/
 resurse/pdf/
 teory.md
+Stage_5.md/

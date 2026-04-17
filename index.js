@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs"); // file system 
-const saas = require("sass");
+const sass = require("sass");
 const sharp = require("sharp");
 
 const app = express();
@@ -12,7 +12,7 @@ console.log("Folder curent (de lucru)", process.cwd());
 console.log("Cale fisier", __filename);
 
 app.use("/resurse", express.static(path.join(__dirname, "resurse")));
-
+app.use("/dist", express.static(path.join(__dirname, "node_modules/bootstrap/dist")));
 
 obGlobal = {
     obErori: null,
@@ -21,7 +21,6 @@ obGlobal = {
     folderCss: path.join(__dirname, "resurse/css"),
     folderBackup: path.join(__dirname, "backup"),
 }
-
 
 let vect_foldere = ["temp", "logs", "backup", "fisiere_uploadate"]
 for (let folder of vect_foldere) {
@@ -37,12 +36,13 @@ app.get("/favicon.ico", function (req, res) {
 
 app.get(["/", "/index", "/home"], function (req, res) {
     res.render("pagini/index", {
-        ip: req.ip
+        ip: req.ip,
+        imagini: obGlobal.obImagini.imagini
     });
 });
 
 function verificaErori() {
-    // 1. Verificare existenta fisier erori.json
+
     const caleJson = path.join(__dirname, "resurse/json/erori.json");
     if (!fs.existsSync(caleJson)) {
         console.error("[EROARE CRITICA] Fisierul 'resurse/json/erori.json' nu a fost gasit. Aplicatia nu poate porni fara el.");
@@ -59,27 +59,25 @@ function verificaErori() {
         process.exit(1);
     }
 
-    // 2. Verificare prorietatilor: info_erori, cale_baza, eroare_default
     for (const i of ["info_erori", "cale_baza", "eroare_default"]) {
         if (!(i in erori)) {
             console.error("[EROARE] Proprietatea" + i + " lipseste din erori.json.");
         }
     }
 
-    // 3. Verificare proprietatilor din eroare_default (titlu, text, imagine)
+
     for (const i of ["titlu", "text", "imagine"]) {
         if (!(i in erori.eroare_default)) {
             console.error("[EROARE] Proprietatea" + i + " lipseste din obiectul 'eroare_default'.");
         }
     }
 
-    // 4. Verificam daca cale_baza exista si este director
     const caleBaza = path.join(__dirname, erori.cale_baza);
     if (!fs.existsSync(caleBaza) || !fs.statSync(caleBaza).isDirectory()) {
         console.error("[EROARE] Calea de bază" + caleBaza + " nu există sau nu este un director.");
     }
 
-    // 5. Verificam daca imaginile specificate in eroare_default si info_erori exista in cale_baza
+
     const toateErorile = [];
     toateErorile.push({ sursa: "eroare_default", imagine: erori.eroare_default.imagine });
 
@@ -88,7 +86,7 @@ function verificaErori() {
             toateErorile.push({ sursa: `eroare id=${e.identificator}`, imagine: e.imagine });
         }
     }
-    // cream un vector cu toate erorile (default si tot c ese afla in info_erori) pentru a verifica mai usor imaginile asociate
+
     for (const { sursa, imagine } of toateErorile) {
         const caleImagine = path.join(__dirname, "resurse/imagini/erori", imagine);
         if (!fs.existsSync(caleImagine)) {
@@ -96,7 +94,7 @@ function verificaErori() {
         }
     }
 
-    //6. Verificam daca in info_erori nu avem dubluri pentru prorietati 
+
     let lista_dubluri = [];
     for (let line of stringJson.split("\n")) {
         line = line.trim();
@@ -111,7 +109,7 @@ function verificaErori() {
             lista_dubluri.push(val);
         }
     }
-    //7. Verificam daca in info_erori avem erori cu aceleasi identificator
+
     let lista_identificatori = [];
     for (let { identificator, status, titlu, text, imagine } of erori.info_erori) {
         if (lista_identificatori.includes(identificator)) {
@@ -157,6 +155,96 @@ function afisareEroare(res, identificator, titlu, text, imagine) {
 app.get("/eroare", function (req, res) {
     afisareEroare(res, 404, "Titlu personalizat")
 });
+
+function initImagini() {
+    var continut = fs.readFileSync(path.join(__dirname, "resurse/json/galerie.json")).toString("utf-8");
+
+    obGlobal.obImagini = JSON.parse(continut);
+    let vImagini = obGlobal.obImagini.imagini;
+    let caleGalerie = obGlobal.obImagini.cale_galerie
+
+    let caleAbs = path.join(__dirname, caleGalerie);
+    let caleAbsMediu = path.join(caleAbs, "mediu");
+    if (!fs.existsSync(caleAbsMediu))
+        fs.mkdirSync(caleAbsMediu);
+
+    for (let imag of vImagini) {
+        [numeFis, ext] = imag.fisier.split("."); //"ceva.png" -> ["ceva", "png"]
+        let caleFisAbs = path.join(caleAbs, imag.fisier);
+        let caleFisMediuAbs = path.join(caleAbsMediu, numeFis + ".webp");
+        sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
+        imag.fisier_mediu = path.join("/", caleGalerie, "mediu", numeFis + ".webp")
+        imag.fisier = path.join("/", caleGalerie, imag.fisier)
+
+    }
+    // console.log(obGlobal.obImagini)
+}
+initImagini();
+
+function compileazaScss(caleScss, caleCss) {
+    // caleScss => entry point 
+    // caleCss => output
+    if (!caleCss) {
+        let numeFisExt = path.basename(caleScss); // "folder1/folder2/a.scss" -> "a.scss"
+        let numeFis = numeFisExt.split(".")[0]   /// "a.scss"  -> ["a","scss"]
+        caleCss = numeFis + ".css"; // output: a.css
+    }
+    // if we forgot to provide the output path for the css file, we will generate it based on 
+    // the same name as the scss file but with the .css extension and we will put it in the same folder as the scss fil 
+
+    if (!path.isAbsolute(caleScss))
+        caleScss = path.join(obGlobal.folderScss, caleScss)
+    if (!path.isAbsolute(caleCss))
+        caleCss = path.join(obGlobal.folderCss, caleCss)
+    // if we provide just the relative path, we will generate the absolute path by joining the 
+    // folderScss with the relative path (caleScss)
+    // folderCss with the relative path (caleCss)
+
+    let caleBackup = path.join(obGlobal.folderBackup, "resurse/css");
+    // before compiling the scss file, ww will create a backup of the previous version of the css file in the backup folder
+    // if it exists
+    if (!fs.existsSync(caleBackup)) {
+        fs.mkdirSync(caleBackup, { recursive: true })
+    }
+    // if the css file already exists, we will copy it to the backup folder before compiling the scss file
+    // recursive:true -> if the backup folder does not exist, it will be created along with any necessary parent folders
+
+    // la acest punct avem cai absolute in caleScss si  caleCss
+    let numeFisCss = path.basename(caleCss);
+    // if the css file does not exist, it means that we are compiling the scss file for the first time
+    // so we do not need to create a backup of the previous version of the css file
+    if (fs.existsSync(caleCss)) {
+        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup, "resurse/css", numeFisCss))// +(new Date()).getTime()
+    }
+    rez = sass.compile(caleScss, { "sourceMap": true });
+    // sass.complie => compile a scss file to css 
+    // caleScss => the path to the scss file that we want to compile
+    // {"sourceMap":true} => options for the compilation process, in this case this is a map which makes the link between the scss file and the css file 
+    fs.writeFileSync(caleCss, rez.css)
+    // if we do not use this function, the translation from the scss to css will be stay in the air (memory RAM) and it will not save when we close the server
+    // so we need to put in on the hard disk by writting it to a file, and this is what fs.writeFileSync does
+    // fs.writeFileSync => write a file, if the file does not exist it will be created, if it already exists it will be overwritten
+    // rez.css -> contains the compiled css code that we want to write to the css file
+    // caleCss -> absolute path to the css file where we want to write the compiled css code   
+}
+
+fs.watch(obGlobal.folderScss, function (eveniment, numeFis) {
+    // verify if we change or rename a scss file, we will compile it to css
+    if (eveniment == "change" || eveniment == "rename") {
+        let caleCompleta = path.join(obGlobal.folderScss, numeFis);
+        if (fs.existsSync(caleCompleta)) {
+            compileazaScss(caleCompleta);
+        }
+    }
+})
+// when the server starts, it will complie all the scss files in the folderScss and put the css files in the folderCss
+vFisiere = fs.readdirSync(obGlobal.folderScss);
+// it will make an array with the names of the files int the folders 
+for (let numeFis of vFisiere) {
+    if (path.extname(numeFis) == ".scss") {
+        compileazaScss(numeFis);
+    }
+}
 
 app.get("/*pagina", function (req, res) {
     console.log("Cale pagina", req.url);
