@@ -35,10 +35,17 @@ app.get("/favicon.ico", function (req, res) {
 });
 
 app.get(["/", "/index", "/home"], function (req, res) {
-    res.render("pagini/index", {
-        ip: req.ip,
-        imagini: obGlobal.obImagini.imagini
-    });
+  res.render("pagini/index", {
+    ip: req.ip,
+    imagini: obGlobal.obImagini.imagini
+  });
+});
+
+app.get("/carti", function (req, res) {
+  res.render("pagini/carti", {
+    ip: req.ip,
+    imagini: obGlobal.obImagini.imagini
+  });
 });
 
 function verificaErori() {

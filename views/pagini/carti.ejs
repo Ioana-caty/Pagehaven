@@ -15,8 +15,9 @@
 
 <body>
   <%- include('../fragmente/header.ejs') %>
-    <section id="galerie-statica">
-      <h2>Galerie: </h2>
+  <main> 
+    <section id="galerie-statica-carti">
+      <h2> Exemple de carti disponibile pe Pagehaven:</h2>
       <div id="grid-galerie">
         <% for (let imag of locals.imagini) { %>
           <figure>
@@ -27,40 +28,9 @@
             <figcaption><%- imag.descriere %></figcaption>
           </figure>
           <% } %>
-            <!-- <figure>
-                    <div>
-                        <img src="/resurse/imagini/briose-frisca.png" alt="briose"></div>
-                
-                <figcaption>Briose</figcaption>
-                </figure>
-                <figure>
-                <img src="/resurse/imagini/briose-frisca.png" alt="briose">
-                <figcaption>Briose</figcaption>
-                </figure>
-                <figure>
-                <img src="/resurse/imagini/briose-frisca.png" alt="briose">
-                <figcaption>Briose</figcaption>
-                </figure>
-                <figure>
-                <img src="/resurse/imagini/briose-frisca.png" alt="briose">
-                <figcaption>Briose</figcaption>
-                </figure>
-                <figure>
-                <img src="/resurse/imagini/briose-frisca.png" alt="briose">
-                <figcaption>Briose</figcaption>
-                </figure>
-                <figure>
-                <img src="/resurse/imagini/briose-frisca.png" alt="briose">
-                <figcaption>Briose</figcaption>
-                </figure>
-                <figure>
-                <img src="/resurse/imagini/briose-frisca.png" alt="briose">
-                <figcaption>Briose</figcaption>
-                </figure> -->
-      </div>
     </section>
-
-    <%- include('../fragmente/footer.ejs') %>
+  </main>
+  <%- include('../fragmente/footer.ejs') %>
 </body>
 
 </html>
