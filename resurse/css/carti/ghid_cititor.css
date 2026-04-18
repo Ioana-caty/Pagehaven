@@ -1,0 +1,86 @@
+:root {
+   --line: rgba(139, 69, 19, 0.25);
+   --text: #4a4a4a;
+   --first_letter: #8B4513;
+}
+#ghid-cititor {
+    padding: 3.5rem 2rem;
+}
+
+#ghid-cititor h2 {
+    font-family: Georgia, serif;
+    font-size: 2rem;
+    color: var(--text);
+    text-align: center;
+    margin: 0 auto 2rem;
+    max-width: 600px;
+}
+
+.text-coloane {
+    column-count: 1; 
+    font-size: 1.1rem;
+    color: var(--text);
+}
+
+.text-coloane p {
+    text-align: justify;
+}
+
+.text-coloane p:first-of-type::first-letter {
+    font-family: Georgia, serif;
+    font-size: 3.8rem;
+    font-weight: 700;
+    float: left;
+    line-height: 0.75;
+    margin-right: 0.5rem;
+    margin-top: 0.25rem;
+    color: var(--first_letter);
+}
+
+@media (max-width: 899px) {
+    .text-coloane p {
+        padding-bottom: 1.5rem;
+        border-bottom: 2px solid var(--line);
+    }
+    
+    .text-coloane p:last-of-type {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+}
+
+@media (min-width: 900px) {
+    .text-coloane {
+        column-count: 3;
+        column-gap: 3rem;
+        column-rule: 2px solid var(--line);
+    }
+}
+
+.text-coloane strong {
+    color: var(--first_letter); 
+    font-weight: 600;
+}
+
+.intrebare-finala {
+    display: block;
+    text-align: center;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--first_letter);
+    margin-top: 1rem;
+    padding: 10px;
+    border-top: 1px dashed var(--line);
+    border-bottom: 1px dashed var(--line);
+}
+
+.btn-custom {
+    font-size: 0.85rem; 
+    padding: 0.15rem 0.5rem; 
+    transition: transform 0.2s ease;
+}
+
+.btn-custom:hover {
+    transform: translateY(-2px);
+}

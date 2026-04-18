@@ -6,6 +6,7 @@
 #grid-galerie {
     display: grid;
     grid-template-columns: 1fr;
+    margin: 0 auto;
     gap: 1rem;
     counter-reset: img;
     width: 100%;

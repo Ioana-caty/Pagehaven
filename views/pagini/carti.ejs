@@ -11,25 +11,55 @@
       biblioteca digitala gratuita">
 
   <%- include('../fragmente/head.ejs') %>
-  <link rel="stylesheet" href="/resurse/css/carti/galerie.css">
+    <link rel="stylesheet" href="/resurse/css/carti/galerie.css">
+    <link rel="stylesheet" href="/resurse/css/carti/ghid_cititor.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <%- include('../fragmente/header.ejs') %>
     <main>
+      <section id="ghid-cititor">
+        <h2>Descoperă lumea fascinantă a cărților cu Pagehaven!</h2>
+
+        <div class="text-coloane">
+          <p>
+            Bine ai venit în sanctuarul tău literar. La Pagehaven, credem că o lectură memorabilă necesită
+            <strong>atmosfera potrivită</strong>. Fie că preferi lumina blândă a dimineții alături de o
+            cafea sau <strong>confortul unui fotoliu</strong> în penumbră, noi te ajutăm să-ți găsești cartea ideală.
+            Lasă zgomotul lumii reale la ușă și pregătește-te să evadezi.
+          </p>
+          <p>
+            Am pregătit <strong>recomandări sincronizate</strong> cu ritmul zilei: dimineața te așteaptă povești
+            <a href="/carti/romance" class="btn btn-info btn-sm btn-custom">Romance</a>, în mijlocul zilei
+            explorăm lumi
+            <a href="/carti/fantasy" class="btn btn-info btn-sm btn-custom">Fantasy</a>, iar seara ne lăsăm
+            capturați de suspansul
+            <a href="/carti/thriller" class="btn btn-info btn-sm btn-custom">Thriller</a>. Desigur, rafturile
+            noastre dedicate fiecărui gen îți sunt
+            <strong>deschise oricând</strong>, indiferent de oră.
+          </p>
+          <p>
+            Adevărata magie stă în <strong>libertatea totală de a alege</strong>. Nu există reguli stricte, ci doar
+            volume care așteaptă să fie descoperite. Răsfoiește colecțiile, combină genurile și construiește-ți propria
+            listă de aventuri. <br><br>
+            <span class="intrebare-finala">Tu ce alegi să citești astăzi?</span>
+          </p>
+        </div>
+      </section>
       <section id="galerie-statica-carti">
-        <h2> Exemple de carti disponibile pe Pagehaven:</h2>
+        <h2> Pagehaven iti oferă cele mai bune cărți:</h2>
         <div id="grid-galerie">
           <% for (let imag of locals.imagini) { %>
-              <figure>
-                <picture>
-                  <source srcset="<%- imag.fisier_mic %>" media="(max-width: 600px)">
-                  <source srcset="<%- imag.fisier_mediu %>" media="(max-width: 1100px)" />
-                  <img src="<%- imag.fisier %>" alt="<%- imag.alt %>" title="<%- imag.descriere %>">
-                </picture>
+            <figure>
+              <picture>
+                <source srcset="<%- imag.fisier_mic %>" media="(max-width: 600px)">
+                <source srcset="<%- imag.fisier_mediu %>" media="(max-width: 1100px)" />
+                <img src="<%- imag.fisier %>" alt="<%- imag.alt %>" title="<%- imag.descriere %>">
+              </picture>
               <figcaption><%- imag.descriere %></figcaption>
-              </figure>
-          <% } %>
+            </figure>
+            <% } %>
         </div>
       </section>
     </main>

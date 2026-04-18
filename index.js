@@ -63,6 +63,17 @@ app.get("/carti", function (req, res) {
   res.render("pagini/carti", { imagini });
 });
 
+app.get("/carti/:gen", function (req, res) {
+    const gen = req.params.gen.toLowerCase(); 
+    const caleFisierEjs = path.join(__dirname, "views", "pagini", gen + ".ejs");
+
+    if (fs.existsSync(caleFisierEjs)) {
+        res.render("pagini/" + gen);
+    } else {
+         afisareEroare(res, 404);
+    }
+});
+
 function verificaErori() {
 
     const caleJson = path.join(__dirname, "resurse/json/erori.json");
