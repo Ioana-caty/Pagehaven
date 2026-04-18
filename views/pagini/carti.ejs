@@ -11,26 +11,29 @@
       biblioteca digitala gratuita">
 
   <%- include('../fragmente/head.ejs') %>
+  <link rel="stylesheet" href="/resurse/css/carti/galerie.css">
 </head>
 
 <body>
   <%- include('../fragmente/header.ejs') %>
-  <main> 
-    <section id="galerie-statica-carti">
-      <h2> Exemple de carti disponibile pe Pagehaven:</h2>
-      <div id="grid-galerie">
-        <% for (let imag of locals.imagini) { %>
-          <figure>
-            <picture>
-              <source srcset="<%- imag.fisier_mediu %>" media="(max-width: 1100px)" />
-              <img src="<%- imag.fisier %>" alt="brisoe">
-            </picture>
-            <figcaption><%- imag.descriere %></figcaption>
-          </figure>
+    <main>
+      <section id="galerie-statica-carti">
+        <h2> Exemple de carti disponibile pe Pagehaven:</h2>
+        <div id="grid-galerie">
+          <% for (let imag of locals.imagini) { %>
+              <figure>
+                <picture>
+                  <source srcset="<%- imag.fisier_mic %>" media="(max-width: 600px)">
+                  <source srcset="<%- imag.fisier_mediu %>" media="(max-width: 1100px)" />
+                  <img src="<%- imag.fisier %>" alt="<%- imag.alt %>" title="<%- imag.descriere %>">
+                </picture>
+              <figcaption><%- imag.descriere %></figcaption>
+              </figure>
           <% } %>
-    </section>
-  </main>
-  <%- include('../fragmente/footer.ejs') %>
+        </div>
+      </section>
+    </main>
+    <%- include('../fragmente/footer.ejs') %>
 </body>
 
 </html>

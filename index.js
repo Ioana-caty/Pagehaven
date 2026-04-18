@@ -42,10 +42,25 @@ app.get(["/", "/index", "/home"], function (req, res) {
 });
 
 app.get("/carti", function (req, res) {
-  res.render("pagini/carti", {
-    ip: req.ip,
-    imagini: obGlobal.obImagini.imagini
-  });
+  const ora = new Date().getHours();
+  let perioada;
+  if (ora >= 5 && ora < 12) {
+    perioada = "dimineata";
+  } else if (ora >= 12 && ora < 20) { 
+    perioada = "zi";
+  } else {
+    perioada = "noapte";
+  }
+
+  let imagini = obGlobal.obImagini.imagini.filter(im => im.timp === perioada);
+  if (imagini.length > 6) {
+    const rest = imagini.length % 3;
+    if (rest !== 0) {
+        imagini = imagini.slice(0, imagini.length - rest);
+    }
+  }
+
+  res.render("pagini/carti", { imagini });
 });
 
 function verificaErori() {
@@ -174,17 +189,27 @@ function initImagini() {
     let caleAbsMediu = path.join(caleAbs, "mediu");
     if (!fs.existsSync(caleAbsMediu))
         fs.mkdirSync(caleAbsMediu);
+    let caleAbsMic = path.join(caleAbs, "mic");
+    if (!fs.existsSync(caleAbsMic))
+        fs.mkdirSync(caleAbsMic);
 
     for (let imag of vImagini) {
-        [numeFis, ext] = imag.fisier.split("."); //"ceva.png" -> ["ceva", "png"]
-        let caleFisAbs = path.join(caleAbs, imag.fisier);
+        [numeFis, ext] = imag.cale_relativa.split(".");
+        let caleFisAbs = path.join(caleAbs, imag.cale_relativa);
+    
         let caleFisMediuAbs = path.join(caleAbsMediu, numeFis + ".webp");
-        sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
-        imag.fisier_mediu = path.join("/", caleGalerie, "mediu", numeFis + ".webp")
-        imag.fisier = path.join("/", caleGalerie, imag.fisier)
+        sharp(caleFisAbs).resize(800).toFile(caleFisMediuAbs);
 
+        let caleFisMicAbs = path.join(caleAbsMic, numeFis + ".webp");
+        sharp(caleFisAbs).resize(400).toFile(caleFisMicAbs);
+
+        imag.fisier = path.join("/", caleGalerie, imag.cale_relativa);
+        imag.fisier_mediu = path.join("/", caleGalerie, "mediu", numeFis + ".webp");
+        imag.fisier_mic = path.join("/", caleGalerie, "mic", numeFis + ".webp");
+
+        imag.alt = imag.alt || imag.nume; 
+        // we can not be sure that the alt propert will be in the json file
     }
-    // console.log(obGlobal.obImagini)
 }
 initImagini();
 

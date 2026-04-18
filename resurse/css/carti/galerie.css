@@ -1,0 +1,62 @@
+#galerie-statica-carti {
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#grid-galerie {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    counter-reset: img;
+    width: 100%;
+    max-width: 350px;
+}
+
+#grid-galerie figure {
+    counter-increment: img;
+}
+
+#grid-galerie figure figcaption::before {
+    content: counter(img, upper-alpha) ". ";
+    font-weight: bold;
+}
+
+#grid-galerie img {
+    border-radius: 0.5rem;
+}
+
+#grid-galerie figure:hover img {
+    transition: transform 0.6s ease-in-out, border-radius 0.6s ease-in-out;
+    transform: rotate(360deg) scale(1.15);
+    border-radius: 50%;
+}
+
+@media (min-width: 601px) and (max-width: 1100px) {
+    #grid-galerie {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 750px;
+        gap: 1rem;
+    }
+
+    #grid-galerie figure:nth-child(3n+1) {
+        grid-column: 1 / 3;
+    }
+
+    #grid-galerie figure:nth-child(3n+2) {
+        grid-column: 3 / 5;
+    }
+
+    #grid-galerie figure:nth-child(3n) {
+        grid-column: 2 / 4;
+    }
+}
+
+@media (min-width: 1101px) {
+    #grid-galerie {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1000px;
+        gap: 0;
+    }
+}
+
+

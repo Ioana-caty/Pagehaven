@@ -1,41 +1,56 @@
 {
-	"cale_galerie":"resurse/imagini/galerie",
+	"cale_galerie": "resurse/imagini/galerie",
 	"imagini": [
 		{
-			"fisier":"briose-frisca.png",
-			"descriere":"Brioșe",
-			"luni":["martie","februarie","noiembrie","aprilie", "decembrie","octombrie"]
+			"cale_relativa": "briose-frisca.png",
+			"nume": "Brioșe",
+			"descriere": "Brioșe delicioase",
+			"timp": "zi",
+			"licenta": " ",
+			"autor": " ",
+			"alt": "Brioșe cu frișcă"
 		},
 		{
-			"fisier":"clatite.png",
-			"descriere":"Clătite cu dulceață",
-			"luni":["ianuarie","februarie","iunie","octombrie"]
-			
+			"cale_relativa": "clatite.png",
+			"nume": "Clătite",
+			"descriere": "Clătite cu dulceață",
+			"timp": "zi",
+			"alt": "Clătite cu dulceață"
 		},
 		{
-			"fisier":"gogosi.png",
-			"descriere":"Gogoși glazurate",
-			"luni":["ianuarie","noiembrie","iunie","martie","aprilie"]
+			"cale_relativa": "gogosi.png",
+			"nume": "Gogoși",
+			"descriere": "Gogoși glazurate",
+			"timp": "zi",
+			"alt": "Gogoși glazurate"
 		},
 		{
-			"fisier":"tort-scortisoara.png",
-			"descriere":"Tort cu scorțisoară",
-			
-			"luni":["noiembrie","aprilie", "decembrie"]
+			"cale_relativa": "prajitura-ciocolata.png",
+			"nume": "Prajitură cu ciocolată",
+			"descriere": "Prajitură cu ciocolată și cremă",
+			"timp": "zi", 
+			"alt": "Prajitură cu ciocolată și cremă"
 		},
 		{
-			"fisier":"prajitura-ciocolata.png",
-			"descriere":"Prăjitură cu ciocolată",
-			
-			"luni":["noiembrie","aprilie", "decembrie","octombrie"]
+			"cale_relativa": "rsz_tort1.jpg",
+			"nume": "Tort",
+			"descriere": "Tort cu fructe de padure",
+			"timp": "zi",
+			"alt": "Tort cu fructe de padure"
 		},
 		{
-			"fisier":"tarta-afine.png",
-			"descriere":"Tartă cu afine"
+			"cale_relativa": "tarta-afine.png",
+			"nume": "Tarta cu afine",
+			"descriere": "Tarta cu afine și cremă de vanilie",
+			"timp": "zi",
+			"alt": "Tarta cu afine și cremă de vanilie"
 		},
 		{
-			"fisier":"tort-trandafiri.png",
-			"descriere":"Tort special"
+			"cale_relativa": "tort-scortisoara.png",
+			"nume": "Tort scortisoara",
+			"descriere": "Tort cu scortisoara",
+			"timp": "zi",
+			"alt": "Tort cu scortisoara"
 		}
 	]
 }
