@@ -257,9 +257,17 @@ function compileazaScss(caleScss, caleCss) {
     // if the css file does not exist, it means that we are compiling the scss file for the first time
     // so we do not need to create a backup of the previous version of the css file
     if (fs.existsSync(caleCss)) {
-        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup, "resurse/css", numeFisCss))// +(new Date()).getTime()
+        let positionPunct = numeFisCss.lastIndexOf(".");
+        let nameWithoutExt = numeFisCss.substring(0, positionPunct);
+        let extension = numeFisCss.substring(positionPunct);
+
+        let timestamp = new Date().getTime();
+        let nameFileBackup = `${nameWithoutExt}_${timestamp}${extension}`;
+
+        //fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup, "resurse/css", numeFisCss))// +(new Date()).getTime()
+        fs.copyFileSync(caleCss, path.join(caleBackup, nameFileBackup))
     }
-    rez = sass.compile(caleScss, { "sourceMap": true });
+    let rez = sass.compile(caleScss, { "sourceMap": true });
     // sass.complie => compile a scss file to css 
     // caleScss => the path to the scss file that we want to compile
     // {"sourceMap":true} => options for the compilation process, in this case this is a map which makes the link between the scss file and the css file 

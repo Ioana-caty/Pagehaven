@@ -1,10 +1,10 @@
 #bg1, #bg2 {
   position: fixed;
-  inset: 0;
+  inset: 0; /* top, right, bottom, left = 0 */
   z-index: -1;
   background-attachment: fixed;
   background-size: cover;
-  background-position: center;
+  background-position: center; /* center on the middle axes: horizontal & vertical */
   transition: opacity 2s ease-in-out;
 }
 
