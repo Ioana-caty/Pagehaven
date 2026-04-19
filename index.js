@@ -189,6 +189,35 @@ app.get("/eroare", function (req, res) {
     afisareEroare(res, 404, "Titlu personalizat")
 });
 
+function verifyImages() {
+    const pathJsonGallery = path.join(__dirname, "resurse/json/galerie.json");
+    if( !fs.existsSync(pathJsonGallery) ) {
+        console.error("[CRITICAL ERROR] The file 'resurse/json/galerie.json' is missing. The application cannot start without it.");
+        process.exit(1);
+    }
+
+    let content = fs.readFileSync(pathJsonGallery).toString("utf-8");
+    let obImages = JSON.parse(content);
+
+    let pathGallery = obImages.cale_galerie;
+    let pathAbsGallery = path.join(__dirname, pathGallery);
+
+    if(!fs.existsSync(pathAbsGallery)) {
+        console.error("[CRITICAL ERROR] The gallery path '" + pathAbsGallery + "' does not exist. The application cannot start without it.");
+        process.exit(1);
+    }
+
+    let images = obImages.imagini;
+    for (let img of images) {
+        let pathImg = path.join(pathAbsGallery, img.cale_relativa);
+        if (!fs.existsSync(pathImg)) {
+            console.error("[ERROR] The image '" + img.cale_relativa + "' does not exist in the gallery.");
+            process.exit(1);
+        }
+    }
+}
+verifyImages();
+
 function initImagini() {
     var continut = fs.readFileSync(path.join(__dirname, "resurse/json/galerie.json")).toString("utf-8");
 
@@ -228,9 +257,10 @@ function compileazaScss(caleScss, caleCss) {
     // caleScss => entry point 
     // caleCss => output
     if (!caleCss) {
-        let numeFisExt = path.basename(caleScss); // "folder1/folder2/a.scss" -> "a.scss"
-        let numeFis = numeFisExt.split(".")[0]   /// "a.scss"  -> ["a","scss"]
-        caleCss = numeFis + ".css"; // output: a.css
+        let nameFileExt = path.basename(caleScss); // "folder1/folder2/a.scss" -> "a.scss"
+        let positionLastDot = nameFileExt.lastIndexOf(".");
+        let nameWithoutExt = nameFileExt.substring(0, positionLastDot); // "a.scss" -> "a"
+        caleCss = nameWithoutExt + ".css"; // output: a.css
     }
     // if we forgot to provide the output path for the css file, we will generate it based on 
     // the same name as the scss file but with the .css extension and we will put it in the same folder as the scss fil 
