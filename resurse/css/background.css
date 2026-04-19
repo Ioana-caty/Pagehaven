@@ -1,0 +1,19 @@
+#bg1, #bg2 {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 2s ease-in-out;
+}
+
+#bg1 {
+  background-image: url('/resurse/imagini/background1.png');
+  opacity: 1;
+}
+
+#bg2 {
+  background-image: url('/resurse/imagini/background2.png');
+  opacity: 0;
+}

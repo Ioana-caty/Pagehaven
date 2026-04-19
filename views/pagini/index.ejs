@@ -11,11 +11,14 @@
         biblioteca digitala gratuita">
 
   <%- include('../fragmente/head.ejs') %>
+  <link rel="stylesheet" href="/resurse/css/background.css">
 </head>
 
 <script src="/resurse/js/video.js" defer></script>
 
 <body>
+  <div id="bg1"></div>
+  <div id="bg2"></div>
   <%- include('../fragmente/header.ejs') %>
     <main>
       <div id="grid-pagina">
@@ -27,8 +30,11 @@
                 <i class="fa-solid fa-book fa-fade"></i> Biblioteca digitală gratuită
               </h2>
 
-              <p> IP: <%- locals.ip %> </p>
-              <p> <button class="btn btn-primary btn-custom">Buton bootstrap</button> </p> 
+              <div class="container-reflexie">
+              <p class="text-reflexie" data-text="IP: <%- locals.ip %>">
+                  IP: <%- locals.ip %>
+              </p>
+</div>
               <p>Descarcă <b>cărți PDF gratuit</b> în română și engleză - oricând, fără abonament</p>
             </hgroup>
 
@@ -518,6 +524,7 @@
       </div>
     </main>
     <%- include('../fragmente/footer.ejs') %>
+    <script src="/resurse/js/background.js"></script>
 </body>
 
 </html>
