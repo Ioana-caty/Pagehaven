@@ -1,6 +1,5 @@
 :root {
    --line: rgba(139, 69, 19, 0.25);
-   --text: #4a4a4a;
    --first_letter: #8B4513;
 }
 #ghid-cititor {
@@ -10,7 +9,6 @@
 #ghid-cititor h2 {
     font-family: Georgia, serif;
     font-size: 2rem;
-    color: var(--text);
     text-align: center;
     margin: 0 auto 2rem;
     max-width: 600px;
@@ -19,7 +17,6 @@
 .text-coloane {
     column-count: 1; 
     font-size: 1.1rem;
-    color: var(--text);
 }
 
 .text-coloane p {

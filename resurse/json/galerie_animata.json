@@ -1,0 +1,50 @@
+{
+    "cale_galerie": "resurse/imagini/galerie_animata",
+    "imagini": [
+        {
+            "cale_relativa": "A_Court_of_Thorns_and_Roses.png",
+			"nume": "A Court of Thorns and Roses",
+			"descriere": "A Court of Thorns and Roses - Sarah J. Maas",
+			"licenta": "Canva Content License (Education)",
+			"autor": "Canva",
+			"sursa": "https://www.canva.com",
+			"alt": "A Court of Thorns and Roses - Sarah J. Maas"
+        },
+        {
+            "cale_relativa": "It_Ends_with_Us.png",
+            "nume": "It Ends with Us",
+            "descriere": "It Ends with Us - Colleen Hoover",
+            "licenta": "Canva Content License (Education)",
+            "autor": "Canva",
+            "sursa": "https://www.canva.com",       
+            "alt": "Coperta It Ends with Us"
+        },
+        {
+            "cale_relativa": "Me_before_you.png",
+            "nume": "Me Before You",
+            "descriere": "Me Before You - Jojo Moyes",
+            "licenta": "Canva Content License (Education)",
+            "autor": "Canva",
+            "sursa": "https://www.canva.com",
+            "alt": "Coperta Me Before You"
+        },
+        {
+            "cale_relativa": "The_Silent_Patient.png",
+            "nume": "The Silent Patient",
+            "descriere": "The Silent Patient - Alex Michaelides",
+            "licenta": "Canva Content License (Education)",
+            "autor": "Canva",
+            "sursa": "https://www.canva.com",
+            "alt": "Coperta The Silent Patient"
+        },
+        {
+            "cale_relativa": "Ugly_Love.png",
+            "nume": "Ugly Love",
+            "descriere": "Ugly Love - Colleen Hoover",
+            "licenta": "Canva Content License (Education)",
+            "autor": "Canva",
+            "sursa": "https://www.canva.com",
+            "alt": "Coperta Ugly Love"
+        }
+    ]
+}

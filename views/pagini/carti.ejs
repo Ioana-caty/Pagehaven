@@ -12,6 +12,7 @@
 
   <%- include('../fragmente/head.ejs') %>
     <link rel="stylesheet" href="/resurse/css/carti/galerie.css">
+    <link rel="stylesheet" href="/resurse/css/carti/galerie_animata.css">
     <link rel="stylesheet" href="/resurse/css/carti/ghid_cititor.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -47,6 +48,7 @@
           </p>
         </div>
       </section>
+
       <section id="galerie-statica-carti">
         <h2> Pagehaven iti oferă cele mai bune cărți:</h2>
         <div id="grid-galerie">
@@ -62,8 +64,28 @@
             <% } %>
         </div>
       </section>
+
+      <section id="animated_gallery">
+        <h2>Cărți recomandate: </h2>
+        <div class="marbel_frame">
+          <div class="slider_container">
+            <% for (let imag of locals.imaginiAnimate) { %>
+              <div class="slide">
+                <img src="<%- imag.fisier %>" alt="<%- imag.alt %>">
+                <% if (imag.descriere) { %>
+                  <div class="caption"><%- imag.descriere %></div>
+                  <% } %>
+              </div>
+              <% } %>
+          </div>
+        </div>
+      </section>
+      <script src="/resurse/js/galerie_animata.js"></script>
+
     </main>
     <%- include('../fragmente/footer.ejs') %>
+
+
 </body>
 
 </html>

@@ -13,24 +13,25 @@ app.set("view engine", "ejs")
 console.log("Folder index.js", __dirname);
 console.log("Folder curent (de lucru)", process.cwd());
 console.log("Cale fisier", __filename);
-    
+
 app.use("/resurse", express.static(path.join(__dirname, "resurse")));
 app.use("/dist", express.static(path.join(__dirname, "node_modules/bootstrap/dist")));
 
 obGlobal = {
     obErori: null,
     obImagini: null,
+    obGalerieAnimata: null,
     folderScss: path.join(__dirname, "resurse/scss"),
     folderCss: path.join(__dirname, "resurse/css"),
     folderBackup: path.join(__dirname, "backup"),
 }
 
 const client = new pg.Client({
-    database:"Pagehaven",
-    user:"ioana",
-    password:"104n4!_Sc_2026",
-    host:"localhost",
-    port:5432
+    database: "Pagehaven",
+    user: "ioana",
+    password: "104n4!_Sc_2026",
+    host: "localhost",
+    port: 5432
 })
 
 client.connect()
@@ -48,32 +49,35 @@ app.get("/favicon.ico", function (req, res) {
 });
 
 app.get(["/", "/index", "/home"], function (req, res) {
-  res.render("pagini/index", {
-    ip: req.ip,
-    imagini: obGlobal.obImagini.imagini
-  });
+    res.render("pagini/index", {
+        ip: req.ip,
+        imagini: obGlobal.obImagini.imagini
+    });
 });
 
 app.get("/carti", function (req, res) {
-  const ora = new Date().getHours();
-  let perioada;
-  if (ora >= 5 && ora < 12) {
-    perioada = "dimineata";
-  } else if (ora >= 12 && ora < 20) { 
-    perioada = "zi";
-  } else {
-    perioada = "noapte";
-  }
-
-  let imagini = obGlobal.obImagini.imagini.filter(im => im.timp === perioada);
-  if (imagini.length > 6) {
-    const rest = imagini.length % 3;
-    if (rest !== 0) {
-        imagini = imagini.slice(0, imagini.length - rest);
+    const ora = new Date().getHours();
+    let perioada;
+    if (ora >= 5 && ora < 12) {
+        perioada = "dimineata";
+    } else if (ora >= 12 && ora < 20) {
+        perioada = "zi";
+    } else {
+        perioada = "noapte";
     }
-  }
 
-  res.render("pagini/carti", { imagini });
+    let imagini = obGlobal.obImagini.imagini.filter(im => im.timp === perioada);
+    if (imagini.length > 6) {
+        const rest = imagini.length % 3;
+        if (rest !== 0) {
+            imagini = imagini.slice(0, imagini.length - rest);
+        }
+    }
+
+    res.render("pagini/carti", {
+        imagini,
+        imaginiAnimate: obGlobal.obGalerieAnimata.imagini  
+    });
 });
 
 // app.get("/carti/:gen", function (req, res) {
@@ -87,38 +91,38 @@ app.get("/carti", function (req, res) {
 //     }
 // });
 
-app.get("/produse", function(req, res) {
+app.get("/produse", function (req, res) {
     clauzaWhere = "";
     if (req.query.tip) {
         clauzaWhere = `where tip_produs='${req.query.tip}'`;
     }
-    client.query(`select * from prajituri ${clauzaWhere}`, function(err, rez) {
-        if(err) {
+    client.query(`select * from prajituri ${clauzaWhere}`, function (err, rez) {
+        if (err) {
             console.log("Eroare query", err);
             afisareEroare(res, 2);
         } else {
             console.log(rez);
-            res.render("pagini/produse", { 
+            res.render("pagini/produse", {
                 produse: rez.rows,
-                optiuni:[]
+                optiuni: []
             });
         }
     });
 })
 
-app.get("/produs/:id", function(req, res) {
+app.get("/produs/:id", function (req, res) {
     const id = req.params.id;
-    client.query(`select * from prajituri where id=${req.params.id}`, function(err, rez) {
-        if(err) {
+    client.query(`select * from prajituri where id=${req.params.id}`, function (err, rez) {
+        if (err) {
             console.log("Eroare query", err);
             afisareEroare(res, 2);
         } else {
             console.log(rez);
-            if(rez.rowCount == 0) {
+            if (rez.rowCount == 0) {
                 afisareEroare(res, 404, "Produs inexistent");
             } else {
-                res.render("pagini/produs", { 
-                    prod: rez.rows[0] 
+                res.render("pagini/produs", {
+                    prod: rez.rows[0]
                 });
             }
         }
@@ -242,7 +246,7 @@ app.get("/eroare", function (req, res) {
 
 function verifyImages() {
     const pathJsonGallery = path.join(__dirname, "resurse/json/galerie.json");
-    if( !fs.existsSync(pathJsonGallery) ) {
+    if (!fs.existsSync(pathJsonGallery)) {
         console.error("[CRITICAL ERROR] The file 'resurse/json/galerie.json' is missing. The application cannot start without it.");
         process.exit(1);
     }
@@ -253,7 +257,7 @@ function verifyImages() {
     let pathGallery = obImages.cale_galerie;
     let pathAbsGallery = path.join(__dirname, pathGallery);
 
-    if(!fs.existsSync(pathAbsGallery)) {
+    if (!fs.existsSync(pathAbsGallery)) {
         console.error("[CRITICAL ERROR] The gallery path '" + pathAbsGallery + "' does not exist. The application cannot start without it.");
         process.exit(1);
     }
@@ -294,7 +298,7 @@ function initImagini() {
         [numeFis, ext] = imag.cale_relativa.split(".");
         let caleFisAbs = path.join(caleAbs, imag.cale_relativa);
         // c.a pentru fisierul pe care vrem sa il procesam
-    
+
         let caleFisMediuAbs = path.join(caleAbsMediu, numeFis + ".webp");
         sharp(caleFisAbs).resize(800).toFile(caleFisMediuAbs);
 
@@ -302,15 +306,43 @@ function initImagini() {
         sharp(caleFisAbs).resize(400).toFile(caleFisMicAbs);
 
         imag.fisier = path.join("/", caleGalerie, imag.cale_relativa);
-    // se creeaza cererea http pentru imaginea originala (ex: /resurse/imagini/galerie/ceva.png) care va fi folosita in cazul in care browserul nu suporta formatul webp
+        // se creeaza cererea http pentru imaginea originala (ex: /resurse/imagini/galerie/ceva.png) care va fi folosita in cazul in care browserul nu suporta formatul webp
         imag.fisier_mediu = path.join("/", caleGalerie, "mediu", numeFis + ".webp");
         imag.fisier_mic = path.join("/", caleGalerie, "mic", numeFis + ".webp");
 
-        imag.alt = imag.alt || imag.nume; 
+        imag.alt = imag.alt || imag.nume;
         // we can not be sure that the alt propert will be in the json file
     }
 }
 initImagini();
+
+function initGalerieAnimata() {
+    const caleJson = path.join(__dirname, "resurse/json/galerie_animata.json");
+
+    if (!fs.existsSync(caleJson)) {
+        console.error("[EROARE CRITICA] Fisierul 'resurse/json/galerie_animata.json' nu exista.");
+        process.exit(1);
+    }
+
+    const continut = fs.readFileSync(caleJson).toString("utf-8");
+    obGlobal.obGalerieAnimata = JSON.parse(continut);
+
+    const caleGalerie = obGlobal.obGalerieAnimata.cale_galerie;
+
+    obGlobal.obGalerieAnimata.imagini.forEach((imag, i) => {
+        const caleFisAbs = path.join(__dirname, caleGalerie, imag.cale_relativa);
+
+        if (!fs.existsSync(caleFisAbs)) {
+            console.error("[EROARE] Imaginea '" + imag.cale_relativa + "' nu exista in galerie_animata.");
+            process.exit(1);
+        }
+
+        imag.fisier = path.join("/", caleGalerie, imag.cale_relativa);
+        imag.alt = imag.alt || imag.nume;
+        imag.delay = i * 5;
+    });
+}
+initGalerieAnimata();
 
 function compileazaScss(caleScss, caleCss) {
     // caleScss => entry point 
