@@ -75,6 +75,7 @@ nav.meniu-mobil {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  line-height: normal;
 }
 
 @keyframes ramaneDeschis {
@@ -90,6 +91,10 @@ nav.meniu-mobil {
 
 .meniu {
   display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  align-items: center;
 
   > li {
     position: relative;
@@ -121,6 +126,7 @@ nav.meniu-mobil {
       z-index: 1;
       background: var(--primary);
       visibility: hidden;
+      padding: 0;
 
       li {
         padding: $meniu-sub-padding-v $meniu-sub-padding-h;
@@ -169,13 +175,40 @@ nav.meniu-mobil {
   }
 }
 
+.butoane-auth {
+  display: flex;
+  align-items: center; // Aliniază butoanele între ele pe verticală
+  gap: 0.5rem;
+  height: 100%;       // Se asigură că grupul ocupă toată înălțimea disponibilă
+}
+
 .btn-login {
+  display: inline-flex; // Corectat din "di"
+  align-items: center;  // Centrează textul în interiorul butonului
+  justify-content: center;
+  
   @extend %btn-base;
   background-color: var(--color-table1);
+  border: 2px solid transparent; // Adăugat pentru a preveni "săritura" la hover
 
   &:hover {
     @extend %btn-hover-base;
     border: 2px solid var(--color-table1);
+  }
+}
+
+.btn-register {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  @extend %btn-base;
+  background-color: var(--formula2);
+  border: 2px solid transparent;
+
+  &:hover {
+    @extend %btn-hover-base;
+    border: 2px solid var(--formula2);
   }
 }
 

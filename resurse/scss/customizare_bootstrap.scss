@@ -1,9 +1,9 @@
 /* Customizare Bootstrap - minim de schimbări, culorile proiectului */
 
-@use "../../node_modules/bootstrap/scss/bootstrap" with ($primary: #55294cd9, // --primary
+@use "../../node_modules/bootstrap/scss/bootstrap" with (
+  $primary: #55294cd9, // --primary
   $secondary:  #78a4b9, 
   $info: #613e0ec2, 
-
 
   $grid-breakpoints: (md: 700px, lg: 1000px),
 

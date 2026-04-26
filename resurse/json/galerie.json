@@ -2,55 +2,143 @@
 	"cale_galerie": "resurse/imagini/galerie",
 	"imagini": [
 		{
-			"cale_relativa": "briose-frisca.png",
-			"nume": "Brioșe",
-			"descriere": "Brioșe delicioase",
-			"timp": "zi",
-			"licenta": " ",
-			"autor": " ",
-			"alt": "Brioșe cu frișcă"
+			"cale_relativa": "heart_fire.png",
+			"nume": "Heart_on_fire",
+			"descriere": "Heart on fire",
+			"timp": "dimineata",
+			"licenta": "CC BY-SA 4.0",
+			"autor": "Jakub Hałun",
+			"sursa": "https://commons.wikimedia.org/wiki/File:34._Ulica_-_Teatr_Akt_-_Ja_gore_-_20210709_2155_8509.jpg",
+			"alt": "Heart on fire"
 		},
 		{
-			"cale_relativa": "clatite.png",
-			"nume": "Clătite",
-			"descriere": "Clătite cu dulceață",
-			"timp": "zi",
-			"alt": "Clătite cu dulceață"
+			"cale_relativa": "It_Ends_with_Us.png",
+			"nume": "It Ends with Us",
+			"descriere": "It Ends with Us - Colleen Hoover",
+			"timp": "dimineata",
+			"licenta": "Canva Content License (Education)",
+			"autor": "Canva",
+			"sursa": "https://www.canva.com",
+			"alt": "It Ends with Us - Colleen Hoover"
 		},
 		{
-			"cale_relativa": "gogosi.png",
-			"nume": "Gogoși",
-			"descriere": "Gogoși glazurate",
-			"timp": "zi",
-			"alt": "Gogoși glazurate"
+			"cale_relativa": "love_letters.png",
+			"nume": "Love letters",
+			"descriere": "Love letters",
+			"timp": "dimineata", 
+			"licenta": "Canva Content License (Education)",
+			"autor": "Canva",
+			"sursa": "https://www.canva.com",
+			"alt": "Love letters"
 		},
 		{
-			"cale_relativa": "prajitura-ciocolata.png",
-			"nume": "Prajitură cu ciocolată",
-			"descriere": "Prajitură cu ciocolată și cremă",
-			"timp": "zi", 
-			"alt": "Prajitură cu ciocolată și cremă"
+			"cale_relativa": "flowers.png",
+			"nume": "Flowers",
+			"descriere": "Flowers",
+			"timp": "dimineata",
+			"licenta": "Canva Content License (Education)",
+			"autor": "Canva",
+			"sursa": "https://www.canva.com",
+			"alt": "Flowers"
 		},
 		{
-			"cale_relativa": "rsz_tort1.jpg",
-			"nume": "Tort",
-			"descriere": "Tort cu fructe de padure",
-			"timp": "zi",
-			"alt": "Tort cu fructe de padure"
+			"cale_relativa": "Me_before_you.png",
+			"nume": "Me before you",
+			"descriere": "Me before you - Jojo Moyes",
+			"timp": "dimineata",
+			"licenta": "Canva Content License (Education)",
+			"autor": "Canva",
+			"sursa": "https://www.canva.com",
+			"alt": "Me before you - Jojo Moyes"
 		},
 		{
-			"cale_relativa": "tarta-afine.png",
-			"nume": "Tarta cu afine",
-			"descriere": "Tarta cu afine și cremă de vanilie",
-			"timp": "zi",
-			"alt": "Tarta cu afine și cremă de vanilie"
+			"cale_relativa": "roses.png",
+			"nume": "Roses",
+			"descriere": "Roses",
+			"timp": "dimineata",
+			"licenta": "Canva Content License (Education)",
+			"autor": "Canva",
+			"sursa": "https://www.canva.com",
+			"alt": "Roses"
 		},
 		{
-			"cale_relativa": "tort-scortisoara.png",
-			"nume": "Tort scortisoara",
-			"descriere": "Tort cu scortisoara",
+			"cale_relativa": "Ugly_Love.png",
+			"nume": "Ugly Love",
+			"descriere": "Ugly Love - Colleen Hoover",
+			"timp": "dimineata",
+			"licenta": "Canva Content License (Education)",
+			"autor": "Canva",
+			"sursa": "https://www.canva.com",
+			"alt": "Ugly Love - Colleen Hoover"
+		},
+		{
+			"cale_relativa": "heart.png",
+			"nume": "Heart",
+			"descriere": "Heart",
+			"timp": "dimineata",
+			"licenta": "Canva Content License (Education)",
+			"autor": "Canva",
+			"sursa": "https://www.canva.com",
+			"alt": "Heart"
+		}, 
+		{
+			"cale_relativa": "fantasy.png",
+			"nume": "Fantasy Landscape",
+			"descriere": "Fantasy Landscape",
 			"timp": "zi",
-			"alt": "Tort cu scortisoara"
+			"licenta": "Canva Content License (Education)",
+			"autor": "Canva",
+			"sursa": "https://www.canva.com",
+			"alt": "Fantasy Landscape"
+		}, {
+			"cale_relativa": "A_Court_of_Thorns_and_Roses.png",
+			"nume": "A Court of Thorns and Roses",
+			"descriere": "A Court of Thorns and Roses - Sarah J. Maas",
+			"timp": "zi",
+			"licenta": "Canva Content License (Education)",
+			"autor": "Canva",
+			"sursa": "https://www.canva.com",
+			"alt": "A Court of Thorns and Roses - Sarah J. Maas"
+		}, 
+		{
+			"cale_relativa": "mystical_landscape.png",
+			"nume": "Mystical Landscape",
+			"descriere": "Mystical Landscape",
+			"timp": "zi",
+			"licenta": "Canva Content License (Education)",
+			"autor": "Canva",
+			"sursa": "https://www.canva.com",
+			"alt": "Mystical Landscape"
+		}, 
+		{
+			"cale_relativa": "corridor_hospital.png",
+			"nume": "Corridor hospital",
+			"descriere": "Corridor hospital",
+			"timp": "noapte",
+			"licenta": "Canva Content License (Education)",
+			"autor": "Canva",
+			"sursa": "https://www.canva.com",
+			"alt": "Corridor hospital"
+		}, 
+		{
+			"cale_relativa": "The_Silent_Patient.png",
+			"nume": "The Silent Patient",
+			"descriere": "The Silent Patient - Alex Michaelides",
+			"timp": "noapte",
+			"licenta": "Canva Content License (Education)",
+			"autor": "Canva",
+			"sursa": "https://www.canva.com",
+			"alt": "The Silent Patient - Alex Michaelides"
+		}, 
+		{
+			"cale_relativa": "hospital.png",
+			"nume": "Dark hospital",
+			"descriere": "Dark hospital",
+			"timp": "noapte",
+			"licenta": "Canva Content License (Education)",
+			"autor": "Canva",
+			"sursa": "https://www.canva.com",
+			"alt": "Dark hospital"
 		}
 	]
 }

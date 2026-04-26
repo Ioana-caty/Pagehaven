@@ -53,6 +53,7 @@ nav.meniu-mobil {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  line-height: normal;
 }
 
 @keyframes ramaneDeschis {
@@ -67,6 +68,10 @@ nav.meniu-mobil {
 }
 .meniu {
   display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  align-items: center;
 }
 .meniu > li {
   position: relative;
@@ -94,6 +99,7 @@ nav.meniu-mobil {
   z-index: 1;
   background: var(--primary);
   visibility: hidden;
+  padding: 0;
 }
 .meniu > li > ul li {
   padding: 0.5rem 1rem;
@@ -126,11 +132,33 @@ nav.meniu-mobil {
   width: 100%;
 }
 
+.butoane-auth {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 100%;
+}
+
 .btn-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--color-table1);
+  border: 2px solid transparent;
 }
 .btn-login:hover {
   border: 2px solid var(--color-table1);
+}
+
+.btn-register {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--formula2);
+  border: 2px solid transparent;
+}
+.btn-register:hover {
+  border: 2px solid var(--formula2);
 }
 
 .btn-register {

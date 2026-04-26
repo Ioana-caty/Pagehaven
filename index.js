@@ -4,13 +4,16 @@ const fs = require("fs"); // file system
 const sass = require("sass");
 const sharp = require("sharp");
 
+// const ejs=require('ejs');
+const pg = require("pg");
+
 const app = express();
 app.set("view engine", "ejs")
 
 console.log("Folder index.js", __dirname);
 console.log("Folder curent (de lucru)", process.cwd());
 console.log("Cale fisier", __filename);
-
+    
 app.use("/resurse", express.static(path.join(__dirname, "resurse")));
 app.use("/dist", express.static(path.join(__dirname, "node_modules/bootstrap/dist")));
 
@@ -21,6 +24,16 @@ obGlobal = {
     folderCss: path.join(__dirname, "resurse/css"),
     folderBackup: path.join(__dirname, "backup"),
 }
+
+const client = new pg.Client({
+    database:"Pagehaven",
+    user:"ioana",
+    password:"104n4!_Sc_2026",
+    host:"localhost",
+    port:5432
+})
+
+client.connect()
 
 let vect_foldere = ["temp", "logs", "backup", "fisiere_uploadate"]
 for (let folder of vect_foldere) {
@@ -63,16 +76,54 @@ app.get("/carti", function (req, res) {
   res.render("pagini/carti", { imagini });
 });
 
-app.get("/carti/:gen", function (req, res) {
-    const gen = req.params.gen.toLowerCase(); 
-    const caleFisierEjs = path.join(__dirname, "views", "pagini", gen + ".ejs");
+// app.get("/carti/:gen", function (req, res) {
+//     const gen = req.params.gen.toLowerCase(); 
+//     const caleFisierEjs = path.join(__dirname, "views", "pagini", gen + ".ejs");
 
-    if (fs.existsSync(caleFisierEjs)) {
-        res.render("pagini/" + gen);
-    } else {
-         afisareEroare(res, 404);
+//     if (fs.existsSync(caleFisierEjs)) {
+//         res.render("pagini/" + gen);
+//     } else {
+//          afisareEroare(res, 404);
+//     }
+// });
+
+app.get("/produse", function(req, res) {
+    clauzaWhere = "";
+    if (req.query.tip) {
+        clauzaWhere = `where tip_produs='${req.query.tip}'`;
     }
-});
+    client.query(`select * from prajituri ${clauzaWhere}`, function(err, rez) {
+        if(err) {
+            console.log("Eroare query", err);
+            afisareEroare(res, 2);
+        } else {
+            console.log(rez);
+            res.render("pagini/produse", { 
+                produse: rez.rows,
+                optiuni:[]
+            });
+        }
+    });
+})
+
+app.get("/produs/:id", function(req, res) {
+    const id = req.params.id;
+    client.query(`select * from prajituri where id=${req.params.id}`, function(err, rez) {
+        if(err) {
+            console.log("Eroare query", err);
+            afisareEroare(res, 2);
+        } else {
+            console.log(rez);
+            if(rez.rowCount == 0) {
+                afisareEroare(res, 404, "Produs inexistent");
+            } else {
+                res.render("pagini/produs", { 
+                    prod: rez.rows[0] 
+                });
+            }
+        }
+    });
+})
 
 function verificaErori() {
 
@@ -220,13 +271,19 @@ verifyImages();
 
 function initImagini() {
     var continut = fs.readFileSync(path.join(__dirname, "resurse/json/galerie.json")).toString("utf-8");
+    // __dirname => calea absoluta la unde se afla index.js 
+    // SYNC => serverul asteapta pana cand fisierul este citit complet
+    // coninut => string cu tot ce este in fisierul galerie.json
 
     obGlobal.obImagini = JSON.parse(continut);
     let vImagini = obGlobal.obImagini.imagini;
     let caleGalerie = obGlobal.obImagini.cale_galerie
 
     let caleAbs = path.join(__dirname, caleGalerie);
+    //  c.a. pentru folderul galerie 
     let caleAbsMediu = path.join(caleAbs, "mediu");
+    // c.a pentru folderul mediu din galerie
+
     if (!fs.existsSync(caleAbsMediu))
         fs.mkdirSync(caleAbsMediu);
     let caleAbsMic = path.join(caleAbs, "mic");
@@ -236,6 +293,7 @@ function initImagini() {
     for (let imag of vImagini) {
         [numeFis, ext] = imag.cale_relativa.split(".");
         let caleFisAbs = path.join(caleAbs, imag.cale_relativa);
+        // c.a pentru fisierul pe care vrem sa il procesam
     
         let caleFisMediuAbs = path.join(caleAbsMediu, numeFis + ".webp");
         sharp(caleFisAbs).resize(800).toFile(caleFisMediuAbs);
@@ -244,6 +302,7 @@ function initImagini() {
         sharp(caleFisAbs).resize(400).toFile(caleFisMicAbs);
 
         imag.fisier = path.join("/", caleGalerie, imag.cale_relativa);
+    // se creeaza cererea http pentru imaginea originala (ex: /resurse/imagini/galerie/ceva.png) care va fi folosita in cazul in care browserul nu suporta formatul webp
         imag.fisier_mediu = path.join("/", caleGalerie, "mediu", numeFis + ".webp");
         imag.fisier_mic = path.join("/", caleGalerie, "mic", numeFis + ".webp");
 

@@ -11,7 +11,7 @@
             "status":true,
             "titlu":"404 - Pagina nu a fost găsită",
             "text": "Ne pare rău, dar resursa pe care o căutați nu există pe serverul nostru. Vă rugăm să verificați corectitudinea adresei URL sau să reveniți la pagina principală.",
-            "imagine":"lupa.png"
+            "imagine":"stop.png"
         },
         {
             "identificator":403,
