@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <meta name="description" content="Pagehaven - detalii carte">
+        <meta name="keywords" content="carte, pagehaven, detalii">
+        <title>Pagehaven - <%- locals.carte.titlu %></title>
+        <%- include("../fragmente/head") %>
+        <link href="/resurse/css/carti/produs_carte.css" type="text/css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <%- include("../fragmente/header") %>
+        <main>
+            <section>
+                <h2>Pagină carte</h2>
+                <article id="art-produs">
+                    <h3><span class="nume"><%= locals.carte.titlu %></span></h3>
+                    <p>Descriere: <span class="descriere"><%- locals.carte.descriere %></span></p>
+                    <p>Gen: <span class="categorie"><%- locals.carte.gen %></span></p>
+                    <p>Public țintă: <span class="categorie"><%- locals.carte.public_tinta %></span></p>
+                    <p>Dimensiune MB: <span class="gramaj"><%- locals.carte.dimensiune_mb %></span></p>
+                    <p>Număr pagini: <span class="gramaj"><%- locals.carte.numar_pagini %></span></p>
+                    <p>Data adăugării: <span class="categorie"><%- locals.carte.data_adaugarii %></span></p>
+                    <p>Format: <span class="categorie"><%- locals.carte.format %></span></p>
+                    <p>Limbi: <span class="ingrediente"><%- locals.carte.limba %></span></p>
+                    <p>Serie: <span class="pt_diabetici"><%- locals.carte.serie %></span></p>
+                    <figure class="imag-produs">
+                        <img src="/resurse/imagini/carti/<%- locals.carte.imagine %>" alt="[imagine <%- locals.carte.titlu %>]" />
+                    </figure>
+                </article>
+            </section>
+        </main>
+
+        <%- include("../fragmente/footer") %>
+    </body>
+</html>

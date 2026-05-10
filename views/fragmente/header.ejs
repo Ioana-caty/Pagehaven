@@ -19,8 +19,8 @@
   <nav aria-label="Meniu principal" class="meniu-mobil">
     <ul class="meniu">
 
-      <li>
-        <a href="/" class="activ">
+      <li class="<%= (locals.pagina_curenta == 'index') ? 'activ-li' : '' %>">
+        <a href="/" class="<%= (locals.pagina_curenta == 'index') ? 'activ' : '' %>">
           <i class="fa-solid fa-house icon-acasa"></i>
           <span class="text-acasa">Acasă</span>
         </a>
@@ -31,20 +31,29 @@
         </ul>
       </li>
 
-      <li>
-        <a href="/carti">
-          <i class="fa-solid fa-book-open"></i> Cărți</a>
+      <!-- <li><a href="/carti/lista">Produse</a></li>
+      <li><a href="/carti/lista?gen=romance">Romance</a></li>
+      <li><a href="/carti/lista?gen=fantasy">Fantasy</a></li>
+      <li><a href="/carti/lista?gen=thriller">Thriller</a></li> -->
+
+      <li class="<%= (locals.pagina_curenta == 'carti') ? 'activ-li' : '' %>">
+        <a href="/carti" class="<%= (locals.pagina_curenta == 'carti') ? 'activ' : '' %>">
+          <i class="fa-solid fa-book-open"></i> <span class="text-meniu">Cărți</span></a>
         <ul>
-          <li><a href="/carti?tip=romance">Romance</a></li>
-          <li><a href="/carti?tip=fantasy">Fantasy</a></li>
-          <li><a href="/carti?tip=thriller">Thriller</a></li>
-          <li><a href="/#zona-pdf">Zona PDF</a></li>
+          <li><a href="/carti/lista">Toate</a></li>
+          <% if (locals.optiuni && locals.optiuni.length> 0) { %>
+            <% for (let opt of locals.optiuni) { %>
+              <li><a href="/carti/lista?gen=<%= opt.unnest %>">
+                  <%= opt.unnest %>
+                </a></li>
+              <% } %>
+                <% } %>
         </ul>
       </li>
 
-      <li>
-        <a href="/echipa">
-          <i class="fa-solid fa-user-group"></i> Despre noi</a>
+      <li class="<%= (locals.pagina_curenta == 'echipa') ? 'activ-li' : '' %>">
+        <a href="/echipa" class="<%= (locals.pagina_curenta == 'echipa') ? 'activ' : '' %>">
+          <i class="fa-solid fa-user-group"></i> <span class="text-meniu">Despre noi</span></a>
         <ul>
           <li><a href="/echipa">Echipa</a></li>
           <li><a href="/#faq">Întrebări frecvente</a></li>
@@ -52,11 +61,11 @@
         </ul>
       </li>
 
-      <li> 
-        <a href="/produse">
-          <i class ="fa-solid fa-cake-candles"></i> Produse
+      <li class="<%= (locals.pagina_curenta == 'produse') ? 'activ-li' : '' %>">
+        <a href="/produse" class="<%= (locals.pagina_curenta == 'produse') ? 'activ' : '' %>">
+          <i class="fa-solid fa-cake-candles"></i> <span class="text-meniu">Produse</span>
         </a>
-        <ul> 
+        <ul>
           <li><a href="/produse">Toate</a></li>
           <li><a href="/produse?tip=cofetarie">Prajituri</a></li>
           <li><a href="/produse?tip=gelaterie">Torturi</a></li>
@@ -65,7 +74,7 @@
       </li>
 
       <li><a href="/#contact">
-          <i class="fa-solid fa-phone"></i> Contact</a>
+          <i class="fa-solid fa-phone"></i> <span class="text-meniu">Contact</span></a>
       </li>
     </ul>
 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <meta name="description" content="Pagehaven - biblioteca virtuala gratuita cu carti de thriller, romance si fantasy.">
+        <meta name="keywords" content="carti, biblioteca, gratuita, romance, fantasy, thriller, download">
+        <link rel="stylesheet" href="/resurse/css/carti/produse_carti.css" type="text/css" />
+        <title>Pagehaven - Cărți</title>
+        <%- include("../fragmente/head") %>
+    </head>
+    <body>
+    <%- include("../fragmente/header") %>
+
+    <main>
+        
+        <section id="produse">
+            <h2>Cărți</h2>
+            <div class="grid-produse">
+                <% for (let carte of locals.carti) { %>
+                    <article class="produs">
+                        <h3 class="nume">Titlu: <a href="/carte/<%- carte.id %>"><span class="val-nume"><%- carte.titlu %></span></a></h3>
+                        <div class="info-prod">
+                            <p>Gen: <span><%- carte.gen %></span></p>
+                            <p>Pagini: <span><%- carte.numar_pagini %></span></p>
+                            <p>Format: <span><%- carte.format %></span></p>
+                        </div>
+                        <p class="categorie">Public țintă: <span class="val-categorie"><%- carte.public_tinta %></span></p>
+                        <figure>
+                            <a href="/carte/<%- carte.id %>"><img src="/resurse/imagini/carti/<%- carte.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- carte.titlu %>]" /></a>
+                        </figure>
+                    </article>
+                <% } %>
+            </div>
+        </section>
+    </main>
+
+    <%- include("../fragmente/footer") %>
+    </body>
+</html>

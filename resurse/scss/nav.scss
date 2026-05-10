@@ -106,13 +106,15 @@ nav.meniu-mobil {
     color: var(--text-link);
     font-weight: bold;
 
-    &:hover {
+    &:hover, &.activ-li {
       background-color: var(--opacity-background);
 
       > a {
         color: var(--border);
       }
+    }
 
+    &:hover {
       > ul {
         animation: ramaneDeschis $animation-duration $animation-ease forwards;
       }
@@ -142,36 +144,37 @@ nav.meniu-mobil {
       }
     }
 
-    // Indicator animat pentru item-uri fără submeniu
-    &:not(:has(ul)) {
-      &::after {
-        content: "";
-        position: absolute;
-        border-radius: var(--radius);
-        left: 0;
-        width: 100%;
-        height: $indicator-height;
-        background: linear-gradient(
-          to right,
-          var(--culoare-contur),
-          var(--border),
-          var(--culoare-contur)
-        );
-        top: 0;
-        opacity: 0;
-      }
+    // Indicator animat pentru toate item-urile
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: $indicator-height;
+      background: linear-gradient(
+        to right,
+        var(--culoare-contur),
+        var(--border),
+        var(--culoare-contur)
+      );
+      top: 0;
+      opacity: 0;
+    }
 
-      &:hover::after {
-        top: calc(100% - #{$indicator-height});
-        opacity: 1;
-        transition: top $indicator-top-transition;
-      }
+    &:hover::after, &.activ-li::after {
+      top: calc(100% - #{$indicator-height});
+      opacity: 1;
+      transition: top $indicator-top-transition;
     }
   }
 
   a {
     display: block;
     width: 100%;
+
+    &.activ {
+       color: var(--border) !important;
+    }
   }
 }
 

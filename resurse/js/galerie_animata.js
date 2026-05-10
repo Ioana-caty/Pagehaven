@@ -2,7 +2,7 @@
     const slider = document.querySelector('#animated_gallery .slider_container');
 
     if (!slider) {
-        console.warn('Galeria animată nu a fost găsită pe pagină.');
+        console.warn('Animated gallery was not found on the page. ');
         return;
     }
 
@@ -12,8 +12,6 @@
     let isPaused = false; 
 
     const slides = slider.querySelectorAll('.slide');
-
-    if (!slides.length) return;
 
     // if we have CSS animations defined, we want to disable them for JS control
     slides.forEach(s => s.style.animation = 'none');
@@ -42,8 +40,9 @@
 
         // Phase 1: current slide moves to the right and becomes semi-transparent
         sc.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
-        sc.style.transform = 'translateX(25%)';
         sc.style.opacity = '0.8';
+        sc.style.transform = 'translateX(25%)';
+        
 
         setTimeout( () => {
             // verify if we are paused before continuing to the next phase
@@ -68,7 +67,6 @@
                 sc.style.opacity = '0';
 
                 // next slide becomes fully visible
-                sn.style.transition = 'opacity 0.5s ease';
                 sn.style.opacity = '1';
 
                 setTimeout(() => {
@@ -103,10 +101,10 @@
         }
         // restart the interval if it's not already running
         if (!intervalId) {
-            intervalId = setInterval(animated, 1000);
+            intervalId = setInterval(animated, 500);
         }
     })
 
-    intervalId = setInterval(animated, 1000);
+    intervalId = setInterval(animated, 500);
 
 })();

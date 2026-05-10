@@ -4,7 +4,7 @@ const fs = require("fs"); // file system
 const sass = require("sass");
 const sharp = require("sharp");
 
-// const ejs=require('ejs');
+//const ejs=require('ejs');
 const pg = require("pg");
 
 const app = express();
@@ -51,7 +51,8 @@ app.get("/favicon.ico", function (req, res) {
 app.get(["/", "/index", "/home"], function (req, res) {
     res.render("pagini/index", {
         ip: req.ip,
-        imagini: obGlobal.obImagini.imagini
+        imagini: obGlobal.obImagini.imagini,
+        pagina_curenta: "index"
     });
 });
 
@@ -76,20 +77,59 @@ app.get("/carti", function (req, res) {
 
     res.render("pagini/carti", {
         imagini,
-        imaginiAnimate: obGlobal.obGalerieAnimata.imagini  
+        imaginiAnimate: obGlobal.obGalerieAnimata.imagini,
+        pagina_curenta: "carti"
     });
 });
 
-// app.get("/carti/:gen", function (req, res) {
-//     const gen = req.params.gen.toLowerCase(); 
-//     const caleFisierEjs = path.join(__dirname, "views", "pagini", gen + ".ejs");
+app.get("/carti/lista", function (req, res) {
+    clauzaWhere = "";
+    if (req.query.gen) {
+        clauzaWhere = `where gen='${req.query.gen}'::gen_carte`;
+        // 'romance' => string
+        // 'romance'::gen_carte => gen_carte enum,
+        // :: casting(conversie)
+    }
+    client.query(`select * from carti ${clauzaWhere}`, function (err, rez) {
+        if (err) {
+            console.log("Eroare query", err);
+            afisareEroare(res, 2);
+        } else {
+            client.query("select * from unnest(enum_range(null::gen_carte))", function (err, rezOptiuni) {
+                if (err) {
+                    afisareEroare(res, 2);
+                } else {
+                    res.render("pagini/produse_carti", {
+                        carti: rez.rows,
+                        optiuni: rezOptiuni.rows,
+                        pagina_curenta: "carti"
+                    });
+                }
+            });
+        }
+    });
+})
 
-//     if (fs.existsSync(caleFisierEjs)) {
-//         res.render("pagini/" + gen);
-//     } else {
-//          afisareEroare(res, 404);
-//     }
-// });
+app.get("/carte/:id", function (req, res) {
+    const id = req.params.id;
+    // 
+    client.query(`select * from carti where id=${req.params.id}`, function (err, rez) {
+        if (err) {
+            console.log("Eroare query", err);
+            afisareEroare(res, 2);
+        } else {
+            console.log(rez);
+            if (rez.rowCount == 0) {
+                afisareEroare(res, 404, "Carte inexistenta");
+            } else {
+                res.render("pagini/produs_carte", {
+                    carte: rez.rows[0],
+                    pagina_curenta: "carti"
+                });
+            }
+        }
+    });
+})
 
 app.get("/produse", function (req, res) {
     clauzaWhere = "";
@@ -104,7 +144,8 @@ app.get("/produse", function (req, res) {
             console.log(rez);
             res.render("pagini/produse", {
                 produse: rez.rows,
-                optiuni: []
+                optiuni: [],
+                pagina_curenta: "produse"
             });
         }
     });
@@ -122,7 +163,8 @@ app.get("/produs/:id", function (req, res) {
                 afisareEroare(res, 404, "Produs inexistent");
             } else {
                 res.render("pagini/produs", {
-                    prod: rez.rows[0]
+                    prod: rez.rows[0],
+                    pagina_curenta: "produse"
                 });
             }
         }
@@ -244,10 +286,10 @@ app.get("/eroare", function (req, res) {
     afisareEroare(res, 404, "Titlu personalizat")
 });
 
-function verifyImages() {
-    const pathJsonGallery = path.join(__dirname, "resurse/json/galerie.json");
+function verifyImages(jsonFileName) {
+    const pathJsonGallery = path.join(__dirname, "resurse/json/" + jsonFileName);
     if (!fs.existsSync(pathJsonGallery)) {
-        console.error("[CRITICAL ERROR] The file 'resurse/json/galerie.json' is missing. The application cannot start without it.");
+        console.error("[CRITICAL ERROR] The file 'resurse/json/" + jsonFileName + "' is missing. The application cannot start without it.");
         process.exit(1);
     }
 
@@ -266,12 +308,13 @@ function verifyImages() {
     for (let img of images) {
         let pathImg = path.join(pathAbsGallery, img.cale_relativa);
         if (!fs.existsSync(pathImg)) {
-            console.error("[ERROR] The image '" + img.cale_relativa + "' does not exist in the gallery.");
+            console.error("[CRITICALERROR] The image '" + img.cale_relativa + "' does not exist in the gallery.");
             process.exit(1);
         }
     }
 }
-verifyImages();
+verifyImages("galerie.json");
+verifyImages("galerie_animata.json");
 
 function initImagini() {
     var continut = fs.readFileSync(path.join(__dirname, "resurse/json/galerie.json")).toString("utf-8");
@@ -320,7 +363,7 @@ function initGalerieAnimata() {
     const caleJson = path.join(__dirname, "resurse/json/galerie_animata.json");
 
     if (!fs.existsSync(caleJson)) {
-        console.error("[EROARE CRITICA] Fisierul 'resurse/json/galerie_animata.json' nu exista.");
+        console.error("[CRITICAL ERROR] The file 'resurse/json/galerie_animata.json' does not exist.");
         process.exit(1);
     }
 
@@ -329,18 +372,17 @@ function initGalerieAnimata() {
 
     const caleGalerie = obGlobal.obGalerieAnimata.cale_galerie;
 
-    obGlobal.obGalerieAnimata.imagini.forEach((imag, i) => {
+    for (let imag of obGlobal.obGalerieAnimata.imagini) {
         const caleFisAbs = path.join(__dirname, caleGalerie, imag.cale_relativa);
 
         if (!fs.existsSync(caleFisAbs)) {
-            console.error("[EROARE] Imaginea '" + imag.cale_relativa + "' nu exista in galerie_animata.");
+            console.error("[CRITICAL ERROR] The image '" + imag.cale_relativa + "' does not exist in galerie_animata.");
             process.exit(1);
         }
 
         imag.fisier = path.join("/", caleGalerie, imag.cale_relativa);
         imag.alt = imag.alt || imag.nume;
-        imag.delay = i * 5;
-    });
+    }
 }
 initGalerieAnimata();
 

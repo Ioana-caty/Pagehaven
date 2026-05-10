@@ -72,9 +72,13 @@
             <% for (let imag of locals.imaginiAnimate) { %>
               <div class="slide">
                 <img src="<%- imag.fisier %>" alt="<%- imag.alt %>">
+
                 <% if (imag.descriere) { %>
                   <div class="caption"><%- imag.descriere %></div>
-                  <% } %>
+                  <% } else { %>
+                    <div class="caption">No description available</div>
+                    <% } %>
+
               </div>
               <% } %>
           </div>
