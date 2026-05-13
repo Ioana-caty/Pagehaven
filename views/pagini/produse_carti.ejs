@@ -13,20 +13,67 @@
     <main>
         
         <section id="produse">
-            <h2>Cărți</h2>
+            <h2>Explorează colecția noastră de cărți</h2>
             <div class="grid-produse">
+                <% 
+                    const zile_saptamana = ['Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri', 'Sambata', 'Duminica'];
+                    const luni = ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'];
+                    
+                    function formatareData(dataStr) {
+                        const data = new Date(dataStr);
+                        const zi = data.getDate();
+
+                        let indexZi = data.getDay();
+                        let index = (indexZi === 0) ? 6 : indexZi - 1;
+
+                        const zi_saptamana = zile_saptamana[index];
+                        const luna = luni[data.getMonth()];
+                        const an = data.getFullYear();
+    
+                        return `${zi}(${zi_saptamana})/${luna}/${an}`;
+                        
+                    }
+                %>
                 <% for (let carte of locals.carti) { %>
-                    <article class="produs">
-                        <h3 class="nume">Titlu: <a href="/carte/<%- carte.id %>"><span class="val-nume"><%- carte.titlu %></span></a></h3>
-                        <div class="info-prod">
-                            <p>Gen: <span><%- carte.gen %></span></p>
-                            <p>Pagini: <span><%- carte.numar_pagini %></span></p>
-                            <p>Format: <span><%- carte.format %></span></p>
+                    <article class="<%- carte.gen %>" id="ent<%- carte.id %>" data-titlu="<%- carte.titlu %>" data-gen="<%- carte.gen %>" data-public="<%- carte.public_tinta %>">
+                        <h3 class="produs-titlu">
+                            <a href="/carte/<%- carte.id %>"><%- carte.titlu %></a>
+                        </h3>
+                        
+                        <div class="produs-wrapper">
+                            <div class="produs-tabel-container">
+                                <table class="produs-tabel">
+                                    <thead>
+                                        <tr>
+                                            <th>Pagini</th>
+                                            <th>Sursa</th>
+                                            <th>Limbi</th>
+                                            <th>Data Adăugării</th>
+                                            <th>Serie</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><span class="val-pagini"><%- carte.numar_pagini %></span></td>
+                                            <td><span class="val-sursa"><%- carte.sursa %></span></td>
+                                            <td><span class="val-limbi"><%- carte.limba %></span></td>
+                                            <td><time class="val-data"><%- formatareData(carte.data_adaugarii) %></time></td>
+                                            <td><span class="val-serie"><%- carte.serie ? 'Da' : 'Nu' %></span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <figure class="produs-imagine">
+                                <a href="/carte/<%- carte.id %>"><img src="/resurse/imagini/carti/<%- carte.imagine %>" alt="[imagine <%- carte.titlu %>]" /></a>
+                            </figure>
                         </div>
-                        <p class="categorie">Public țintă: <span class="val-categorie"><%- carte.public_tinta %></span></p>
-                        <figure>
-                            <a href="/carte/<%- carte.id %>"><img src="/resurse/imagini/carti/<%- carte.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- carte.titlu %>]" /></a>
-                        </figure>
+
+                        <p class="produs-descriere"><%- carte.descriere %></p>
+
+                        <div class="produs-meta">
+                            <p class="produs-gen">Gen: <span class="val-gen"><%- carte.gen %></span></p>
+                        </div>
                     </article>
                 <% } %>
             </div>

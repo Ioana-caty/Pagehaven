@@ -10,21 +10,19 @@ const pg = require("pg");
 const app = express();
 app.set("view engine", "ejs")
 
-console.log("Folder index.js", __dirname);
-console.log("Folder curent (de lucru)", process.cwd());
-console.log("Cale fisier", __filename);
-
-app.use("/resurse", express.static(path.join(__dirname, "resurse")));
-app.use("/dist", express.static(path.join(__dirname, "node_modules/bootstrap/dist")));
-
 obGlobal = {
     obErori: null,
     obImagini: null,
     obGalerieAnimata: null,
+    optiuniMeniu: [],
     folderScss: path.join(__dirname, "resurse/scss"),
     folderCss: path.join(__dirname, "resurse/css"),
     folderBackup: path.join(__dirname, "backup"),
 }
+
+console.log("Folder index.js", __dirname);
+console.log("Folder curent (de lucru)", process.cwd());
+console.log("Cale fisier", __filename);
 
 const client = new pg.Client({
     database: "Pagehaven",
@@ -34,7 +32,7 @@ const client = new pg.Client({
     port: 5432
 })
 
-client.connect()
+client.connect();
 
 let vect_foldere = ["temp", "logs", "backup", "fisiere_uploadate"]
 for (let folder of vect_foldere) {
@@ -44,9 +42,27 @@ for (let folder of vect_foldere) {
     }
 }
 
+app.use("/resurse", express.static(path.join(__dirname, "resurse")));
+app.use("/dist", express.static(path.join(__dirname, "node_modules/bootstrap/dist")));
+
 app.get("/favicon.ico", function (req, res) {
     res.sendFile(path.join(__dirname, "resurse/imagini/favicon/favicon.ico"))
 });
+
+client.query("select * from unnest(enum_range(null::gen_carte))", function (err, rez) {
+    if (err) {
+        console.log("Eroare pentru extragerea genurilor de carti", err)
+    }
+    else {
+        console.log(rez)
+        obGlobal.optiuniMeniu = rez.rows
+    }
+})
+
+app.use(function (req, res, next) {
+    res.locals.optiuni = obGlobal.optiuniMeniu
+    next();
+})
 
 app.get(["/", "/index", "/home"], function (req, res) {
     res.render("pagini/index", {
@@ -95,16 +111,9 @@ app.get("/carti/lista", function (req, res) {
             console.log("Eroare query", err);
             afisareEroare(res, 2);
         } else {
-            client.query("select * from unnest(enum_range(null::gen_carte))", function (err, rezOptiuni) {
-                if (err) {
-                    afisareEroare(res, 2);
-                } else {
-                    res.render("pagini/produse_carti", {
-                        carti: rez.rows,
-                        optiuni: rezOptiuni.rows,
-                        pagina_curenta: "carti"
-                    });
-                }
+            res.render("pagini/produse_carti", {
+                carti: rez.rows,
+                pagina_curenta: "carti"
             });
         }
     });
@@ -112,7 +121,6 @@ app.get("/carti/lista", function (req, res) {
 
 app.get("/carte/:id", function (req, res) {
     const id = req.params.id;
-    // 
     client.query(`select * from carti where id=${req.params.id}`, function (err, rez) {
         if (err) {
             console.log("Eroare query", err);

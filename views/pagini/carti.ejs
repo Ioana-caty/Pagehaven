@@ -31,13 +31,23 @@
             Lasă zgomotul lumii reale la ușă și pregătește-te să evadezi.
           </p>
           <p>
-            Am pregătit <strong>recomandări sincronizate</strong> cu ritmul zilei: dimineața te așteaptă povești
-            <a href="/carti/romance" class="btn btn-info btn-sm btn-custom">Romance</a>, în mijlocul zilei
-            explorăm lumi
-            <a href="/carti/fantasy" class="btn btn-info btn-sm btn-custom">Fantasy</a>, iar seara ne lăsăm
-            capturați de suspansul
-            <a href="/carti/thriller" class="btn btn-info btn-sm btn-custom">Thriller</a>. Desigur, rafturile
-            noastre dedicate fiecărui gen îți sunt
+            Am pregătit <strong>recomandări sincronizate</strong> cu ritmul zilei:
+            <% if (locals.optiuni && locals.optiuni.length > 0) { %>
+              <% for (let i = 0; i < locals.optiuni.length; i++) { 
+                 let opt = locals.optiuni[i];
+                 let label = opt.unnest.charAt(0).toUpperCase() + opt.unnest.slice(1);
+              %>
+                <% if (opt.unnest == 'romance') { %>
+                  dimineața te așteaptă povești
+                <% } else if (opt.unnest == 'fantasy') { %>
+                  în mijlocul zilei explorăm lumi
+                <% } else if (opt.unnest == 'thriller') { %>
+                  iar seara ne lăsăm capturați de suspansul
+                <% } %>
+                <a href="/carti/lista?gen=<%= opt.unnest %>" class="btn btn-info btn-sm btn-custom"><%= label %></a><%= (i < locals.optiuni.length - 1) ? ',' : '.' %>
+              <% } %>
+            <% } %>
+            Desigur, rafturile noastre dedicate fiecărui gen îți sunt
             <strong>deschise oricând</strong>, indiferent de oră.
           </p>
           <p>

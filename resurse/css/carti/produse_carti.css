@@ -1,0 +1,146 @@
+:root {
+    --BoxShadow: rgb(8, 31, 56);
+}
+
+#produse {
+    width: 100%;
+    padding: 3rem;
+}
+
+#produse h2 {
+    margin: 0 auto 2rem;
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.grid-produse {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr));
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+/* Product card */
+/* The first child (article) of 'grid-produse' */
+.grid-produse > article {
+    display: flex;
+    flex-direction: column;
+    border: 0.2rem solid transparent;
+    border-radius: 0.8rem;
+    background: linear-gradient(45deg, var(--bg-card)) padding-box, 
+                /* for the inner but not the outer border */
+                linear-gradient(135deg, var(--border), var(--primary), var(--color-table1)) border-box;
+                /* for the outer border */
+    padding: 1rem;
+    box-shadow: 0 0.4rem 1rem var(--BoxShadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    
+    /* Prevents the card from stretching infinitely on very wide 1-column screens */
+    max-width: 56rem; 
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* The first child (article) of 'grid-produse' with hover */
+.grid-produse > article:hover {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 0.4rem 1rem var(--BoxShadow);
+    background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+                linear-gradient(135deg, var(--primary), var(--color-table1), var(--border)) border-box;
+}
+
+.produs-titlu {
+    margin: 0 auto 1rem;
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.produs-titlu a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+.produs-titlu a:hover {
+    color: var(--shadow);
+    text-shadow: 1px 0px 2px var(--formula);
+}
+
+
+.produs-wrapper {
+    display: flex;
+    flex-flow: wrap; /* permission to go on the next line */
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.produs-tabel-container {
+    flex: 1 1 400px; 
+    min-width: 0;
+}
+
+.produs-tabel th {
+    white-space: nowrap;
+    padding: 0.7rem 0.5rem;
+    background-color: var(--primary);
+    color: var(--text-link);
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.produs-tabel td {
+    padding: 0.7rem 0.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.produs-imagine {
+    flex: 0 0 12rem; 
+    width: 12rem;
+    height: 18rem;
+    margin: 0;
+    border-radius: 0.5rem;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+.produs-imagine img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.25s ease;
+}
+
+.produs-imagine:hover img {
+    transform: scale(1.2);
+}
+
+.produs-descriere {
+    margin: 0.9rem 0;
+    font-size: 1rem;
+    color: var(--text);
+}
+
+.produs-gen {
+    display: inline-block;
+    margin: 0;
+    padding: 0.4rem 0.7rem;
+    border-radius: 10rem;
+    background-color: var(--color-table2);
+    border: 0.2rem solid var(--color-table1);
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.val-gen {
+    padding: 0.15rem 0.5rem;
+    border-radius: 10rem;
+    background-color: var(--primary);
+    color: var(--color-table2);
+    font-weight: 600;
+    text-transform: capitalize;
+}
