@@ -73,38 +73,36 @@ app.get(["/", "/index", "/home"], function (req, res) {
 });
 
 app.get("/carti", function (req, res) {
-    const ora = new Date().getHours();
-    let perioada;
-    if (ora >= 5 && ora < 12) {
-        perioada = "dimineata";
-    } else if (ora >= 12 && ora < 20) {
-        perioada = "zi";
-    } else {
-        perioada = "noapte";
-    }
-
-    let imagini = obGlobal.obImagini.imagini.filter(im => im.timp === perioada);
-    if (imagini.length > 6) {
-        const rest = imagini.length % 3;
-        if (rest !== 0) {
-            imagini = imagini.slice(0, imagini.length - rest);
+        const ora = new Date().getHours();
+        let perioada;
+        if (ora >= 5 && ora < 12) {
+            perioada = "dimineata";
+        } else if (ora >= 12 && ora < 20) {
+            perioada = "zi";
+        } else {
+            perioada = "noapte";
         }
-    }
 
-    res.render("pagini/carti", {
-        imagini,
-        imaginiAnimate: obGlobal.obGalerieAnimata.imagini,
-        pagina_curenta: "carti"
-    });
+        let imagini = obGlobal.obImagini.imagini.filter(im => im.timp === perioada);
+        if (imagini.length > 6) {
+            const rest = imagini.length % 3;
+            if (rest !== 0) {
+                imagini = imagini.slice(0, imagini.length - rest);
+            }
+        }
+
+        res.render("pagini/carti", {
+            imagini,
+            imaginiAnimate: obGlobal.obGalerieAnimata.imagini,
+            pagina_curenta: "carti"
+        });
 });
 
 app.get("/carti/lista", function (req, res) {
     clauzaWhere = "";
     if (req.query.gen) {
         clauzaWhere = `where gen='${req.query.gen}'::gen_carte`;
-        // 'romance' => string
-        // 'romance'::gen_carte => gen_carte enum,
-        // :: casting(conversie)
+        // makes castig from 'romance' (string)  to 'romance'::gen_carte (enum)
     }
     client.query(`select * from carti ${clauzaWhere}`, function (err, rez) {
         if (err) {
@@ -113,7 +111,8 @@ app.get("/carti/lista", function (req, res) {
         } else {
             res.render("pagini/produse_carti", {
                 carti: rez.rows,
-                pagina_curenta: "carti"
+                pagina_curenta: "carti",
+                query: req.query
             });
         }
     });

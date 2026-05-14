@@ -1,85 +1,209 @@
-<!DOCTYPE html>
-<html lang="ro">
+    <!DOCTYPE html>
+    <html lang="ro">
+
     <head>
-        <meta name="description" content="Pagehaven - biblioteca virtuala gratuita cu carti de thriller, romance si fantasy.">
+        <meta name="description"
+            content="Pagehaven - biblioteca virtuala gratuita cu carti de thriller, romance si fantasy.">
         <meta name="keywords" content="carti, biblioteca, gratuita, romance, fantasy, thriller, download">
         <link rel="stylesheet" href="/resurse/css/carti/produse_carti.css" type="text/css" />
+        <link rel="stylesheet" href="/resurse/css/carti/filtre.css" type="text/css" />
+        <script src="/resurse/js/produse_carti.js"></script>
         <title>Pagehaven - Cărți</title>
         <%- include("../fragmente/head") %>
     </head>
+
     <body>
-    <%- include("../fragmente/header") %>
+        <%- include("../fragmente/header") %>
 
-    <main>
-        
-        <section id="produse">
-            <h2>Explorează colecția noastră de cărți</h2>
-            <div class="grid-produse">
-                <% 
-                    const zile_saptamana = ['Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri', 'Sambata', 'Duminica'];
-                    const luni = ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'];
-                    
-                    function formatareData(dataStr) {
-                        const data = new Date(dataStr);
-                        const zi = data.getDate();
+            <main>
+                <section id="filtre">
+                    <h2>Filtrează cărțile</h2>
+                    <div class="container-filtre">
 
-                        let indexZi = data.getDay();
-                        let index = (indexZi === 0) ? 6 : indexZi - 1;
+                        <!-- TEXT: Title -->
+                        <div class="filtru-grup">
+                            <label for="inp-titlu">Titlu:</label>
+                            <input type="text" id="inp-titlu" placeholder="Căutare după titlu...">
+                        </div>
 
-                        const zi_saptamana = zile_saptamana[index];
-                        const luna = luni[data.getMonth()];
-                        const an = data.getFullYear();
-    
-                        return `${zi}(${zi_saptamana})/${luna}/${an}`;
-                        
-                    }
-                %>
-                <% for (let carte of locals.carti) { %>
-                    <article class="<%- carte.gen %>" id="ent<%- carte.id %>" data-titlu="<%- carte.titlu %>" data-gen="<%- carte.gen %>" data-public="<%- carte.public_tinta %>">
-                        <h3 class="produs-titlu">
-                            <a href="/carte/<%- carte.id %>"><%- carte.titlu %></a>
-                        </h3>
-                        
-                        <div class="produs-wrapper">
-                            <div class="produs-tabel-container">
-                                <table class="produs-tabel">
-                                    <thead>
-                                        <tr>
-                                            <th>Pagini</th>
-                                            <th>Sursa</th>
-                                            <th>Limbi</th>
-                                            <th>Data Adăugării</th>
-                                            <th>Serie</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><span class="val-pagini"><%- carte.numar_pagini %></span></td>
-                                            <td><span class="val-sursa"><%- carte.sursa %></span></td>
-                                            <td><span class="val-limbi"><%- carte.limba %></span></td>
-                                            <td><time class="val-data"><%- formatareData(carte.data_adaugarii) %></time></td>
-                                            <td><span class="val-serie"><%- carte.serie ? 'Da' : 'Nu' %></span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <!--  DATALIST: Autor -->
+                        <div class="filtru-grup">
+                            <label for="inp-autor">Autor:</label>
+                            <input type="text" id="inp-autor" list="dl-autori" placeholder="Alege autorul...">
+                            <datalist id="dl-autori">
+                                <% 
+                                    // we use empty set tu be sure we have unique values
+                                    // beacuse if we used an empty array we would have duplicates
+                                    let autori=new Set(); 
+                                    if (locals.carti) { 
+                                        for (let carte of locals.carti) {
+                                            autori.add(carte.autor); 
+                                        } 
+                                    } 
+                                    for (let autor of autori) { %>
+                                        <option value="<%= autor %>"></option>
+                                    <% } %>
+                            </datalist>
+                        </div>
+
+                        <!-- RANGE: Pages -->
+                        <div class="filtru-grup">
+                            <label for="inp-pagini">Număr pagini:</label>
+                            <% 
+                                let maxPagini=0; 
+                                if (locals.carti) { 
+                                    for (let carte of locals.carti) { 
+                                        if (carte.numar_pagini> maxPagini) {
+                                            maxPagini = carte.numar_pagini;
+                                        }
+                                    }
+                                }
+                            %>
+                            <div class="range-container">
+                            <span>0</span>
+                                <input type="range" id="inp-pagini" min="0" max="<%= maxPagini %>" value="<%= maxPagini %>"> 
+                                <span><%= maxPagini %>(<span id="info-range"><%= maxPagini %></span>)</span>
                             </div>
-
-                            <figure class="produs-imagine">
-                                <a href="/carte/<%- carte.id %>"><img src="/resurse/imagini/carti/<%- carte.imagine %>" alt="[imagine <%- carte.titlu %>]" /></a>
-                            </figure>
                         </div>
 
-                        <p class="produs-descriere"><%- carte.descriere %></p>
-
-                        <div class="produs-meta">
-                            <p class="produs-gen">Gen: <span class="val-gen"><%- carte.gen %></span></p>
+                        <!-- RADIO_BUTTONS: Book Type -->
+                        <div class="filtru-grup">
+                            <label>Gen:</label>
+                            <div id="radio-gen">
+                                <label><input type="radio" id="i_radToate" name="gr_rad" value="toate" <%= !locals.query?.gen || locals.query.gen === 'toate' ? 'checked' : '' %>> Toate</label>
+                                <label><input type="radio" name="gr_rad" value="romance" <%= locals.query?.gen === 'romance' ? 'checked' : '' %>> Romance</label>
+                                <label><input type="radio" name="gr_rad" value="fantasy" <%= locals.query?.gen === 'fantasy' ? 'checked' : '' %>> Fantasy</label>
+                                <label><input type="radio" name="gr_rad" value="thriller" <%= locals.query?.gen === 'thriller' ? 'checked' : '' %>> Thriller</label>
+                            </div>
                         </div>
-                    </article>
-                <% } %>
-            </div>
-        </section>
-    </main>
 
-    <%- include("../fragmente/footer") %>
+                        <!-- DROPDOWN: Public -->
+                        <div class="filtru-grup">
+                            <label for="inp-public">Public țintă:</label>
+                            <select id="inp-public">
+                                <option value="toate" selected>Toate</option>
+                                <option value="copii">Copii</option>
+                                <option value="adolescenti">Adolescenți</option>
+                                <option value="adulti">Adulți</option>
+                            </select>
+                        </div>
+
+                        <!-- MULTISELECT: Source -->
+                        <div class="filtru-grup">
+                            <label for="inp-sursa">Sursa (Select multiplu):</label>
+                            <select id="inp-sursa" multiple size="3">
+                                <option value="scanare">Scanare</option>
+                                <option value="digital_native">Digital Native</option>
+                                <option value="proiect_extern">Proiect Extern</option>
+                            </select>
+                        </div>
+
+                        <!-- Language -->
+                        <div class="filtru-grup">
+                            <label>Limbi (Checkbox group):</label>
+                            <div id="check-limbi">
+                                <label><input type="checkbox" name="gr_chck" value="romana" checked> Română</label>
+                                <label><input type="checkbox" name="gr_chck" value="engleza" checked> Engleză</label>
+                                <label><input type="checkbox" name="gr_chck" value="germana" checked> Germană</label>
+                                <label><input type="checkbox" name="gr_chck" value="franceza" checked> Franceză</label>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="filtru-grup">
+                            <label for="inp-descriere">Descriere (cuvinte separate prin virgulă):</label>
+                            <textarea id="inp-descriere" placeholder="Ex: magie, dragon, mister..."></textarea>
+                        </div>
+                    </div>
+                    <div id="butoane-filtre"> 
+                        
+                        <div class="row-butoane">
+                            <button id="sortCresc" class="btn btn-info">Sortare Ascendentă</button>
+                            <button id="sortDescresc" class="btn btn-info">Sortare Descendentă</button>
+                        </div>
+
+                        <div class="row-butoane">
+                            <button id="calculare" class="btn btn-success">Calculare Pagini</button>
+                            <p id="p-suma">Sau apăsați Alt+"c" </p>
+                        </div>
+
+                        <div class="row-butoane">
+                            <button id="filtrare" class="btn btn-primary">Filtrează</button>
+                            <button id="resetare" class="btn btn-secondary">Resetează</button>
+                        </div>
+
+                    </div>
+                </section>
+
+
+                <section id="produse">
+                    <h2>Explorează colecția noastră de cărți</h2>
+                    <div class="grid-produse">
+                        <% const zile_saptamana=['Luni', 'Marti' , 'Miercuri' , 'Joi' , 'Vineri' , 'Sambata' , 'Duminica' ];
+                            const luni=['Ianuarie', 'Februarie' , 'Martie' , 'Aprilie' , 'Mai' , 'Iunie' , 'Iulie'
+                            , 'August' , 'Septembrie' , 'Octombrie' , 'Noiembrie' , 'Decembrie' ]; function
+                            formatareData(dataStr) { const data=new Date(dataStr); const zi=data.getDate(); let
+                            indexZi=data.getDay(); let index=(indexZi===0) ? 6 : indexZi - 1; const
+                            zi_saptamana=zile_saptamana[index]; const luna=luni[data.getMonth()]; const
+                            an=data.getFullYear(); return `${zi} (${zi_saptamana}) / ${luna} / ${an}`; } %>
+                            <% for (let carte of locals.carti) { %>
+                                <article class="produs <%- carte.gen %>" id="ent<%- carte.id %>"
+                                    data-titlu="<%- carte.titlu %>" data-gen="<%- carte.gen %>"
+                                    data-public="<%- carte.public_tinta %>" data-pagini="<%- carte.numar_pagini %>"
+                                    data-sursa="<%- carte.sursa %>" data-limbi="<%- carte.limba %>"
+                                    data-serie="<%- carte.serie %>" data-descriere="<%- carte.descriere %>"
+                                    data-autor="<%- carte.autor %>">
+                                    <h3 class="produs-titlu">
+                                        <a href="/carte/<%- carte.id %>"><span class="val-titlu"><%- carte.titlu %></span></a>
+                                    </h3>
+
+                                    <div class="produs-wrapper">
+                                        <div class="produs-tabel-container">
+                                            <table class="produs-tabel">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Autor</th>
+                                                        <th>Pagini</th>
+                                                        <th>Sursa</th>
+                                                        <th>Public</th>
+                                                        <th>Limbi</th>
+                                                        <th>Serie</th>
+                                                        <th>Data Adăugării</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><span class="val-autor"><%- carte.autor %></span></td>
+                                                        <td><span class="val-pagini"><%- carte.numar_pagini %></span></td>
+                                                        <td><span class="val-sursa"><%- carte.sursa %></span></td>
+                                                        <td><span class="val-public"><%- carte.public_tinta %></span></td>
+                                                        <td><span class="val-limbi"><%- carte.limba %></span></td>
+                                                        <td><span class="val-serie"><%- carte.serie ? 'Da' : 'Nu' %></span></td>
+                                                        <td><time class="val-data"><%- formatareData(carte.data_adaugarii) %></time></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <figure class="produs-imagine">
+                                            <a href="/carte/<%- carte.id %>"><img
+                                                    src="/resurse/imagini/carti/<%- carte.imagine %>"
+                                                    alt="[imagine <%- carte.titlu %>]" /></a>
+                                        </figure>
+                                    </div>
+
+                                    <p class="produs-descriere"><span class="val-descriere"><%- carte.descriere %></span></p>
+
+                                    <div class="produs-meta">
+                                        <p class="produs-gen">Gen: <span class="val-gen"><%- carte.gen %></span></p>
+                                    </div>
+                                </article>
+                                <% } %>
+                    </div>
+                </section>
+            </main>
+
+            <%- include("../fragmente/footer") %>
     </body>
-</html>
+
+    </html>
