@@ -14,7 +14,11 @@ obGlobal = {
     obErori: null,
     obImagini: null,
     obGalerieAnimata: null,
-    optiuniMeniu: [],
+    Genuri: [],
+    Public: [],
+    Autori: [],
+    Surse: [],
+    Limbi: [],
     folderScss: path.join(__dirname, "resurse/scss"),
     folderCss: path.join(__dirname, "resurse/css"),
     folderBackup: path.join(__dirname, "backup"),
@@ -54,13 +58,37 @@ client.query("select * from unnest(enum_range(null::gen_carte))", function (err,
         console.log("Eroare pentru extragerea genurilor de carti", err)
     }
     else {
-        console.log(rez)
-        obGlobal.optiuniMeniu = rez.rows
+        obGlobal.Genuri = rez.rows;
     }
-})
+});
+
+client.query("select * from unnest(enum_range(null::public_tinta_carte))", function (err, rez) {
+    if (err) {
+        console.log("Eroare pentru extragerea publicului tinta", err)
+    }
+    else {
+        obGlobal.Public = rez.rows;
+    }
+});
+
+client.query("SELECT DISTINCT autor FROM carti ORDER BY autor", function (err, rez) {
+    if (!err) obGlobal.Autori = rez.rows;
+});
+
+client.query("select * from unnest(enum_range(null::sursa_carte))", function (err, rez) {
+    if (!err) obGlobal.Surse = rez.rows;
+});
+
+client.query("SELECT DISTINCT trim(unnest(string_to_array(limba, ','))) AS limba FROM carti ORDER BY limba", function (err, rez) {
+    if (!err) obGlobal.Limbi = rez.rows;
+});
 
 app.use(function (req, res, next) {
-    res.locals.optiuni = obGlobal.optiuniMeniu
+    res.locals.optiuniGenuri = obGlobal.Genuri; 
+    res.locals.optiuniPublic = obGlobal.Public;
+    res.locals.optiuniAutori = obGlobal.Autori;
+    res.locals.optiuniSurse = obGlobal.Surse;
+    res.locals.optiuniLimbi = obGlobal.Limbi;
     next();
 })
 

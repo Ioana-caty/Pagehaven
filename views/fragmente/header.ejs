@@ -45,8 +45,8 @@
           <i class="fa-solid fa-book-open"></i> <span class="text-meniu">Cărți</span></a>
         <ul>
           <li><a href="/carti/lista">Toate</a></li>
-          <% if (locals.optiuni && locals.optiuni.length> 0) { %>
-            <% for (let opt of locals.optiuni) { %>
+          <% if (locals.optiuniGenuri && locals.optiuniGenuri.length > 0) { %>
+            <% for (let opt of locals.optiuniGenuri) { %>
               <li><a href="/carti/lista?gen=<%= opt.unnest %>">
                   <%= opt.unnest %>
                 </a></li>
