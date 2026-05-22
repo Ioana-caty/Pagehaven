@@ -3,6 +3,25 @@ window.onload = function () {
     document.getElementById("inp-pagini").oninput = function () {
         document.getElementById("info-range").innerHTML = this.value;
     }
+
+    // auto correction for description (validation in real time)
+    document.getElementById("inp-descriere").oninput = function() {
+        const regexValidare = /^[a-zA-Z0-9, \s]*$/;
+        if (this.value.match(regexValidare)) {
+            this.classList.remove("is-invalid");
+        } else {
+             this.classList.add("is-invalid");
+        }
+    };
+
+    document.getElementById("inp-autor").oninput = function() { 
+        if (this.value.match(/^\D+$/)) {
+            this.classList.remove("is-invalid");
+         } else {
+            this.classList.add("is-invalid");
+        }
+    }
+
     function valideaza() {
         // find the elements by id
         let titlu = document.getElementById("inp-titlu");
@@ -234,9 +253,9 @@ window.onload = function () {
                 let p1 = document.getElementById("infoSuma");
                 p1.remove();
             }, 2000);
-        } else {
-            p.innerHTML = "Total pagini: " + suma;
-        }
+        } 
+    
+        p.innerHTML = "Total pagini: " + suma;
     }
 
     // Butonul și scurtătura tastaturii fac același lucru

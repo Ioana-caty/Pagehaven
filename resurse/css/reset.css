@@ -8,10 +8,14 @@
 :root {
     --primary:        #55294C;
     --border:         #78a4b9;
-    --bg:             #F7F3E8;
-    --bg-card:        #f6efdf;
+    --bg:             #e7dfc9;
+    --bg-card:        #f7eed9;
+    --bg-card2:        #f7eed9c0;
     --text-link:      #e8f2f8;  
     --text:           #2a2a2a;
+    --text_auth:      var(--text);
+    --text_book_page: #111010;
+    --text_filter_card: var(--text);
     --shadow:         #577597;
     --formula:        #3a6fa8;
     --formula2:       #9d7db7;
@@ -27,7 +31,41 @@
 
     --color-table1: #c7adde;
     --color-table2: #e8d9f1;
+
+    --line_book: #55294cbd;
+    --first_letter:var(--primary);
+
+    --BoxShadow: rgb(8, 31, 56);
+
+    --visited-link-color: var(--shadow);
+    --main-link-color: #661d8a;
+    --color-download: #5f0981;
+    --content-http-link-color: #9146a1;
+    --circle-hover-color: #bad4f2;
+
+    --button-switch-bg: rgba(0, 0, 0, 0.1);
+
+    --th_book: var(--primary);
+    --border_books_table: var(--border);
   }
+
+body.dark {
+    --primary: #55294C;
+    --bg: #817e73;
+    --bg-card: var(--primary);
+    --bg-card2: #64265877;
+    --text: #d1cec6;
+    --text_auth: #2a2a2a;
+    --border: #3d5a69;
+    --shadow: #265a8ad3;
+    --color-download: #95c5db;
+    --info: var(--shadow);
+    --circle-hover-color: #7edcec9a;
+    --text_filter_card:   #e8f2f8;
+    --th_book: var(--border);
+    --border_books_table: var(--color-table1);
+    
+}
 
 html {
     font-size: 16px;

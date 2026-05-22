@@ -1,11 +1,3 @@
-:root {
-    --visited-link-color: var(--shadow);
-    --main-link-color: #661d8a;
-    --content-http-link-color: #9146a1;
-    --circle-hover-color: #bad4f2;
-
-}
-
 a {
     text-decoration: none;
     cursor: pointer;

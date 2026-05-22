@@ -1,7 +1,3 @@
-:root {
-   --line: rgba(139, 69, 19, 0.25);
-   --first_letter: #8B4513;
-}
 #ghid-cititor {
     padding: 3.5rem 2rem;
 }
@@ -12,15 +8,18 @@
     text-align: center;
     margin: 0 auto 2rem;
     max-width: 600px;
+    color: var(--text_book_page);
 }
 
 .text-coloane {
     column-count: 1; 
     font-size: 1.1rem;
+    color: var(--text_book_page);
 }
 
 .text-coloane p {
     text-align: justify;
+     color: var(--text_book_page);
 }
 
 .text-coloane p:first-of-type::first-letter {
@@ -37,7 +36,7 @@
 @media (max-width: 899px) {
     .text-coloane p {
         padding-bottom: 1.5rem;
-        border-bottom: 2px solid var(--line);
+        border-bottom: 2px solid var(--line_book);
     }
     
     .text-coloane p:last-of-type {
@@ -50,7 +49,7 @@
     .text-coloane {
         column-count: 3;
         column-gap: 3rem;
-        column-rule: 2px solid var(--line);
+        column-rule: 2px solid var(--line_book);
     }
 }
 
@@ -68,8 +67,8 @@
     color: var(--first_letter);
     margin-top: 1rem;
     padding: 10px;
-    border-top: 1px dashed var(--line);
-    border-bottom: 1px dashed var(--line);
+    border-top: 1px dashed var(--line_book);
+    border-bottom: 1px dashed var(--line_book);
 }
 
 .btn-custom {

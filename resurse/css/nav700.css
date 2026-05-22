@@ -32,6 +32,10 @@ header {
   justify-content: space-between;
   align-items: center;
 }
+header .container-tema {
+  position: static;
+  margin: 0 10px;
+}
 
 #hamburger {
   display: block;

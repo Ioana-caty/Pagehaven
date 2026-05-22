@@ -1,7 +1,3 @@
-        :root {
-            --BoxShadow: rgb(8, 31, 56);
-        }
-
         #produse {
             width: 100%;
             padding: 3rem;
@@ -11,7 +7,7 @@
             margin: 0 auto 2rem;
             text-align: center;
             font-size: 2rem;
-            color: var(--primary);
+            color: var(--text_book_page);
         }
 
         .grid-produse {
@@ -54,7 +50,7 @@
             margin: 0 auto 1rem;
             text-align: center;
             font-size: 2rem;
-            color: var(--primary);
+            color: var(--text_filter_card);
         }
 
         .produs-titlu a {
@@ -87,18 +83,20 @@
             width: 100%;
             border-collapse: collapse;
             table-layout: auto;
+            border: 2px solid var(--border_books_table);
             /* Lăsăm coloanele să se adapteze la conținut */
         }
 
         .produs-tabel th {
             padding: 0.7rem 0.5rem;
-            background-color: var(--primary);
+            background-color: var(--th_book);
+            border: 2px solid var(--border_books_table);
             color: var(--text-link);
             text-align: center;
             font-size: 0.8rem;
         }
-
         .produs-tabel td {
+            border: 2px solid var(--border_books_table);
             padding: 0.7rem 0.5rem;
             text-align: center;
             font-size: 0.9rem;
@@ -111,7 +109,7 @@
             margin: 0 auto;
             /* Centrează imaginea dacă trece pe rând nou */
             border-radius: 0.5rem;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 5px 5px 15px var(--BoxShadow);
             overflow: hidden;
         }
 
@@ -163,7 +161,7 @@
 
             background: linear-gradient(to right, var(--culoare-contur), var(--border), var(--culoare-contur));
             border-radius: var(--radius);
-            box-shadow: 0 0.5rem 1.5rem rgba(58, 4, 80, 0.336);
+            box-shadow: 0 0.5rem 1.5rem  var(--BoxShadow);
 
             padding: 1rem 2rem;
             font-size: 1.2rem;

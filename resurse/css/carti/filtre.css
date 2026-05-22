@@ -1,7 +1,7 @@
 #filtre {
     border: 0.2rem solid transparent;
     border-radius: 0.8rem;
-    background: linear-gradient(45deg, var(--bg-card)) padding-box,
+    background: linear-gradient(45deg, var(--bg-card2)) padding-box,
         linear-gradient(135deg, var(--border), var(--primary), var(--color-table1)) border-box;
     box-shadow: 0 0.4rem 1rem var(--BoxShadow);
     padding: 1.5rem;
@@ -11,21 +11,14 @@
     margin-top: 0;
     text-align: center;
     font-size: 1.8rem;
-    color: var(--primary);
-    border-bottom: 2px solid var(--primary);
-}
-
-.container-filtre {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+    color: var(--text_filter_card);
+    border-bottom: 2px solid var(--text_filter_card);
 }
 
 .filtru-grup {
     display: flex;
     flex-direction: column;
-    min-width: 200px;
-    flex: 1 1 200px;
+    margin-bottom: 1rem;
 }
 
 .filtru-grup label,
@@ -36,20 +29,11 @@
     cursor: pointer;
 }
 
-.filtru-grup label {
+.filtru-grup label,
+.filtru-grup p.fw-bold.mb-2 {
     font-weight: bold;
     margin-bottom: 0.5rem;
-    color: var(--primary);
-}
-
-.filtru-grup input[type="text"],
-.filtru-grup select,
-.filtru-grup textarea {
-    padding: 0.5rem;
-    border: 1px solid var(--primary);
-    border-radius: 5px;
-    font-size: 1rem;
-    box-shadow: 0 0 5px var(--primary);
+    color: var(--text_filter_card);
 }
 
 .range-container {

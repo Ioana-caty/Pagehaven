@@ -1,38 +1,73 @@
-/* Customizare Bootstrap - minim de schimbări, culorile proiectului */
+  /* Customizare Bootstrap - minim de schimbări, culorile proiectului */
 
-@use "../../node_modules/bootstrap/scss/bootstrap" with (
-  $primary: #55294cd9, // --primary
-  $secondary:  #78a4b9, 
-  $info: #c7adde, 
+  @use "../../node_modules/bootstrap/scss/bootstrap" with (
+    $primary: #55294cd9, 
+    $secondary:  #78a4b9, 
+    $info:#79628A,
 
-  $grid-breakpoints: (md: 700px, lg: 1000px),
+    $form-range-track-bg: #78a4b9d8, 
+    $form-range-thumb-width: 1.5rem,
+    $form-range-thumb-height: 1rem, 
+    $form-range-thumb-bg: #55294cd9, 
 
-  $border-radius: 1rem,
 
-  $h1-font-size: 2rem,
-  $h2-font-size: 1.6rem,
-  $h3-font-size: 1.3rem,
-  $h4-font-size: 1rem,
-  $h5-font-size: 1rem,
-  $h6-font-size: 0.8rem,
+    // small display are now 0
+    // medium display are now 700px
+    // large display are now 1000px
+    $grid-breakpoints: (xs: 0, md: 700px, lg: 1000px),
 
-  $font-family-base: ("Lora", serif));
+    $border-radius: 1rem,
+    $btn-border-radius: 0.6rem,
+    $input-border-radius: 0.4rem,
+    $btn-border-width: 0.2rem,
+    $input-border-width: 2px,
 
-  p,h1,h2,h3,h4,h5,h6 {
-    margin: 0 0 0.5rem 0;
+    $h1-font-size: 2rem,
+    $h2-font-size: 1.6rem,
+    $h3-font-size: 1.3rem,
+    $h4-font-size: 1rem,
+    $h5-font-size: 1rem,
+    $h6-font-size: 0.8rem,
+
+    $font-family-base: ("Lora", serif),
+    
+    );
+    
+    p,h1,h2,h3,h4,h5,h6 {
+      margin: 0 0 0.5rem 0;
+      // we have just bottom margin
+    }
+
+    h2, h3{
+      font-weight: 700;
+      // is bold 
+    }
+
+    .btn-custom {
+      color: #F7F3E8;
+    }
+
+    #genuri dt {
+      font-weight: 400;
+    }
+
+
+  .btn-primary {
+    border-color: #3a1c33;  
   }
 
-  h2, h3{
-    font-weight: 700;
+  .btn-secondary {
+    border-color: #5a8a9f;  
   }
 
-  .btn-custom {
-    color: #F7F3E8;
+  .btn-info {
+    border-color: #5a4a6e;  
   }
 
-  #genuri dt {
-    font-weight: 400;
+  .btn-outline-secondary {
+  border-color: #5a4a6e !important;
+  
+  &:active {
+    border-color: #5a4a6e !important;
   }
-
-
-
+}

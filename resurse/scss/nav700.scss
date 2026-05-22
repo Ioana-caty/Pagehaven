@@ -40,6 +40,11 @@ $hamburger-color-duration: 1.2s;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    .container-tema {
+      position: static;
+      margin: 0 10px;
+    }
   }
 
   #hamburger {
