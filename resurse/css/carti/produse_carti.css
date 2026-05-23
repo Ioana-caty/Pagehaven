@@ -170,7 +170,7 @@
 
         }
 
-        /* Stil pentru BONUS 14: Cel mai "ieftin" (scurt) produs */
+        /* BONUS 14: Attention flag */
         .badge-minim {
             position: absolute;
             top: -12px;
@@ -191,4 +191,41 @@
             0% { transform: rotate(5deg) scale(1); }
             50% { transform: rotate(5deg) scale(1.08); box-shadow: 0 6px 12px rgba(255, 78, 80, 0.4); }
             100% { transform: rotate(5deg) scale(1); }
+        }
+
+        /* --- BONUS 6: Option Buttons --- */
+        .produs-optiuni {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            justify-content: flex-end;
+        }
+
+        .btn-optiune {
+            background-color: var(--color-table2);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-optiune:hover {
+            transform: scale(1.3);
+        }
+
+        .produs.produs-fixat {
+            background: linear-gradient(135deg, #72865f 0%, #3e6641 100%) !important;
+            border: 2px solid transparent;
+        }
+
+        .produs-fixat .btn-pin {
+            background-color: #70bd66;
+            color: #000;
+            border-color: #05750e;
         }

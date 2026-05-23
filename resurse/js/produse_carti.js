@@ -4,6 +4,45 @@ window.onload = function () {
         return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
     }
 
+    // --- BONUS 6: Option Buttons ---
+    let iduriAscunse = JSON.parse(sessionStorage.getItem("produse_ascunse") || "[]");
+
+    function actualizeazaVizibilitateSesiune() {
+        for (let id of iduriAscunse) {
+            let el = document.getElementById(id);
+            if (el) el.style.display = "none";
+        }
+    }
+    actualizeazaVizibilitateSesiune();
+
+    let toateProdusele = document.getElementsByClassName("produs");
+    for (let prod of toateProdusele) {
+        // Button 1: fixation
+        prod.querySelector(".btn-pin").onclick = function(e) {
+            e.stopPropagation();
+            let esteFixat = prod.classList.toggle("produs-fixat");
+            if (esteFixat) {
+                //  move to the top
+                prod.parentElement.prepend(prod);
+            }
+        }
+        // Button 2: hide temp
+        prod.querySelector(".btn-hide-temp").onclick = function(e) {
+            e.stopPropagation();
+            prod.style.display = "none";
+        }
+
+        // Button 3: hide session
+        prod.querySelector(".btn-hide-session").onclick = function(e) {
+            e.stopPropagation();
+            if (!iduriAscunse.includes(prod.id)) {
+                iduriAscunse.push(prod.id);
+                sessionStorage.setItem("produse_ascunse", JSON.stringify(iduriAscunse));
+            }
+            prod.style.display = "none";
+        }
+    }
+
     document.getElementById("inp-pagini").oninput = function () {
         document.getElementById("info-range").innerHTML = this.value;
     }
@@ -101,6 +140,13 @@ window.onload = function () {
         for (let prod of produse) {
             prod.style.display = "none";
 
+            // --- BONUS 6: Priorități ---
+            if (iduriAscunse.includes(prod.id)) continue; // Dacă e în lista neagră, sărim direct
+            if (prod.classList.contains("produs-fixat")) {
+                prod.style.display = "block";
+                continue; // Dacă e fixat, îl afișăm și nu mai verificăm filtrele
+            }
+
             // let titlu = prod.getElementsByClassName("val-titlu")[0].innerHTML.trim().toLowerCase();
             let titlu = eliminaDiacritice(prod.dataset.titlu);
             let cond1 = titlu.includes(inpTitlu);
@@ -191,15 +237,28 @@ window.onload = function () {
             let chksLimbi = document.getElementsByName("gr_chck");
             for (let c of chksLimbi) c.checked = true;
 
-            // we display all the books
+            // we display all the books (except those hidden in session)
             let produse = document.getElementsByClassName("produs");
-            for (let prod of produse) prod.style.display = "block";
+            for (let prod of produse) {
+                if (iduriAscunse.includes(prod.id)) {
+                    prod.style.display = "none";
+                } else {
+                    prod.style.display = "block";
+                }
+            }
 
             // we sort the books by id
             let vProduse = Array.from(produse); // HTML collection
-            vProduse.sort((a, b) =>
+            vProduse.sort((a, b) => {
+                // --- BONUS 6: Prioritate Pinned la Resetare ---
+                let fixatA = a.classList.contains("produs-fixat");
+                let fixatB = b.classList.contains("produs-fixat");
+                if (fixatA && !fixatB) return -1;
+                if (!fixatA && fixatB) return 1;
+
                 // convert the id from "ent1" to 1
-                parseInt(a.id.replace("ent", "")) - parseInt(b.id.replace("ent", "")));
+                return parseInt(a.id.replace("ent", "")) - parseInt(b.id.replace("ent", ""));
+            });
 
             // the organize is just in the memory 9we do not see it) 
             // we organize the books ont he grid 
@@ -215,6 +274,12 @@ window.onload = function () {
         let produse = document.getElementsByClassName("produs");
         let vProduse = Array.from(produse);
         vProduse.sort(function (a, b) {
+            // --- BONUS 6: Prioritate Pinned la Sortare ---
+            let fixatA = a.classList.contains("produs-fixat");
+            let fixatB = b.classList.contains("produs-fixat");
+            if (fixatA && !fixatB) return -1; // a e fixat, deci vine în față
+            if (!fixatA && fixatB) return 1;  // b e fixat, deci vine în față
+
             // let paginiA = parseInt(a.getElementsByClassName("val-pagini")[0].innerHTML.trim());
             // let paginiB = parseInt(b.getElementsByClassName("val-pagini")[0].innerHTML.trim());
             let paginiA = parseInt(a.dataset.pagini);
