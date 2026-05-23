@@ -1,12 +1,16 @@
 window.onload = function () {
 
+    function eliminaDiacritice(text) {
+        return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    }
+
     document.getElementById("inp-pagini").oninput = function () {
         document.getElementById("info-range").innerHTML = this.value;
     }
 
     // auto correction for description (validation in real time)
     document.getElementById("inp-descriere").oninput = function() {
-        const regexValidare = /^[a-zA-Z0-9, \s]*$/;
+        const regexValidare = /^[a-zA-Z0-9, \săâîșț]*$/i;
         if (this.value.match(regexValidare)) {
             this.classList.remove("is-invalid");
         } else {
@@ -15,7 +19,7 @@ window.onload = function () {
     };
 
     document.getElementById("inp-autor").oninput = function() { 
-        if (this.value.match(/^\D+$/)) {
+         if (this.value.match(/^\D+$/)) {
             this.classList.remove("is-invalid");
          } else {
             this.classList.add("is-invalid");
@@ -49,7 +53,7 @@ window.onload = function () {
         }
 
         // 3. Description: just letters, numbers, spaces, ",";
-        if (!descriere.value.match(/^[a-zA-Z0-9, \s]*$/)) {
+        if (!descriere.value.match(/^[a-zA-Z0-9, \săîâșț]*$/i)) {
             alert("Descrierea conține caractere interzise!");
             descriere.classList.add("is-invalid");
             return false;
@@ -62,8 +66,9 @@ window.onload = function () {
         if (!valideaza()) return;
 
         //we read the values from the input fields
-        let inpTitlu = document.getElementById("inp-titlu").value.toLowerCase().trim();
-        let inpAutor = document.getElementById("inp-autor").value.toLowerCase().trim();
+        // let inpTitlu = document.getElementById("inp-titlu").value.toLowerCase().trim();
+        let inpTitlu = eliminaDiacritice(document.getElementById("inp-titlu").value.trim());
+        let inpAutor = eliminaDiacritice(document.getElementById("inp-autor").value.trim());
         let inpPaginiMax = parseInt(document.getElementById("inp-pagini").value);
 
         let grupRadio = document.getElementsByName("gr_rad");
@@ -88,7 +93,7 @@ window.onload = function () {
             }
         }
 
-        let textDescriere = document.getElementById("inp-descriere").value.toLowerCase().trim();
+        let textDescriere = eliminaDiacritice(document.getElementById("inp-descriere").value.trim());
         let cuvinteCheie = textDescriere.split(",").map(s => s.trim()).filter(s => s !== "");
 
         let produse = document.getElementsByClassName("produs");
@@ -97,11 +102,11 @@ window.onload = function () {
             prod.style.display = "none";
 
             // let titlu = prod.getElementsByClassName("val-titlu")[0].innerHTML.trim().toLowerCase();
-            let titlu = prod.dataset.titlu.toLowerCase();
+            let titlu = eliminaDiacritice(prod.dataset.titlu);
             let cond1 = titlu.includes(inpTitlu);
 
             // let autor = prod.getElementsByClassName("val-autor")[0].innerHTML.trim().toLowerCase();
-            let autor = prod.dataset.autor.toLowerCase();
+            let autor = eliminaDiacritice(prod.dataset.autor);
             let cond2 = autor.includes(inpAutor);
 
             // let pagini = parseInt(prod.getElementsByClassName("val-pagini")[0].innerHTML.trim());
@@ -137,7 +142,7 @@ window.onload = function () {
             }
 
             // let descriere = prod.getElementsByClassName("val-descriere")[0].innerHTML.trim().toLowerCase();
-            let descriere = prod.dataset.descriere.toLowerCase();
+            let descriere = eliminaDiacritice(prod.dataset.descriere);
             let cond8 = true; // display by default all the books 
             if (cuvinteCheie.length > 0) {
                 // if we have some keywords to look for
