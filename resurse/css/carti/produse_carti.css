@@ -229,3 +229,16 @@
             color: #000;
             border-color: #05750e;
         }
+
+        /*Bonus 6 */
+        #mesaj-fara-produse {
+            display: none;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 1.25rem;
+            padding: 1.25rem;
+            border-radius: var(--radius);
+            background-color: var(--culoare-fundal);
+            border: 2px solid var(--shadow);
+            color: var(--text_book_page);
+        }

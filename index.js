@@ -531,6 +531,41 @@ app.get("/*pagina", function (req, res) {
     }
 });
 
+// Delete the Backup files after an hour and a half
+const T = 90; // The limit in minutes
+
+function curataBackup(director = obGlobal.folderBackup) {
+    console.log(`[Backup] Se verifica directorul: ${director}`);
+    try {
+        if (fs.existsSync(director)) {
+            const items = fs.readdirSync(director);
+            const acum = Date.now();
+            const pragMs = T * 60 * 1000;
+
+            items.forEach(item => {
+                const caleItem = path.join(director, item);
+                // make the path absolute director+item
+                const stats = fs.statSync(caleItem);
+
+                if (stats.isDirectory()) {
+                    curataBackup(caleItem); // recursion for subdirectories
+                    const vechime = acum - stats.mtimeMs;
+                    if (vechime > pragMs) {
+                        fs.unlinkSync(caleItem);
+                        console.log(`[Backup] Fisier sters (mai vechi de ${T} min): ${item}`);
+                    }
+                }
+            });
+        }
+    } catch (eroare) {
+        console.error("[Backup] Eroare la curatarea folderului backup:", eroare);
+    }
+}
+
+
+curataBackup();
+setInterval(curataBackup, 60 * 1000);
+
 const PORT = 8080;
 app.listen(PORT);
 console.log("Serverul a pornit!");

@@ -136,15 +136,17 @@ window.onload = function () {
         let cuvinteCheie = textDescriere.split(",").map(s => s.trim()).filter(s => s !== "");
 
         let produse = document.getElementsByClassName("produs");
+        let nrProduseAfisate = 0;
 
         for (let prod of produse) {
             prod.style.display = "none";
 
             // --- BONUS 6: Priorități ---
-            if (iduriAscunse.includes(prod.id)) continue; // Dacă e în lista neagră, sărim direct
+            if (iduriAscunse.includes(prod.id)) continue;
             if (prod.classList.contains("produs-fixat")) {
                 prod.style.display = "block";
-                continue; // Dacă e fixat, îl afișăm și nu mai verificăm filtrele
+                nrProduseAfisate++;
+                continue; 
             }
 
             // let titlu = prod.getElementsByClassName("val-titlu")[0].innerHTML.trim().toLowerCase();
@@ -204,7 +206,15 @@ window.onload = function () {
 
             if (cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8) {
                 prod.style.display = "block";
+                nrProduseAfisate++;
             }
+        }
+
+        let mesaj = document.getElementById("mesaj-fara-produse");
+        if (nrProduseAfisate === 0) {
+            mesaj.style.display = "block";
+        } else {
+            mesaj.style.display = "none";
         }
     }
 
@@ -246,6 +256,9 @@ window.onload = function () {
                     prod.style.display = "block";
                 }
             }
+
+            // hide the message when we reset
+            document.getElementById("mesaj-fara-produse").style.display = "none";
 
             // we sort the books by id
             let vProduse = Array.from(produse); // HTML collection
