@@ -169,7 +169,19 @@
                     <section id="produse">
                         <h2>Explorează colecția noastră de cărți</h2>
                         <div class="grid-produse">
-                            <% const zile_saptamana=['Luni', 'Marti' , 'Miercuri' , 'Joi' , 'Vineri' , 'Sambata' , 'Duminica' ];
+                            <% 
+                                // Calculate the minim number of pages for each genre 
+                                let minimePeGen = {};
+                                if (locals.carti) {
+                                    for (let carte of locals.carti) {
+                                        let gen = carte.gen;
+                                        if (!minimePeGen[gen] || carte.numar_pagini < minimePeGen[gen]) {
+                                            minimePeGen[gen] = carte.numar_pagini;
+                                        }
+                                    }
+                                }
+
+                                const zile_saptamana=['Luni', 'Marti' , 'Miercuri' , 'Joi' , 'Vineri' , 'Sambata' , 'Duminica' ];
                                 const luni=['Ianuarie', 'Februarie' , 'Martie' , 'Aprilie' , 'Mai' , 'Iunie' , 'Iulie'
                                 , 'August' , 'Septembrie' , 'Octombrie' , 'Noiembrie' , 'Decembrie' ]; function
                                 formatareData(dataStr) { const data=new Date(dataStr); const zi=data.getDate(); let
@@ -183,6 +195,13 @@
                                         data-sursa="<%- carte.sursa %>" data-limbi="<%- carte.limba %>"
                                         data-serie="<%- carte.serie %>" data-descriere="<%- carte.descriere %>"
                                         data-autor="<%- carte.autor %>">
+                                        
+                                        <% if (carte.numar_pagini === minimePeGen[carte.gen]) { %>
+                                            <div class="badge-minim" title="Această carte are cele mai puține pagini din categoria <%= carte.gen %>">
+                                                <span><i class="fa-solid fa-bolt"></i> Cea mai subțire din această categorie!</span>
+                                            </div>
+                                        <% } %>
+
                                         <h3 class="produs-titlu">
                                             <a href="/carte/<%- carte.id %>"><span class="val-titlu"><%- carte.titlu %></span></a>
                                         </h3>

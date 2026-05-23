@@ -20,6 +20,7 @@
         /* Product card */
         /* The first child (article) of 'grid-produse' */
         .grid-produse>article {
+            position: relative;
             display: flex;
             flex-direction: column;
             border: 0.2rem solid transparent;
@@ -167,4 +168,27 @@
             font-size: 1.2rem;
             font-weight: bold;
 
+        }
+
+        /* Stil pentru BONUS 14: Cel mai "ieftin" (scurt) produs */
+        .badge-minim {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            border: 2px solid #ff4e50;
+            color: #d10000;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            z-index: 5;
+            transform: rotate(5deg);
+            animation: pulse-badge 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-badge {
+            0% { transform: rotate(5deg) scale(1); }
+            50% { transform: rotate(5deg) scale(1.08); box-shadow: 0 6px 12px rgba(255, 78, 80, 0.4); }
+            100% { transform: rotate(5deg) scale(1); }
         }
