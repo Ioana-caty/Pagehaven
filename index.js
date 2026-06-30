@@ -546,9 +546,11 @@ function curataBackup(director = obGlobal.folderBackup) {
                 const caleItem = path.join(director, item);
                 // make the path absolute director+item
                 const stats = fs.statSync(caleItem);
+                // get the details of the file
 
                 if (stats.isDirectory()) {
                     curataBackup(caleItem); // recursion for subdirectories
+                } else {
                     const vechime = acum - stats.mtimeMs;
                     if (vechime > pragMs) {
                         fs.unlinkSync(caleItem);
